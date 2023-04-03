@@ -245,6 +245,260 @@
             "relatedCourses": [
                 "Accounting and Finance MSc"
             ]
+        },
+        {
+            "keyFacts": {
+                "level": "Undergraduate",
+                "ucasCodes": {
+                    "regular": "W340",
+                    "withFoundation": "W341"
+                },
+                "duration": {
+                    "fullTime": 3,
+                    "partTime": "4-6",
+                    "withFoundation": 4
+                },
+                "startDates": [
+                    "September"
+                ],
+                "location": "Waterside"
+            },
+            "courseDetails": {
+                "icon": "music.svg",
+                "courseName": "Popular Music BA (Hons)",
+                "summary": "The Popular Music BA (Hons) course at the University of Northampton is designed and run to invest you with a variety of skills, knowledge and experience. When you graduate, you’ll have the know-how to navigate an ever evolving 21st Century music industry. You’ll have the skills for wider employment, including in the teaching profession and further study should this be something you wish to pursue. This course is Industry Accredited by JAMES representing APRS, MPG and associate industry bodies. Accreditation of a course by relevant industry bodies provides assurance to students and employers of its potential and value.",
+                "highlights": [
+                    "Performing live on stage",
+                    "Learning to use a professional grade recording studio",
+                    "Introduction to a network of music businesses",
+                    "One-to-one instrument/ vocal coaching sessions (on your main instrument in year 1)",
+                    "Various performing opportunities, including at Northampton Music Festival",
+                    "Specialised guest lectures and masterclasses for popular music and composition",
+                    "Guaranteed paid internship with the Northampton Employment Promise."
+                ],
+                "modules": {
+                    "stage1": [
+                        {
+                            "moduleCode": "MUS1129",
+                            "title": "Cultural Theory 1",
+                            "credits": 20,
+                            "status": "Compulsory",
+                            "prereq": null
+                        },
+                        {
+                            "moduleCode": "MUS1147",
+                            "title": "Composition and Theory 1: Application of Theory",
+                            "credits": 10,
+                            "status": "Compulsory",
+                            "prereq": null
+                        },
+                        {
+                            "moduleCode": "MUS1127",
+                            "title": "Performance 1",
+                            "credits": 20,
+                            "status": "Compulsory",
+                            "prereq": null
+                        }
+                    ],
+                    "stage2": [
+                        {
+                            "moduleCode": "MUS2140",
+                            "title": "How Music Works",
+                            "credits": 20,
+                            "status": "Designated",
+                            "prereq": null
+                        },
+                        {
+                            "moduleCode": "MUS2141",
+                            "title": "The Creative Practitioner",
+                            "credits": 20,
+                            "status": "Designated",
+                            "prereq": null
+                        },
+                        {
+                            "moduleCode": "MUS2151",
+                            "title": "Digital Audio Workstation 2: Sampling",
+                            "credits": 10,
+                            "status": "Designated",
+                            "prereq": null
+                        }
+                    ],
+                    "stage3": [
+                        {
+                            "moduleCode": "MUS4121",
+                            "title": "Professional Project",
+                            "credits": 40,
+                            "status": "Designated",
+                            "prereq": null
+                        },
+                        {
+                            "moduleCode": "MUS3143",
+                            "title": "Advanced Recording and Production: Client Demos",
+                            "credits": 20,
+                            "status": "Designated",
+                            "prereq": null
+                        },
+                        {
+                            "moduleCode": "MUS3135",
+                            "title": "The Philosophy of Music",
+                            "credits": 20,
+                            "status": "Designated",
+                            "prereq": null
+                        }
+                    ]
+                }
+            },
+            "entryRequirements": {
+                "summary": "",
+                "englishReq": "IELTS 6.0 (or equivalent) with a minimum of 5.5 in all bands"
+            },
+            "fees": {
+                "year": "23/24",
+                "currency": "£",
+                "conversionRate": 1.0,
+                "uk": {
+                    "fullTime": 9250,
+                    "partTime": 1540,
+                    "withFoundation": 9250
+                },
+                "international": {
+                    "fullTime": 14750,
+                    "withFoundation": 14750
+                },
+                "extras": [
+                    "Musical instrument & consumables: Price varies",
+                    "Vocalists – microphone: £80 (approx.)",
+                    "Portable hard drive: £60 (approx.)",
+                    "A good pair of closed back headphones: £60-100 (approx.)",
+                    "Batteries for portable recording equipment: £30-50 (approx.)",
+                    "Core textbooks and sheet music: £80 (approx.)",
+                    "USB Flash drives: £10-20 for two (approx.)",
+                    "And/ or SD card (£10-20 max)"
+                ]
+            },
+            "faqs": [
+                {
+                    "question": "What makes Criminology at the University of Northampton special?",
+                    "answer": "The Criminology programme offered at the University of Northampton has been established for over 20 years. From the outset, the programme has incorporated a research placement whereby second year students undertake a piece of empirical research in a criminal justice agency. We are one of the few, if only, programmes which offers student membership of the British Society of Criminology, which enables students to engage with some of the important criminological thinkers across a range of different opportunities."
+                },
+                {
+                    "question": "What is the British Society of Criminology?",
+                    "answer": "Every Criminology student receives an undergraduate membership to the British Society of Criminology (BSC) for the entirety of their degree. Benefits of the membership include access to e-bulletins and newsletters, access to free BSC seminars and events, discounted rates to attend BSC events and many more. Check out the full Member Benefits list."
+                },
+                {
+                    "question": "What is a criminologist?",
+                    "answer": "A criminologist is a social scientist who studies crime, criminal behaviour, and the criminal justice system. They analyse crime statistics, conduct research to determine the causes of crime, and develop theories about criminal behaviour. They also study the responses of the criminal justice system to crime, including law enforcement, courts, and prisons."
+                },
+                {
+                    "question": "How will I be assessed?",
+                    "answer": "There are a variety of assessments used on the BA Criminology degree including essays, historical investigations, role plays, posters and end of year examinations. The assessments allow you to engage with the subject to nurture your talent and cultivate your success."
+                }
+            ],
+            "relatedCourses": [
+                "Criminal and Corporate Investigation BA (Hons)",
+                "Law LLB (Hons)",
+                "Law with Criminology BA (Hons)"
+            ]
+        },
+        {
+            "keyFacts": {
+                "level": "Postgraduate",
+                "duration": {
+                    "fullTime": 1,
+                    "partTime": "2-4",
+                    "withPlacement": false
+                },
+                "startDates": [
+                    "September"
+                ],
+                "location": "Waterside"
+            },
+            "courseDetails": {
+                "icon": "humanities.svg",
+                "courseName": "English – Contemporary Literature MA",
+                "summary": "This exciting English – Contemporary Literature MA course examines the role of contemporary literature in a number of different contexts. You will have the chance to explore a diverse range of texts, across varied modules, with the chance to explore a topic of your choice in specialist detail through your dissertation. You could study post-1945 classics, including late modernists like Samuel Beckett, as well as surveying the latest novels. You may explore specialist fields such as trauma fiction or gender and sexuality, master the latest literary theories, or investigate new genres and popular narrative media, including contemporary gothic literature, film, video games and comic books.",
+                "highlights": [
+                    "Research-informed modules on current topics",
+                    "Flexible evening study time",
+                    "This course is eligible for the postgraduate loan"
+                ],
+                "modules": {
+                    "stage1": [
+                        {
+                            "moduleCode": "LITM043",
+                            "title": "Dissertation",
+                            "credits": 60,
+                            "status": "Compulsory",
+                            "prereq": null,
+                            "type": "dissertation"
+                        },
+                        {
+                            "moduleCode": "LITM033",
+                            "title": "Critical Theory and Methodologies",
+                            "credits": 30,
+                            "status": "Compulsory",
+                            "prereq": null,
+                            "type": "regular"
+                        },
+                        {
+                            "moduleCode": "LITM035",
+                            "title": "Contemporary British Gothic",
+                            "credits": 30,
+                            "status": "Compulsory",
+                            "prereq": null,
+                            "type": "regular"
+                        },
+                        {
+                            "moduleCode": "LITM036",
+                            "title": "Literary Modernism in a Postmodern World ",
+                            "credits": 30,
+                            "status": "Designated",
+                            "prereq": null,
+                            "type": "regular"
+                        }
+                    ]
+                }
+            },
+            "entryRequirements": {
+                "summary": "To apply for the MA in English (Contemporary Literature), we normally ask that you have a Bachelor’s degree in English, or a related discipline, at 2:1 or higher. Applications with alternative qualifications or experience and from overseas students are welcomed and will be assessed in accordance with the University’s Admissions Policy and Academic Regulations.",
+                "englishReq": "IELT 6.5 (or equivalent) for study at postgraduate level"
+            },
+            "fees": {
+                "year": "23/24",
+                "currency": "£",
+                "conversionRate": 1.0,
+                "uk": {
+                    "fullTime": 8010,
+                    "partTime": [
+                        4450,
+                        3560
+                    ]
+                },
+                "international": {
+                    "fullTime": 16500,
+                    "partTime": null
+                },
+                "withPlacement": null,
+                "extras": "We do ask that you buy the prescribed primary texts for each module. We carefully review the costs of every module each year, so that they do not exceed £100 per module. In practice, by using libraries, freely available online resources and second-hand copies of books, costs are often less than half of this total figure. You will have the chance to attend a range of research seminars, conferences, field trips and other activities beyond the curriculum for free or at minimal cost."
+            },
+            "faqs": [
+                {
+                    "question": "How will I learn?",
+                    "answer": "Typically you will have 10 hours (approx) of contact time with your tutors in the first semester and 12 hours (approx) in the second semester. Overall you will spend 108 hours per module in self-directed study (reading and research)."
+                },
+                {
+                    "question": "How will I be assessed?",
+                    "answer": "The course uses a combination of assessment methods including reports, case studies, time constrained tests and examinations, plus your dissertation."
+                },
+                {
+                    "question": "Are there are any special features on this course?",
+                    "answer": "You will have access to several resources and databases such as; Bloomberg, Datastream, ABI Global, Business Source Premier, Emerald, MarketLine Advantage, Orbis, ScienceDirect, Sage Video (Business & Management Collection), Taylor & Francis"
+                }
+            ],
+            "relatedCourses": [
+                "English BA (Hons)",
+                "Primary Education (5-11) (QTS) PGCE"
+            ]
         }
     ]
 }
