@@ -1,0 +1,250 @@
+{
+    "courses": [
+        {
+            "keyFacts": {
+                "level": "Undergraduate",
+                "ucasCodes": {
+                    "regular": "M930",
+                    "withFoundation": "M931"
+                },
+                "duration": {
+                    "fullTime": 3,
+                    "partTime": "4-6",
+                    "withFoundation": 4
+                },
+                "startDates": [
+                    "September"
+                ],
+                "location": "Waterside"
+            },
+            "courseDetails": {
+                "icon": "criminology.svg",
+                "courseName": "Criminology BA (Hons)",
+                "summary": "This BA Criminology course has been designed to contribute towards achieving the following United Nations Sustainable Development Goal: SDG10 of Reduced Inequalities. Studying Criminology with us gives you a distinctive approach to learning, drawing on the disciplines of sociology, psychology, history and law. This provides you with a comprehensive introduction to key theoretical and methodological issues at the heart of the discipline.",
+                "highlights": [
+                    "Research placement available",
+                    "Multi-disciplinary approach to criminology",
+                    "Guest speakers from criminology backgrounds",
+                    "Membership to the British Society of Criminology (BSC)"
+                ],
+                "modules": {
+                    "stage1": [
+                        {
+                            "moduleCode": "CRI1002",
+                            "title": "Crime and Society",
+                            "credits": 20,
+                            "status": "Compulsory",
+                            "prereq": null
+                        },
+                        {
+                            "moduleCode": "CRI1011",
+                            "title": "Research Methods for Criminologists",
+                            "credits": 20,
+                            "status": "Compulsory",
+                            "prereq": null
+                        },
+                        {
+                            "moduleCode": "CRI1010",
+                            "title": "From Delinquency to Criminal Careers ",
+                            "credits": 20,
+                            "status": "Compulsory",
+                            "prereq": null
+                        }
+                    ],
+                    "stage2": [
+                        {
+                            "moduleCode": "CRI2003",
+                            "title": "Doing Research in Criminology",
+                            "credits": 40,
+                            "status": "Compulsory",
+                            "prereq": null
+                        },
+                        {
+                            "moduleCode": "CRI2001",
+                            "title": "Crime and Justice",
+                            "credits": 20,
+                            "status": "Compulsory",
+                            "prereq": null
+                        },
+                        {
+                            "moduleCode": "CRI2011",
+                            "title": "International Policing",
+                            "credits": 20,
+                            "status": "Designated",
+                            "prereq": null
+                        }
+                    ],
+                    "stage3": [
+                        {
+                            "moduleCode": "CRI3006",
+                            "title": "Beyond Justice ",
+                            "credits": 20,
+                            "status": "Designated",
+                            "prereq": null
+                        },
+                        {
+                            "moduleCode": "CRI3009",
+                            "title": "Activism in Criminology",
+                            "credits": 20,
+                            "status": "Designated",
+                            "prereq": null
+                        },
+                        {
+                            "moduleCode": "CRI4003",
+                            "title": "Criminology Dissertation",
+                            "credits": 40,
+                            "status": "Compulsory",
+                            "prereq": null
+                        }
+                    ]
+                }
+            },
+            "entryRequirements": {
+                "summary": "",
+                "englishReq": "IELTS 6.0 (or equivalent) with a minimum of 5.5 in all bands"
+            },
+            "fees": {
+                "year": "23/24",
+                "currency": "£",
+                "conversionRate": 1.0,
+                "uk": {
+                    "fullTime": 9250,
+                    "partTime": 1540,
+                    "withFoundation": 9250
+                },
+                "international": {
+                    "fullTime": 14750,
+                    "withFoundation": 14750
+                },
+                "extras": null
+            },
+            "faqs": [
+                {
+                    "question": "What makes Criminology at the University of Northampton special?",
+                    "answer": "The Criminology programme offered at the University of Northampton has been established for over 20 years. From the outset, the programme has incorporated a research placement whereby second year students undertake a piece of empirical research in a criminal justice agency. We are one of the few, if only, programmes which offers student membership of the British Society of Criminology, which enables students to engage with some of the important criminological thinkers across a range of different opportunities."
+                },
+                {
+                    "question": "What is the British Society of Criminology?",
+                    "answer": "Every Criminology student receives an undergraduate membership to the British Society of Criminology (BSC) for the entirety of their degree. Benefits of the membership include access to e-bulletins and newsletters, access to free BSC seminars and events, discounted rates to attend BSC events and many more. Check out the full Member Benefits list."
+                },
+                {
+                    "question": "What is a criminologist?",
+                    "answer": "A criminologist is a social scientist who studies crime, criminal behaviour, and the criminal justice system. They analyse crime statistics, conduct research to determine the causes of crime, and develop theories about criminal behaviour. They also study the responses of the criminal justice system to crime, including law enforcement, courts, and prisons."
+                },
+                {
+                    "question": "How will I be assessed?",
+                    "answer": "There are a variety of assessments used on the BA Criminology degree including essays, historical investigations, role plays, posters and end of year examinations. The assessments allow you to engage with the subject to nurture your talent and cultivate your success."
+                }
+            ],
+            "relatedCourses": [
+                "Criminal and Corporate Investigation BA (Hons)",
+                "Law LLB (Hons)",
+                "Law with Criminology BA (Hons)"
+            ]
+        },
+        {
+            "keyFacts": {
+                "level": "Postgraduate",
+                "duration": {
+                    "fullTime": 1,
+                    "partTime": null,
+                    "withPlacement": true
+                },
+                "startDates": [
+                    "September"
+                ],
+                "location": "Waterside"
+            },
+            "courseDetails": {
+                "icon": "accounting.svg",
+                "courseName": "Financial and Investment Analysis MSc",
+                "summary": "MSc Financial and Investment Analysis will develop you into a specialist investment professional that can take up challenging roles in investment banking, risk management and fund management. This programme will prepare you to write the CFA® professional exams. This course has an Industry Placement Option.",
+                "highlights": [
+                    "Industry Placement Option available",
+                    "Hands-on application of skills learnt through simulated trading via the Bloomberg terminals",
+                    "Exemptions are available from main professional bodies ACCA and CIMA"
+                ],
+                "modules": {
+                    "stage1": [
+                        {
+                            "moduleCode": "FINM025",
+                            "title": "Dissertation and Research Methods",
+                            "credits": 60,
+                            "status": "Compulsory",
+                            "prereq": null,
+                            "type": "dissertation"
+                        },
+                        {
+                            "moduleCode": "FINM065",
+                            "title": "Portfolio Management",
+                            "credits": 20,
+                            "status": "Compulsory",
+                            "prereq": null,
+                            "type": "regular"
+                        },
+                        {
+                            "moduleCode": "FINM072",
+                            "title": "Alternative Investments",
+                            "credits": 10,
+                            "status": "Compulsory",
+                            "prereq": null,
+                            "type": "regular"
+                        },
+                        {
+                            "moduleCode": "HRMM074",
+                            "title": "Work-Based Project (60 Credit)",
+                            "credits": 60,
+                            "status": "Compulsory",
+                            "prereq": "HRMM072",
+                            "type": "placement"
+                        },
+                        {
+                            "moduleCode": "HRMM072",
+                            "title": "Career Futures: Employability Skills",
+                            "credits": 0,
+                            "status": "Compulsory",
+                            "prereq": null,
+                            "type": "placement"
+                        }
+                    ]
+                }
+            },
+            "entryRequirements": {
+                "summary": "If you hold a recognised first or second class honours degree from a UK university or international equivalent in finance, banking, accounting or a related discipline then you will be eligible to apply for this course. If you hold professional qualifications you will also be considered for entry onto this course.",
+                "englishReq": "Minimum standard – IELTS 6.5 (or equivalent) for study at postgraduate level"
+            },
+            "fees": {
+                "year": "23/24",
+                "currency": "£",
+                "conversionRate": 1.0,
+                "uk": {
+                    "fullTime": 8010,
+                    "partTime": null
+                },
+                "international": {
+                    "fullTime": 16500,
+                    "partTime": null
+                },
+                "withPlacement": 1100,
+                "extras": null
+            },
+            "faqs": [
+                {
+                    "question": "How will I learn?",
+                    "answer": "Typically you will have 10 hours (approx) of contact time with your tutors in the first semester and 12 hours (approx) in the second semester. Overall you will spend 108 hours per module in self-directed study (reading and research)."
+                },
+                {
+                    "question": "How will I be assessed?",
+                    "answer": "The course uses a combination of assessment methods including reports, case studies, time constrained tests and examinations, plus your dissertation."
+                },
+                {
+                    "question": "Are there are any special features on this course?",
+                    "answer": "You will have access to several resources and databases such as; Bloomberg, Datastream, ABI Global, Business Source Premier, Emerald, MarketLine Advantage, Orbis, ScienceDirect, Sage Video (Business & Management Collection), Taylor & Francis"
+                }
+            ],
+            "relatedCourses": [
+                "Accounting and Finance MSc"
+            ]
+        }
+    ]
+}

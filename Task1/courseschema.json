@@ -1,0 +1,12 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "title": "List of Courses at Northampton",
+    "description": "A list of undergraduate and postgraduate courses at Northampton and their details",
+    "type": "object",
+    "properties": {
+        "courses": {
+            "type": "array",
+            "properties": {}
+        }
+    }
+}
