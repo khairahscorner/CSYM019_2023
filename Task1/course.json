@@ -105,8 +105,10 @@
             },
             "fees": {
                 "year": "23/24",
-                "currency": "£",
-                "conversionRate": 1.0,
+                "currency": {
+                    "type": "£",
+                    "conversionRate": 1.0
+                },
                 "uk": {
                     "fullTime": 9250,
                     "partTime": 1540,
@@ -164,50 +166,48 @@
                     "Hands-on application of skills learnt through simulated trading via the Bloomberg terminals",
                     "Exemptions are available from main professional bodies ACCA and CIMA"
                 ],
-                "modules": {
-                    "stage1": [
-                        {
-                            "moduleCode": "FINM025",
-                            "title": "Dissertation and Research Methods",
-                            "credits": 60,
-                            "status": "Compulsory",
-                            "prereq": null,
-                            "type": "dissertation"
-                        },
-                        {
-                            "moduleCode": "FINM065",
-                            "title": "Portfolio Management",
-                            "credits": 20,
-                            "status": "Compulsory",
-                            "prereq": null,
-                            "type": "regular"
-                        },
-                        {
-                            "moduleCode": "FINM072",
-                            "title": "Alternative Investments",
-                            "credits": 10,
-                            "status": "Compulsory",
-                            "prereq": null,
-                            "type": "regular"
-                        },
-                        {
-                            "moduleCode": "HRMM074",
-                            "title": "Work-Based Project (60 Credit)",
-                            "credits": 60,
-                            "status": "Compulsory",
-                            "prereq": "HRMM072",
-                            "type": "placement"
-                        },
-                        {
-                            "moduleCode": "HRMM072",
-                            "title": "Career Futures: Employability Skills",
-                            "credits": 0,
-                            "status": "Compulsory",
-                            "prereq": null,
-                            "type": "placement"
-                        }
-                    ]
-                }
+                "modules": [
+                    {
+                        "moduleCode": "FINM025",
+                        "title": "Dissertation and Research Methods",
+                        "credits": 60,
+                        "status": "Compulsory",
+                        "prereq": null,
+                        "type": "dissertation"
+                    },
+                    {
+                        "moduleCode": "FINM065",
+                        "title": "Portfolio Management",
+                        "credits": 20,
+                        "status": "Compulsory",
+                        "prereq": null,
+                        "type": "regular"
+                    },
+                    {
+                        "moduleCode": "FINM072",
+                        "title": "Alternative Investments",
+                        "credits": 10,
+                        "status": "Compulsory",
+                        "prereq": null,
+                        "type": "regular"
+                    },
+                    {
+                        "moduleCode": "HRMM074",
+                        "title": "Work-Based Project (60 Credit)",
+                        "credits": 60,
+                        "status": "Compulsory",
+                        "prereq": "HRMM072",
+                        "type": "placement"
+                    },
+                    {
+                        "moduleCode": "HRMM072",
+                        "title": "Career Futures: Employability Skills",
+                        "credits": 0,
+                        "status": "Compulsory",
+                        "prereq": null,
+                        "type": "placement"
+                    }
+                ]
             },
             "entryRequirements": {
                 "summary": "If you hold a recognised first or second class honours degree from a UK university or international equivalent in finance, banking, accounting or a related discipline then you will be eligible to apply for this course. If you hold professional qualifications you will also be considered for entry onto this course.",
@@ -215,8 +215,10 @@
             },
             "fees": {
                 "year": "23/24",
-                "currency": "£",
-                "conversionRate": 1.0,
+                "currency": {
+                    "type": "£",
+                    "conversionRate": 1.0
+                },
                 "uk": {
                     "fullTime": 8010,
                     "partTime": null
@@ -354,8 +356,10 @@
             },
             "fees": {
                 "year": "23/24",
-                "currency": "£",
-                "conversionRate": 1.0,
+                "currency": {
+                    "type": "£",
+                    "conversionRate": 1.0
+                },
                 "uk": {
                     "fullTime": 9250,
                     "partTime": 1540,
@@ -422,42 +426,40 @@
                     "Flexible evening study time",
                     "This course is eligible for the postgraduate loan"
                 ],
-                "modules": {
-                    "stage1": [
-                        {
-                            "moduleCode": "LITM043",
-                            "title": "Dissertation",
-                            "credits": 60,
-                            "status": "Compulsory",
-                            "prereq": null,
-                            "type": "dissertation"
-                        },
-                        {
-                            "moduleCode": "LITM033",
-                            "title": "Critical Theory and Methodologies",
-                            "credits": 30,
-                            "status": "Compulsory",
-                            "prereq": null,
-                            "type": "regular"
-                        },
-                        {
-                            "moduleCode": "LITM035",
-                            "title": "Contemporary British Gothic",
-                            "credits": 30,
-                            "status": "Compulsory",
-                            "prereq": null,
-                            "type": "regular"
-                        },
-                        {
-                            "moduleCode": "LITM036",
-                            "title": "Literary Modernism in a Postmodern World ",
-                            "credits": 30,
-                            "status": "Designated",
-                            "prereq": null,
-                            "type": "regular"
-                        }
-                    ]
-                }
+                "modules": [
+                    {
+                        "moduleCode": "LITM043",
+                        "title": "Dissertation",
+                        "credits": 60,
+                        "status": "Compulsory",
+                        "prereq": null,
+                        "type": "dissertation"
+                    },
+                    {
+                        "moduleCode": "LITM033",
+                        "title": "Critical Theory and Methodologies",
+                        "credits": 30,
+                        "status": "Compulsory",
+                        "prereq": null,
+                        "type": "regular"
+                    },
+                    {
+                        "moduleCode": "LITM035",
+                        "title": "Contemporary British Gothic",
+                        "credits": 30,
+                        "status": "Compulsory",
+                        "prereq": null,
+                        "type": "regular"
+                    },
+                    {
+                        "moduleCode": "LITM036",
+                        "title": "Literary Modernism in a Postmodern World ",
+                        "credits": 30,
+                        "status": "Designated",
+                        "prereq": null,
+                        "type": "regular"
+                    }
+                ]
             },
             "entryRequirements": {
                 "summary": "To apply for the MA in English (Contemporary Literature), we normally ask that you have a Bachelor’s degree in English, or a related discipline, at 2:1 or higher. Applications with alternative qualifications or experience and from overseas students are welcomed and will be assessed in accordance with the University’s Admissions Policy and Academic Regulations.",
@@ -465,8 +467,10 @@
             },
             "fees": {
                 "year": "23/24",
-                "currency": "£",
-                "conversionRate": 1.0,
+                "currency": {
+                    "type": "£",
+                    "conversionRate": 1.0
+                },
                 "uk": {
                     "fullTime": 8010,
                     "partTime": [

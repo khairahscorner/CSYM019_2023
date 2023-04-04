@@ -6,7 +6,411 @@
     "properties": {
         "courses": {
             "type": "array",
-            "properties": {}
+            "items": {
+                "type": "object",
+                "properties": {
+                    "keyFacts": {
+                        "type": "object",
+                        "properties": {
+                            "level": {
+                                "type": "string",
+                                "enum": [
+                                    "Undergraduate",
+                                    "Postgraduate"
+                                ]
+                            },
+                            "ucasCodes": {
+                                "type": "object",
+                                "properties": {
+                                    "regular": {
+                                        "type": "string"
+                                    },
+                                    "withFoundation": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "duration": {
+                                "type": "object",
+                                "oneOf": [
+                                    {
+                                        "properties": {
+                                            "fullTime": {
+                                                "type": "number"
+                                            },
+                                            "partTime": {
+                                                "type": [
+                                                    "string",
+                                                    "number",
+                                                    "null"
+                                                ],
+                                                "pattern": "^\\d$|^[0-9]-[0-9]$"
+                                            },
+                                            "withFoundation": {
+                                                "type": [
+                                                    "number",
+                                                    "null"
+                                                ]
+                                            }
+                                        },
+                                        "required": [
+                                            "fullTime",
+                                            "partTime",
+                                            "withFoundation"
+                                        ]
+                                    },
+                                    {
+                                        "properties": {
+                                            "fullTime": {
+                                                "type": "number"
+                                            },
+                                            "partTime": {
+                                                "type": [
+                                                    "string",
+                                                    "number",
+                                                    "null"
+                                                ],
+                                                "pattern": "^\\d$|^[0-9]-[0-9]$"
+                                            },
+                                            "withPlacement": {
+                                                "type": "boolean"
+                                            }
+                                        },
+                                        "required": [
+                                            "fullTime",
+                                            "partTime",
+                                            "withPlacement"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "startDates": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string",
+                                    "enum": [
+                                        "September",
+                                        "June",
+                                        "February"
+                                    ]
+                                }
+                            },
+                            "location": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "courseDetails": {
+                        "type": "object",
+                        "properties": {
+                            "icon": {
+                                "type": "string",
+                                "pattern": "^.*\\.svg$"
+                            },
+                            "courseName": {
+                                "type": "string"
+                            },
+                            "summary": {
+                                "type": "string"
+                            },
+                            "highlights": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "modules": {
+                                "oneOf": [
+                                    {
+                                        "type": "object",
+                                        "properties": {
+                                            "stage1": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "moduleCode": {
+                                                            "type": "string"
+                                                        },
+                                                        "title": {
+                                                            "type": "string"
+                                                        },
+                                                        "credits": {
+                                                            "type": "number"
+                                                        },
+                                                        "status": {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "Compulsory",
+                                                                "Designated"
+                                                            ]
+                                                        },
+                                                        "prereq": {
+                                                            "type": [
+                                                                "null",
+                                                                "string"
+                                                            ]
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "stage2": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "moduleCode": {
+                                                            "type": "string"
+                                                        },
+                                                        "title": {
+                                                            "type": "string"
+                                                        },
+                                                        "credits": {
+                                                            "type": "number"
+                                                        },
+                                                        "status": {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "Compulsory",
+                                                                "Designated"
+                                                            ]
+                                                        },
+                                                        "prereq": {
+                                                            "type": [
+                                                                "null",
+                                                                "string"
+                                                            ]
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "stage3": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "moduleCode": {
+                                                            "type": "string"
+                                                        },
+                                                        "title": {
+                                                            "type": "string"
+                                                        },
+                                                        "credits": {
+                                                            "type": "number"
+                                                        },
+                                                        "status": {
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "Compulsory",
+                                                                "Designated"
+                                                            ]
+                                                        },
+                                                        "prereq": {
+                                                            "type": [
+                                                                "null",
+                                                                "string"
+                                                            ]
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "required": [
+                                            "stage1",
+                                            "stage2",
+                                            "stage3"
+                                        ]
+                                    },
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "moduleCode": {
+                                                    "type": "string"
+                                                },
+                                                "title": {
+                                                    "type": "string"
+                                                },
+                                                "credits": {
+                                                    "type": "number"
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "Compulsory",
+                                                        "Designated"
+                                                    ]
+                                                },
+                                                "prereq": {
+                                                    "type": [
+                                                        "null",
+                                                        "string"
+                                                    ]
+                                                },
+                                                "type": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "regular",
+                                                        "dissertation",
+                                                        "placement"
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    }
+                                ]
+                            },
+                            "entryRequirements": {
+                                "type": "object",
+                                "properties": {
+                                    "summary": {
+                                        "type": "string"
+                                    },
+                                    "englishReq": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "fees": {
+                                "type": "object",
+                                "properties": {
+                                    "year": {
+                                        "type": "string",
+                                        "pattern": "^\\d{2}/\\d{2}$"
+                                    },
+                                    "currency": {
+                                        "type": "string",
+                                        "enum": [
+                                            "£",
+                                            "$",
+                                            "€"
+                                        ]
+                                    },
+                                    "conversionRate": {
+                                        "type": "number"
+                                    },
+                                    "uk": {
+                                        "type": "object",
+                                        "oneOf": [
+                                            {
+                                                "properties": {
+                                                    "fullTime": {
+                                                        "type": "number"
+                                                    },
+                                                    "partTime": {
+                                                        "type": [
+                                                            "null",
+                                                            "number"
+                                                        ]
+                                                    },
+                                                    "withFoundation": {
+                                                        "type": "number"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "fullTime",
+                                                    "partTime",
+                                                    "withFoundation"
+                                                ]
+                                            },
+                                            {
+                                                "properties": {
+                                                    "fullTime": {
+                                                        "type": "number"
+                                                    },
+                                                    "partTime": {
+                                                        "type": [
+                                                            "null",
+                                                            "number"
+                                                        ]
+                                                    }
+                                                },
+                                                "required": [
+                                                    "fullTime",
+                                                    "partTime"
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    "international": {
+                                        "type": "object",
+                                        "oneOf": [
+                                            {
+                                                "properties": {
+                                                    "fullTime": {
+                                                        "type": "number"
+                                                    },
+                                                    "partTime": {
+                                                        "type": [
+                                                            "null",
+                                                            "number"
+                                                        ]
+                                                    },
+                                                    "withFoundation": {
+                                                        "type": "number"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "fullTime",
+                                                    "partTime",
+                                                    "withFoundation"
+                                                ]
+                                            },
+                                            {
+                                                "properties": {
+                                                    "fullTime": {
+                                                        "type": "number"
+                                                    },
+                                                    "partTime": {
+                                                        "type": [
+                                                            "null",
+                                                            "number"
+                                                        ]
+                                                    }
+                                                },
+                                                "required": [
+                                                    "fullTime",
+                                                    "partTime"
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    "withPlacement": {
+                                        "type": "number"
+                                    },
+                                    "extras": {
+                                        "type": [
+                                            "null",
+                                            "string"
+                                        ]
+                                    }
+                                }
+                            },
+                            "faqs": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "question": {
+                                            "type": "string"
+                                        },
+                                        "answer": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            },
+                            "relatedCourses": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
