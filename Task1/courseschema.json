@@ -110,6 +110,9 @@
                             "courseName": {
                                 "type": "string"
                             },
+                            "subject": {
+                                "type": "string"
+                            },
                             "summary": {
                                 "type": "string"
                             },
@@ -265,7 +268,23 @@
                                 "type": "object",
                                 "properties": {
                                     "summary": {
-                                        "type": "string"
+                                        "oneOf": [
+                                            {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            {
+                                                "type": "string"
+                                            }
+                                        ]
+                                    },
+                                    "withFoundation": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
                                     },
                                     "englishReq": {
                                         "type": "string"

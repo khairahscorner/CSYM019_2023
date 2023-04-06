@@ -20,6 +20,7 @@
             "courseDetails": {
                 "icon": "criminology.svg",
                 "courseName": "Criminology BA (Hons)",
+                "subject": "Criminology, Law and Policing",
                 "summary": "This BA Criminology course has been designed to contribute towards achieving the following United Nations Sustainable Development Goal: SDG10 of Reduced Inequalities. Studying Criminology with us gives you a distinctive approach to learning, drawing on the disciplines of sociology, psychology, history and law. This provides you with a comprehensive introduction to key theoretical and methodological issues at the heart of the discipline.",
                 "highlights": [
                     "Research placement available",
@@ -100,7 +101,9 @@
                 }
             },
             "entryRequirements": {
-                "summary": "",
+                "summary": [
+                    ""
+                ],
                 "englishReq": "IELTS 6.0 (or equivalent) with a minimum of 5.5 in all bands"
             },
             "fees": {
@@ -160,6 +163,7 @@
             "courseDetails": {
                 "icon": "accounting.svg",
                 "courseName": "Financial and Investment Analysis MSc",
+                "subject": "Accounting and Finance",
                 "summary": "MSc Financial and Investment Analysis will develop you into a specialist investment professional that can take up challenging roles in investment banking, risk management and fund management. This programme will prepare you to write the CFA® professional exams. This course has an Industry Placement Option.",
                 "highlights": [
                     "Industry Placement Option available",
@@ -268,6 +272,7 @@
             "courseDetails": {
                 "icon": "music.svg",
                 "courseName": "Popular Music BA (Hons)",
+                "subject": "Music and Arts",
                 "summary": "The Popular Music BA (Hons) course at the University of Northampton is designed and run to invest you with a variety of skills, knowledge and experience. When you graduate, you’ll have the know-how to navigate an ever evolving 21st Century music industry. You’ll have the skills for wider employment, including in the teaching profession and further study should this be something you wish to pursue. This course is Industry Accredited by JAMES representing APRS, MPG and associate industry bodies. Accreditation of a course by relevant industry bodies provides assurance to students and employers of its potential and value.",
                 "highlights": [
                     "Performing live on stage",
@@ -406,6 +411,156 @@
         },
         {
             "keyFacts": {
+                "level": "Undergraduate",
+                "ucasCodes": {
+                    "regular": "W640",
+                    "withFoundation": "W642"
+                },
+                "duration": {
+                    "fullTime": 3,
+                    "partTime": "4-6",
+                    "withFoundation": 4
+                },
+                "startDates": [
+                    "September"
+                ],
+                "location": "Waterside"
+            },
+            "courseDetails": {
+                "icon": "media.svg",
+                "courseName": "Photography BA (Hons)",
+                "subject": "Media and Journalism",
+                "summary": "Our Photography BA degree takes a practical approach to exploring the photograph within a range of contemporary practices and contexts. This will extend to a critical understanding of photography subjects and allows the scope for you to develop your creativity and professionalism. During our undergraduate photography course, we will challenge you to consider traditional silver processes and digital technologies, evaluating photographic production and studying the still image in relation to both the moving image and newer interactive technologies. Students studying BA Photography at the University of Northampton will also benefit from our industry standard photography studio facilities, which you can explore via the virtual tours below. Our BA Photography degree has been approved by the Association of Photographers (AOP) as one of the ‘most respected photographic courses in the UK’.",
+                "highlights": [
+                    "Our BA Photography degree has been accredited by the Association of Photographers (AOP) as one of the ‘most respected photography courses in the UK’",
+                    "You can receive FREE student membership of the AOP as part of your studies, enhancing your CV and helping you stand out from the crowd when you graduate and pursue a career in photography",
+                    "Students have use of dedicated specialist facilities",
+                    "We also organise external exhibitions of our students work and in addition, we regularly host Visiting Lecturers and Portfolio reviews."
+                ],
+                "modules": {
+                    "stage1": [
+                        {
+                            "moduleCode": "PHO1002",
+                            "title": "Photography and its Changing Uses",
+                            "credits": 20,
+                            "status": "Compulsory",
+                            "prereq": null
+                        },
+                        {
+                            "moduleCode": "PHO1015",
+                            "title": "Photographic Techniques and Concepts; Digital Photography",
+                            "credits": 20,
+                            "status": "Compulsory",
+                            "prereq": null
+                        },
+                        {
+                            "moduleCode": "PHO1018",
+                            "title": "Converging Practices; Screen",
+                            "credits": 20,
+                            "status": "Compulsory",
+                            "prereq": null
+                        }
+                    ],
+                    "stage2": [
+                        {
+                            "moduleCode": "PHO2012",
+                            "title": "Photography and Arts Practices; Arts Practices",
+                            "credits": 20,
+                            "status": "Compulsory",
+                            "prereq": null
+                        },
+                        {
+                            "moduleCode": "PHO2003",
+                            "title": "Photography and Visual Culture ",
+                            "credits": 20,
+                            "status": "Compulsory",
+                            "prereq": null
+                        },
+                        {
+                            "moduleCode": "PHO2014",
+                            "title": "Photography in a Design Context; Fashion Photography",
+                            "credits": 10,
+                            "status": "Compulsory",
+                            "prereq": null
+                        }
+                    ],
+                    "stage3": [
+                        {
+                            "moduleCode": "PHO3003",
+                            "title": "Career Development in Photographic Practices",
+                            "credits": 40,
+                            "status": "Compulsory",
+                            "prereq": null
+                        },
+                        {
+                            "moduleCode": "PHO4001",
+                            "title": "Practice Exhibition",
+                            "credits": 80,
+                            "status": "Compulsory",
+                            "prereq": null
+                        }
+                    ]
+                }
+            },
+            "entryRequirements": {
+                "summary": [
+                    "BCC at A-Level",
+                    "DMM at BTEC",
+                    "Pass (C and above) at T Level",
+                    "a Foundation Diploma in Art and Design"
+                ],
+                "withFoundation": [
+                    "DEE at A-Level",
+                    "MPP at BTEC",
+                    "Pass (D or E) at T Level"
+                ],
+                "englishReq": "IELTS 6.0 (or equivalent) with a minimum of 5.5 in all bands"
+            },
+            "fees": {
+                "year": "23/24",
+                "currency": {
+                    "type": "£",
+                    "conversionRate": 1.0
+                },
+                "uk": {
+                    "fullTime": 9250,
+                    "partTime": 1540,
+                    "withFoundation": 9250
+                },
+                "international": {
+                    "fullTime": 14750,
+                    "withFoundation": 14750
+                },
+                "extras": [
+                    "Study trips to Europe cost approximately £400-450",
+                    "Trips to America/Asia cost approximately £1000-1200",
+                    "Own camera (cameras are available to loan from the University – with potential added cost for film, paper, external hard drive and SD/CF cards)",
+                    "External hard drive",
+                    "Producing a physical portfolio – both the case and the prints",
+                    "Printing photographs"
+                ]
+            },
+            "faqs": [
+                {
+                    "question": "Do you need a degree for photography?",
+                    "answer": "By studying photography at university, you will build and develop your skills, creativity and technical abilities – which are essential elements to success. You will also have the benefit of accessing our studio facilities, building a portfolio, and participating in external exhibitions to prepare you for your professional career."
+                },
+                {
+                    "question": "How will I be taught on the Photography BA?",
+                    "answer": "We take a range of approaches to teaching throughout our photography degree, including lectures, seminars, practical workshops, individual tutorials and group critiques, to facilitate critical discussion and analysis."
+                },
+                {
+                    "question": "How will I be assessed?",
+                    "answer": "Theory is assessed through essays, a contextual report and presentations. Practical work is judged through portfolio presentations and exhibitions, and aligned with individual module criteria."
+                }
+            ],
+            "relatedCourses": [
+                "Creative Film, Television and Digital Media Production BA (Hons)",
+                "Fine Art BA (Hons)"
+            ]
+        },
+        {
+            "keyFacts": {
                 "level": "Postgraduate",
                 "duration": {
                     "fullTime": 1,
@@ -420,6 +575,7 @@
             "courseDetails": {
                 "icon": "humanities.svg",
                 "courseName": "English – Contemporary Literature MA",
+                "subject": "Humanities",
                 "summary": "This exciting English – Contemporary Literature MA course examines the role of contemporary literature in a number of different contexts. You will have the chance to explore a diverse range of texts, across varied modules, with the chance to explore a topic of your choice in specialist detail through your dissertation. You could study post-1945 classics, including late modernists like Samuel Beckett, as well as surveying the latest novels. You may explore specialist fields such as trauma fiction or gender and sexuality, master the latest literary theories, or investigate new genres and popular narrative media, including contemporary gothic literature, film, video games and comic books.",
                 "highlights": [
                     "Research-informed modules on current topics",
