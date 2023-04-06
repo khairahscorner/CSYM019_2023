@@ -84,11 +84,19 @@ function populateTable() {
       }
     };
   }
+
+  //after table is first loaded, then the timeout function is attached
+  updateTableAtIntervals();
 }
 
 // Update table every 5 minutes
 function updateTableAtIntervals() {
-  setInterval(populateTable, 300000);
+  setTimeout(function () {
+    console.log("Now updating");
+    populateTable();
+  }, 300000);
+
+  // setInterval(populateTable, 300000);
 }
 
 // load table immediately the page is loaded

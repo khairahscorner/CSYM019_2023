@@ -659,6 +659,602 @@
                 "English BA (Hons)",
                 "Primary Education (5-11) (QTS) PGCE"
             ]
+        },
+        {
+            "keyFacts": {
+                "level": "Postgraduate",
+                "duration": {
+                    "fullTime": 1,
+                    "partTime": 2,
+                    "withPlacement": false
+                },
+                "startDates": [
+                    "September",
+                    "February"
+                ],
+                "location": "Waterside"
+            },
+            "courseDetails": {
+                "icon": "compscience.svg",
+                "courseName": "Computing (Software Engineering) MSc",
+                "subject": "Computer Science",
+                "summary": "Study the design of software systems at a greater depth with our Computing (Software Engineering) MSc course. Alongside exploring areas of computer software engineering, you will also have the opportunity to develop your analytics and research skills during this Computing postgraduate degree. Students will complete an individual thesis which will investigate an area they find of particular interest.",
+                "highlights": [
+                    "Object-oriented design and development",
+                    "Practical real-world projects",
+                    "Agile software methodology",
+                    "Core computing fundamentals",
+                    "Flexible part time study option on the computing software engineering degree"
+                ],
+                "modules": [
+                    {
+                        "moduleCode": "CSYM023",
+                        "title": "Dissertation",
+                        "credits": 60,
+                        "status": "Compulsory",
+                        "prereq": null,
+                        "type": "dissertation"
+                    },
+                    {
+                        "moduleCode": "CSYM015",
+                        "title": "Intelligent Systems",
+                        "credits": 20,
+                        "status": "Designated",
+                        "prereq": null,
+                        "type": "regular"
+                    },
+                    {
+                        "moduleCode": "CSYM026",
+                        "title": "Software Engineering",
+                        "credits": 20,
+                        "status": "Compulsory",
+                        "prereq": null,
+                        "type": "regular"
+                    },
+                    {
+                        "moduleCode": "CSYM025",
+                        "title": "Visual Object Software",
+                        "credits": 20,
+                        "status": "Compulsory",
+                        "prereq": null,
+                        "type": "regular"
+                    },
+                    {
+                        "moduleCode": "CSYM017",
+                        "title": "Databases",
+                        "credits": 20,
+                        "status": "Compulsory",
+                        "prereq": null,
+                        "type": "regular"
+                    }
+                ]
+            },
+            "entryRequirements": {
+                "summary": "Applicants for the msc computer software engineering will normally hold a recognised first or second class honours degree from a UK university or international equivalent in a relevant subject. We expect that you will have a working knowledge of computers and networks and it is essential that you have practical hands-on experience of at least one programming language.",
+                "englishReq": "IELT 6.5 (or equivalent) for study at postgraduate level"
+            },
+            "fees": {
+                "year": "23/24",
+                "currency": {
+                    "type": "£",
+                    "conversionRate": 1.0
+                },
+                "uk": {
+                    "fullTime": 8010,
+                    "partTime": 890
+                },
+                "international": {
+                    "fullTime": 16500,
+                    "partTime": null
+                },
+                "withPlacement": null,
+                "extras": null
+            },
+            "faqs": [
+                {
+                    "question": "How will I be taught on Computing (Software Engineering) MSc?",
+                    "answer": "Alongside learning through theoretical lectures and seminars, this computing software masters degree course takes a hands-on approach. You will be able to utilise laboratory facilities and computer simulation tools to further your knowledge and reinforce it through case studies and practical examples."
+                },
+                {
+                    "question": "What is the schedule?",
+                    "answer": "We have developed this software engineering msc course to be studied around other commitments and you may only need to attend the university for two days per week."
+                },
+                {
+                    "question": "Are there any specialist facilities?",
+                    "answer": "Students on this software engineering masters course will be able to access around 150 Linux and PC workstation computers, along with digital projection facilities. These are housed across six bespoke computer laboratories which are maintained by two technicians. To ensure our students receive personalised support, we only enrol a small cohort of students. This way, we can ensure you develop your skills and knowledge to your full potential."
+                }
+            ],
+            "relatedCourses": [
+                "Computing (Computer Networks Engineering) MSc",
+                "Computing MSc",
+                "Computing (Internet Technology and Security) MSc"
+            ]
+        },
+        {
+            "keyFacts": {
+                "level": "Undergraduate",
+                "ucasCodes": {
+                    "regular": "C602",
+                    "withFoundation": "C604"
+                },
+                "duration": {
+                    "fullTime": 3,
+                    "partTime": "4-6",
+                    "withFoundation": 4
+                },
+                "startDates": [
+                    "September"
+                ],
+                "location": "Waterside"
+            },
+            "courseDetails": {
+                "icon": "sports.svg",
+                "courseName": "Physical Education and Sport BA (Hons)",
+                "subject": "Media and Journalism",
+                "summary": "Our degree in Physical Education and Sport BA (Hons) degree explores the ways that sport, physical education and physical activity are organised across schools and local communities. During this physical education course, you are encouraged to think critically about current and historical practice in sport and physical education and reflect on your own experiences. This Physical Education and Sport course allows you to study key disciplines within sport and physical education. It also includes an opportunity to undertake a work placement at a local sport or physical education provider. A strong emphasis is placed on the application of theory to understanding real-world issues such as barriers to participation, performance pathways, coaching and teaching practice and government influence on sport.",
+                "highlights": [
+                    "Strong emphasis on employability with work placement opportunities for students at levels two and three",
+                    "Close partnerships including Northampton Saints, Northampton Town FC and Northants County Cricket Club.",
+                    "Guaranteed paid internship with the Northampton Employment Promise"
+                ],
+                "modules": {
+                    "stage1": [
+                        {
+                            "moduleCode": "SPO1011",
+                            "title": "Sport Pedagogy for Coaching 1",
+                            "credits": 20,
+                            "status": "Compulsory",
+                            "prereq": null
+                        },
+                        {
+                            "moduleCode": "SPO1013",
+                            "title": "Introduction to Physical Education and School Sport",
+                            "credits": 20,
+                            "status": "Compulsory",
+                            "prereq": null
+                        },
+                        {
+                            "moduleCode": "SPO1059",
+                            "title": "Introduction to the Sport Industry",
+                            "credits": 20,
+                            "status": "Compulsory",
+                            "prereq": null
+                        }
+                    ],
+                    "stage2": [
+                        {
+                            "moduleCode": "SPO2007",
+                            "title": "Sports Development",
+                            "credits": 20,
+                            "status": "Compulsory",
+                            "prereq": null
+                        },
+                        {
+                            "moduleCode": "SPO2036",
+                            "title": "Positive Psychology Coaching",
+                            "credits": 20,
+                            "status": "Designated",
+                            "prereq": null
+                        },
+                        {
+                            "moduleCode": "SPO2044",
+                            "title": "Sport, Society & Social Equality",
+                            "credits": 20,
+                            "status": "Designated",
+                            "prereq": null
+                        }
+                    ],
+                    "stage3": []
+                }
+            },
+            "entryRequirements": {
+                "summary": [
+                    "CCC at A-Level",
+                    "DMM at BTEC",
+                    "Pass (C and above) at T Level"
+                ],
+                "withFoundation": [
+                    "DEE at A-Level",
+                    "MPP at BTEC",
+                    "Pass (D or E) at T Level"
+                ],
+                "englishReq": ""
+            },
+            "fees": {
+                "year": "23/24",
+                "currency": {
+                    "type": "£",
+                    "conversionRate": 1.0
+                },
+                "uk": {
+                    "fullTime": 9250,
+                    "partTime": 1540,
+                    "withFoundation": 9250
+                },
+                "international": {
+                    "fullTime": 14750,
+                    "withFoundation": 14750
+                },
+                "extras": [
+                    "Additional costs will be incurred if you decide to participate in optional field trips/visits as part of the physical education course. The exact cost will depend upon the location chosen/ nature of the trip.",
+                    "You will need to wear suitable sports kit for practical sessions as part of the degree in physical education. You can purchase Sport and Exercise kit but these are not compulsory. The exact cost of kit will be provided at the start of the course.",
+                    "The course requires you to complete a compulsory DBS check upon enrolment at your own cost. Exact costs will be provided with final offer information before the start of the programme.",
+                    "The physical education course also requires you to complete a work placement module during your degree. You will be required to pay any transport costs incurred in completing your placement.",
+                    "You will need to cover costs associated with producing a poster for the final year conference."
+                ]
+            },
+            "faqs": [
+                {
+                    "question": "How will I be taught on Physical Education and Sport BA (Hons)?",
+                    "answer": "This physical education course can be studied over three years full-time or as a flexible part-time option."
+                },
+                {
+                    "question": "How will I be assessed?",
+                    "answer": "You will be assessed through a combination of essays, exams, reports, presentations and work placements."
+                }
+            ],
+            "relatedCourses": [
+                "Sport Management and Leadership BSc (Hons)",
+                "Applied Sport and Exercise Science MSc / MA"
+            ]
+        },
+        {
+            "keyFacts": {
+                "level": "Postgraduate",
+                "duration": {
+                    "fullTime": 1,
+                    "partTime": 2,
+                    "withPlacement": false
+                },
+                "startDates": [
+                    "September"
+                ],
+                "location": "Waterside"
+            },
+            "courseDetails": {
+                "icon": "hr.svg",
+                "courseName": "Human Resource Management MA",
+                "subject": "Human Resource Management",
+                "summary": "The aim of this masters in Human Resource Management is to develop you as an HR professional. You will be introduced to specialised knowledge and research evidence giving you an in depth understanding of successful people management in organisations. Perhaps more importantly, you will practice the tools and techniques of strategic and operational HRM giving you practical, insight-driven experience which will help further your career. Human Resources can be an exciting, rewarding and challenging career that can take you anywhere in the world.",
+                "highlights": [
+                    "CIPD accreditation and membership on completion of the MA Human Resource Management course"
+                ],
+                "modules": [
+                    {
+                        "moduleCode": "HRMM030",
+                        "title": "Dissertation and Research Methods",
+                        "credits": 60,
+                        "status": "Compulsory",
+                        "prereq": null,
+                        "type": "dissertation"
+                    },
+                    {
+                        "moduleCode": "HRMM032",
+                        "title": "Human Resource Management in Context",
+                        "credits": 20,
+                        "status": "Compulsory",
+                        "prereq": null,
+                        "type": "regular"
+                    },
+                    {
+                        "moduleCode": "HRMM075",
+                        "title": "Resourcing and Developing Talent",
+                        "credits": 30,
+                        "status": "Compulsory",
+                        "prereq": null,
+                        "type": "regular"
+                    },
+                    {
+                        "moduleCode": "CSYM025",
+                        "title": "Visual Object Software",
+                        "credits": 20,
+                        "status": "Compulsory",
+                        "prereq": null,
+                        "type": "regular"
+                    },
+                    {
+                        "moduleCode": "HRMM076",
+                        "title": "Employment Law and Relations",
+                        "credits": 30,
+                        "status": "Compulsory",
+                        "prereq": null,
+                        "type": "regular"
+                    }
+                ]
+            },
+            "entryRequirements": {
+                "summary": "To study MA Human Resources Management at UON you will normally need to hold a recognised First or Second Class Honours degree from a UK University (or an international equivalent) in human resource management, or in business, commerce, management or related disciplines. It would be an advantage for applicants to have experience of working in a HR or general management role for at least a year. You may be invited to an interview with the Programme Leader to assess your suitability for entry to the course.",
+                "englishReq": "IELT 6.5 (or equivalent) for study at postgraduate level"
+            },
+            "fees": {
+                "year": "23/24",
+                "currency": {
+                    "type": "£",
+                    "conversionRate": 1.0
+                },
+                "uk": {
+                    "fullTime": 8010,
+                    "partTime": [
+                        2670,
+                        5340
+                    ]
+                },
+                "international": {
+                    "fullTime": 16500,
+                    "partTime": null
+                },
+                "withPlacement": null,
+                "extras": "You are required to join the CIPD as a student member (currently a one-off joining fee of £40 and membership fee of £141 for 18 months). Please see the CIPD website for further details."
+            },
+            "faqs": [
+                {
+                    "question": "How will I learn?",
+                    "answer": "The learning and teaching style on the Human Resources Management masters at UON is designed to enable you to take responsibility for your own learning and skills development within a caring environment facilitated by high quality academic support from tutors. You will be introduced to the core course content through activities that can be taken in your own time, off campus. These activities will usually be facilitated through the University’s Virtual Learning Environment – a web-based portal where you will be able to participate in learning activities, online discussions, reading and reflection. During your sessions on campus, the emphasis will be on participative and interactive activities designed to develop your understanding through debate, discussion, role-play and participation in events such as guest speakers and a mock employment tribunal. This HR masters course usually has a diverse student group which provides a rich basis for sharing different experiences and thinking on organisational and people issues. Peer networking is encouraged so you can maximise your learning from the different student experiences that are shared throughout the course."
+                },
+                {
+                    "question": "How will I be assessed?",
+                    "answer": "The MA Human Resource Management course uses a carefully balanced combination of in-course assignments designed to enrich your learning which include business projects, practical HR activities, reflective activities, group work presentation and examinations. The 13,000 word Dissertation is a major component of this course and allows students to demonstrate a range of knowledge, skills and insight in their chosen topic area."
+                },
+                {
+                    "question": "What is the schedule like for this course?",
+                    "answer": "The MA HRM is offered on a full-time (one year) and part-time (two years) basis. Full-time students will take three modules in Semester 1 and three modules including Research Methods and Dissertation in Semesters 2 and 3. Part-time students will take two modules in Semester 1 and one module in Semester 2 in their first year. In the second year you will take two modules in Semester 1 and one module in Semester 2. The Research Methods and Dissertation module will run over the whole of Year Two. Most modules will require you to attend a two or three hour workshop per week or equivalent scheduled online activity. For full-time students, class sessions will normally be delivered over two afternoons/evenings each week. For part-time students, class sessions will normally be delivered one afternoon/evening per week. To maximise chances of success on this course, we recommend students spend approximately 12 hours a week per module in self-directed study time to prepare for the sessions and complete your assignments."
+                }
+            ],
+            "relatedCourses": [
+                "Human Resource Management PGDip",
+                "Master of Business Administration MBA"
+            ]
+        },
+        {
+            "keyFacts": {
+                "level": "Postgraduate",
+                "duration": {
+                    "fullTime": 1,
+                    "partTime": null,
+                    "withPlacement": true
+                },
+                "startDates": [
+                    "September",
+                    "February"
+                ],
+                "location": "Waterside"
+            },
+            "courseDetails": {
+                "icon": "advertising.svg",
+                "courseName": "International Marketing Strategy MSc",
+                "subject": "Advertising and Marketing",
+                "summary": "Our MSc International Marketing Strategy is specifically designed to provide you with a strong foundation for a successful career in the exciting and fast-paced world of international marketing. The marketing strategy course also enhances your ability to think strategically about marketing management in an international context.",
+                "highlights": [
+                    "This international marketing management course has a 12-month Industry Placement Option",
+                    "This course is eligible for the Alumni Changemaker Discount for UON graduates"
+                ],
+                "modules": [
+                    {
+                        "moduleCode": "MKTM021",
+                        "title": "Dissertation and Research Methods",
+                        "credits": 60,
+                        "status": "Compulsory",
+                        "prereq": null,
+                        "type": "dissertation"
+                    },
+                    {
+                        "moduleCode": "MKTM018",
+                        "title": "Global Marketing Strategy",
+                        "credits": 20,
+                        "status": "Compulsory",
+                        "prereq": null,
+                        "type": "regular"
+                    },
+                    {
+                        "moduleCode": "MKTM027",
+                        "title": "Strategic Digital Marketing",
+                        "credits": 20,
+                        "status": "Compulsory",
+                        "prereq": null,
+                        "type": "regular"
+                    },
+                    {
+                        "moduleCode": "MKTM031",
+                        "title": "International Marketing Research",
+                        "credits": 20,
+                        "status": "Compulsory",
+                        "prereq": null,
+                        "type": "regular"
+                    },
+                    {
+                        "moduleCode": "MKTM044",
+                        "title": "Strategic Marketing Management",
+                        "credits": 20,
+                        "status": "Compulsory",
+                        "prereq": null,
+                        "type": "regular"
+                    }
+                ]
+            },
+            "entryRequirements": {
+                "summary": "You will need to hold a First or Second class honours degree (or equivalent) in order to be eligible for this course. No work experience is required for admission onto this course.",
+                "englishReq": "IELTS 6.5 overall with a minimum of 6.0 in writing and 5.5 in all other skills"
+            },
+            "fees": {
+                "year": "23/24",
+                "currency": {
+                    "type": "£",
+                    "conversionRate": 1.0
+                },
+                "uk": {
+                    "fullTime": 8010,
+                    "partTime": null
+                },
+                "international": {
+                    "fullTime": 16500,
+                    "partTime": null
+                },
+                "withPlacement": 1000,
+                "extras": null
+            },
+            "faqs": [
+                {
+                    "question": "What is the teaching style for this course?",
+                    "answer": "Throughout the strategic marketing MSc, you are taught by experienced academic staff with specialist knowledge of their subject areas. Taught modules are delivered using workshop sessions, with a strong emphasis on participation and discussion. To bring concepts and theories to life, extensive use is made of real world case-studies, interactive business simulation software and practical exercises supplemented by extensive online learning materials."
+                },
+                {
+                    "question": "What are the assessments for this course?",
+                    "answer": "An innovative range of individual and group-based assessments are used involving the preparation of essays, marketing plans, case study analyses, portfolios and presentations as well as the dissertation."
+                }
+            ],
+            "relatedCourses": [
+                "Social Innovation MA",
+                "International Business Management MSc"
+            ]
+        },
+        {
+            "keyFacts": {
+                "level": "Undergraduate",
+                "ucasCodes": {
+                    "regular": "B210",
+                    "withFoundation": "B211"
+                },
+                "duration": {
+                    "fullTime": 3,
+                    "partTime": "4-6",
+                    "withFoundation": 4
+                },
+                "startDates": [
+                    "September"
+                ],
+                "location": "Waterside"
+            },
+            "courseDetails": {
+                "icon": "bioscience.svg",
+                "courseName": "Pharmacology BSc (Hons)",
+                "subject": "Biological Sciences",
+                "summary": "Pharmacology is the study of drugs and how they interact and work on the body. On our BSc Pharmacology degree you will learn how drugs are made into medicines and how drugs and other chemicals interact at the molecular, cellular and systems levels in the body. This BSc Pharmacology course is suited to those wanting to pursue a career in the pharmaceutical industry or in biomedical research as well as graduate entry to medicine",
+                "highlights": [
+                    "Flexible programme of study that will allow you to meet your career aspirations",
+                    "Practice and practical application sessions for a more engaging experience",
+                    "Our graduates will be equipped with a variety of transferable skills that employers are seeking"
+                ],
+                "modules": {
+                    "stage1": [
+                        {
+                            "moduleCode": "SLS1013",
+                            "title": "Biochemistry and Cell Biology",
+                            "credits": 20,
+                            "status": "Compulsory",
+                            "prereq": null
+                        },
+                        {
+                            "moduleCode": "SLS1019",
+                            "title": "Introduction to Microbiology",
+                            "credits": 20,
+                            "status": "Compulsory",
+                            "prereq": null
+                        },
+                        {
+                            "moduleCode": "SLS1020",
+                            "title": "Genetics and Molecular biology",
+                            "credits": 20,
+                            "status": "Compulsory",
+                            "prereq": null
+                        }
+                    ],
+                    "stage2": [
+                        {
+                            "moduleCode": "SLS2001",
+                            "title": "Genes and Genomics",
+                            "credits": 20,
+                            "status": "Designated",
+                            "prereq": null
+                        },
+                        {
+                            "moduleCode": "SPO2SLS2055036",
+                            "title": "Principles of Pharmacology",
+                            "credits": 20,
+                            "status": "Compulsory",
+                            "prereq": null
+                        },
+                        {
+                            "moduleCode": "SLS2059",
+                            "title": "Systems Pharmacology and Therapeutics",
+                            "credits": 20,
+                            "status": "Compulsory",
+                            "prereq": null
+                        }
+                    ],
+                    "stage3": [
+                        {
+                            "moduleCode": "SLS3044",
+                            "title": "Molecular Pharmacology",
+                            "credits": 20,
+                            "status": "Compulsory",
+                            "prereq": null
+                        },
+                        {
+                            "moduleCode": "SLS4014",
+                            "title": "Pharmacology Dissertation",
+                            "credits": 20,
+                            "status": "Compulsory",
+                            "prereq": null
+                        },
+                        {
+                            "moduleCode": "SLS3002",
+                            "title": "Integrated Medical Genetics",
+                            "credits": 20,
+                            "status": "Designated",
+                            "prereq": null
+                        }
+                    ]
+                }
+            },
+            "entryRequirements": {
+                "summary": [
+                    "BCC at A-Level",
+                    "DMM at BTEC Extended Diploma (in Applied Science, Applied Human Biology or Pharmaceutical Science or similar science subject)",
+                    "Pass (C and above) in T Level Science"
+                ],
+                "withFoundation": [
+                    "DEE at A-Level",
+                    "MPP at BTEC",
+                    "Pass (D or E) at T Level"
+                ],
+                "englishReq": "IELTS 6.0 (or equivalent) with a minimum of 5.5 in all bands"
+            },
+            "fees": {
+                "year": "23/24",
+                "currency": {
+                    "type": "£",
+                    "conversionRate": 1.0
+                },
+                "uk": {
+                    "fullTime": 9250,
+                    "partTime": 1540,
+                    "withFoundation": 9250
+                },
+                "international": {
+                    "fullTime": 14750,
+                    "withFoundation": 14750
+                },
+                "extras": null
+            },
+            "faqs": [
+                {
+                    "question": "How will I be taught?",
+                    "answer": "We aim to provide an environment that maximises engagement, involvement and enjoyment in your studies.  You will participate in a variety of activities that support and enhance your learning. This will include traditional face to face lessons, laboratory practicals, tutorials and online sessions through our virtual classroom."
+                },
+                {
+                    "question": "How many hours per week of teaching/ personal tutoring?",
+                    "answer": "Throughout the Pharmacology degree at UON, you can expect a typical week to have between 12-14 hours of taught content and an additional hour available with your designated tutor"
+                },
+                {
+                    "question": "How will I be assessed?",
+                    "answer": "In each of the modules you take each semester, you will typically have 2 assessments per module. These will be through coursework and formal examinations throughout your study. An estimate of the different forms of assessment is as follows: Essays 30%, Examinations 20%, Practical work 25%, Presentations, posters 20%, Time constrained tests 5%"
+                }
+            ],
+            "relatedCourses": [
+                "Biomedical Science BSc (Hons)",
+                "Biochemistry BSc (Hons)",
+                "Molecular Bioscience MSc"
+            ]
         }
     ]
 }

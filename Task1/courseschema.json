@@ -263,169 +263,169 @@
                                         }
                                     }
                                 ]
-                            },
-                            "entryRequirements": {
-                                "type": "object",
-                                "properties": {
-                                    "summary": {
-                                        "oneOf": [
-                                            {
-                                                "type": "array",
-                                                "items": {
-                                                    "type": "string"
-                                                }
-                                            },
-                                            {
-                                                "type": "string"
-                                            }
-                                        ]
-                                    },
-                                    "withFoundation": {
+                            }
+                        }
+                    },
+                    "entryRequirements": {
+                        "type": "object",
+                        "properties": {
+                            "summary": {
+                                "oneOf": [
+                                    {
                                         "type": "array",
                                         "items": {
                                             "type": "string"
                                         }
                                     },
-                                    "englishReq": {
+                                    {
                                         "type": "string"
                                     }
-                                }
+                                ]
                             },
-                            "fees": {
-                                "type": "object",
-                                "properties": {
-                                    "year": {
-                                        "type": "string",
-                                        "pattern": "^\\d{2}/\\d{2}$"
-                                    },
-                                    "currency": {
-                                        "type": "string",
-                                        "enum": [
-                                            "£",
-                                            "$",
-                                            "€"
-                                        ]
-                                    },
-                                    "conversionRate": {
-                                        "type": "number"
-                                    },
-                                    "uk": {
-                                        "type": "object",
-                                        "oneOf": [
-                                            {
-                                                "properties": {
-                                                    "fullTime": {
-                                                        "type": "number"
-                                                    },
-                                                    "partTime": {
-                                                        "type": [
-                                                            "null",
-                                                            "number"
-                                                        ]
-                                                    },
-                                                    "withFoundation": {
-                                                        "type": "number"
-                                                    }
-                                                },
-                                                "required": [
-                                                    "fullTime",
-                                                    "partTime",
-                                                    "withFoundation"
-                                                ]
-                                            },
-                                            {
-                                                "properties": {
-                                                    "fullTime": {
-                                                        "type": "number"
-                                                    },
-                                                    "partTime": {
-                                                        "type": [
-                                                            "null",
-                                                            "number"
-                                                        ]
-                                                    }
-                                                },
-                                                "required": [
-                                                    "fullTime",
-                                                    "partTime"
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    "international": {
-                                        "type": "object",
-                                        "oneOf": [
-                                            {
-                                                "properties": {
-                                                    "fullTime": {
-                                                        "type": "number"
-                                                    },
-                                                    "partTime": {
-                                                        "type": [
-                                                            "null",
-                                                            "number"
-                                                        ]
-                                                    },
-                                                    "withFoundation": {
-                                                        "type": "number"
-                                                    }
-                                                },
-                                                "required": [
-                                                    "fullTime",
-                                                    "partTime",
-                                                    "withFoundation"
-                                                ]
-                                            },
-                                            {
-                                                "properties": {
-                                                    "fullTime": {
-                                                        "type": "number"
-                                                    },
-                                                    "partTime": {
-                                                        "type": [
-                                                            "null",
-                                                            "number"
-                                                        ]
-                                                    }
-                                                },
-                                                "required": [
-                                                    "fullTime",
-                                                    "partTime"
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    "withPlacement": {
-                                        "type": "number"
-                                    },
-                                    "extras": {
-                                        "type": [
-                                            "null",
-                                            "string"
-                                        ]
-                                    }
-                                }
-                            },
-                            "faqs": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "question": {
-                                            "type": "string"
-                                        },
-                                        "answer": {
-                                            "type": "string"
-                                        }
-                                    }
-                                }
-                            },
-                            "relatedCourses": {
+                            "withFoundation": {
                                 "type": "array",
                                 "items": {
                                     "type": "string"
                                 }
+                            },
+                            "englishReq": {
+                                "type": "string"
                             }
+                        }
+                    },
+                    "fees": {
+                        "type": "object",
+                        "properties": {
+                            "year": {
+                                "type": "string",
+                                "pattern": "^\\d{2}/\\d{2}$"
+                            },
+                            "currency": {
+                                "type": "string",
+                                "enum": [
+                                    "£",
+                                    "$",
+                                    "€"
+                                ]
+                            },
+                            "conversionRate": {
+                                "type": "number"
+                            },
+                            "uk": {
+                                "type": "object",
+                                "oneOf": [
+                                    {
+                                        "properties": {
+                                            "fullTime": {
+                                                "type": "number"
+                                            },
+                                            "partTime": {
+                                                "type": [
+                                                    "null",
+                                                    "number"
+                                                ]
+                                            },
+                                            "withFoundation": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "required": [
+                                            "fullTime",
+                                            "partTime",
+                                            "withFoundation"
+                                        ]
+                                    },
+                                    {
+                                        "properties": {
+                                            "fullTime": {
+                                                "type": "number"
+                                            },
+                                            "partTime": {
+                                                "type": [
+                                                    "null",
+                                                    "number"
+                                                ]
+                                            }
+                                        },
+                                        "required": [
+                                            "fullTime",
+                                            "partTime"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "international": {
+                                "type": "object",
+                                "oneOf": [
+                                    {
+                                        "properties": {
+                                            "fullTime": {
+                                                "type": "number"
+                                            },
+                                            "partTime": {
+                                                "type": [
+                                                    "null",
+                                                    "number"
+                                                ]
+                                            },
+                                            "withFoundation": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "required": [
+                                            "fullTime",
+                                            "partTime",
+                                            "withFoundation"
+                                        ]
+                                    },
+                                    {
+                                        "properties": {
+                                            "fullTime": {
+                                                "type": "number"
+                                            },
+                                            "partTime": {
+                                                "type": [
+                                                    "null",
+                                                    "number"
+                                                ]
+                                            }
+                                        },
+                                        "required": [
+                                            "fullTime",
+                                            "partTime"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "withPlacement": {
+                                "type": "number"
+                            },
+                            "extras": {
+                                "type": [
+                                    "null",
+                                    "string"
+                                ]
+                            }
+                        }
+                    },
+                    "faqs": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "question": {
+                                    "type": "string"
+                                },
+                                "answer": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "relatedCourses": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
                         }
                     }
                 }
