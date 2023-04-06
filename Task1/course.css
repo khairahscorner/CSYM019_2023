@@ -1,5 +1,11 @@
-/* reset hrml defaults */
+/* import custom fonts */
+@font-face {
+    font-family: "Gropled";
+    src: local("Gropled"),
+        url("Gropled-Bold.otf") format("truetype");
+}
 
+/* reset hrml defaults */
 * {
     box-sizing: border-box;
     padding: 0;
@@ -61,8 +67,9 @@ main {
 }
 
 .heading {
-    font-size: 24px;
+    font-size: 28px;
     text-align: center;
+    font-family: "Gropled", sans-serif;
 }
 
 #divider {
@@ -123,6 +130,7 @@ footer {
     width: 100%;
     text-align: center;
     letter-spacing: 1px;
+    font-family: "Gropled", sans-serif;
 }
 
 .credit a {
@@ -130,6 +138,7 @@ footer {
     color: #ffffff;
     border-bottom: 2px dotted #ffffff;
     transition: color 0.5s ease, border-bottom 0.5s ease;
+    font-family: "Gropled", sans-serif;
 }
 
 .credit a:hover {
