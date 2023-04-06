@@ -1,0 +1,138 @@
+/* reset hrml defaults */
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
+}
+
+a {
+    text-decoration: none;
+}
+
+header {
+    position: sticky;
+    width: 100%;
+    top: -1px;
+    z-index: 100;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #282828;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 10px;
+}
+
+.logo {
+    display: flex;
+    width: 100px;
+    height: auto;
+}
+
+.logo img {
+    max-width: 100%;
+}
+
+#menu-icon {
+    display: block;
+    cursor: pointer;
+    z-index: 100;
+}
+
+#menu-icon div {
+    width: 23px;
+    height: 3px;
+    margin-bottom: 5px;
+    background-color: #ffffff;
+}
+
+main {
+    width: 80%;
+    margin: 0 auto;
+    padding: 50px 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 30px;
+}
+
+.heading {
+    font-size: 24px;
+    text-align: center;
+}
+
+#divider {
+    width: 50px;
+    margin: 20px auto;
+    border-top: 5px solid black;
+}
+
+#courses {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    margin: 40px auto 20px;
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid black;
+}
+
+th:first-child {
+    width: 20px;
+}
+
+thead {
+    background-color: rgb(241, 241, 241);
+}
+
+tbody {
+    background-color: transparent;
+}
+
+.table-icon {
+    width: 50px;
+    margin: 0 auto;
+}
+
+.cell-with-list p {
+    padding-bottom: 10px;
+}
+
+footer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 50px auto 0;
+    padding: 30px 0;
+    background-color: #282828;
+}
+
+.credit {
+    color: #ffffff;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.credit a {
+    font-weight: 700;
+    color: #ffffff;
+    border-bottom: 2px dotted #ffffff;
+    transition: color 0.5s ease, border-bottom 0.5s ease;
+}
+
+.credit a:hover {
+    border-bottom: 2px dotted #ffe5f8;
+    color: #ffe5f8;
+}
