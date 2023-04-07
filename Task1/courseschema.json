@@ -301,28 +301,43 @@
                                 "pattern": "^\\d{2}/\\d{2}$"
                             },
                             "currency": {
-                                "type": "string",
-                                "enum": [
-                                    "£",
-                                    "$",
-                                    "€"
-                                ]
-                            },
-                            "conversionRate": {
-                                "type": "number"
+                                "type": "object",
+                                "properties": {
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "£",
+                                            "$",
+                                            "€"
+                                        ]
+                                    },
+                                    "conversionRate": {
+                                        "type": "number"
+                                    }
+                                }
                             },
                             "uk": {
                                 "type": "object",
-                                "oneOf": [
+                                "anyOf": [
                                     {
                                         "properties": {
                                             "fullTime": {
                                                 "type": "number"
                                             },
                                             "partTime": {
-                                                "type": [
-                                                    "null",
-                                                    "number"
+                                                "oneOf": [
+                                                    {
+                                                        "type": "number"
+                                                    },
+                                                    {
+                                                        "type": "null"
+                                                    },
+                                                    {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "number"
+                                                        }
+                                                    }
                                                 ]
                                             },
                                             "withFoundation": {
@@ -341,9 +356,19 @@
                                                 "type": "number"
                                             },
                                             "partTime": {
-                                                "type": [
-                                                    "null",
-                                                    "number"
+                                                "oneOf": [
+                                                    {
+                                                        "type": "number"
+                                                    },
+                                                    {
+                                                        "type": "null"
+                                                    },
+                                                    {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "number"
+                                                        }
+                                                    }
                                                 ]
                                             }
                                         },
@@ -391,8 +416,7 @@
                                             }
                                         },
                                         "required": [
-                                            "fullTime",
-                                            "partTime"
+                                            "fullTime"
                                         ]
                                     }
                                 ]
@@ -401,9 +425,19 @@
                                 "type": "number"
                             },
                             "extras": {
-                                "type": [
-                                    "null",
-                                    "string"
+                                "oneOf": [
+                                    {
+                                        "type": "string"
+                                    },
+                                    {
+                                        "type": "null"
+                                    },
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
                                 ]
                             }
                         }
