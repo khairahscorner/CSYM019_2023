@@ -5,7 +5,7 @@
         url("Gropled-Bold.otf") format("truetype");
 }
 
-/* reset hrml defaults */
+/* reset html defaults */
 * {
     box-sizing: border-box;
     padding: 0;
@@ -14,10 +14,12 @@
     font-size: 14px;
 }
 
+/* reset default link decoration styling */
 a {
     text-decoration: none;
 }
 
+/* styling for the header element */
 header {
     position: sticky;
     width: 100%;
@@ -32,16 +34,19 @@ header {
     box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 10px;
 }
 
+/* School logo container */
 .logo {
     display: flex;
     width: 100px;
     height: auto;
 }
 
+/* School logo image */
 .logo img {
     max-width: 100%;
 }
 
+/* custom menu icon*/
 #menu-icon {
     display: block;
     cursor: pointer;
@@ -55,6 +60,7 @@ header {
     background-color: #ffffff;
 }
 
+/* main section of the page  */
 main {
     width: 80%;
     margin: 0 auto;
@@ -66,18 +72,21 @@ main {
     padding-bottom: 30px;
 }
 
+/* for the main heading in the main section */
 .heading {
     font-size: 28px;
     text-align: center;
     font-family: "Gropled", sans-serif;
 }
 
+/* divider */
 #divider {
     width: 50px;
     margin: 20px auto;
     border-top: 5px solid black;
 }
 
+/* for the element that shows possible errors */
 #message {
     color: #8e1717;
     font-size: 16px;
@@ -85,6 +94,7 @@ main {
     font-style: italic;
 }
 
+/* the table element  */
 #courses {
     border-collapse: collapse;
     border-spacing: 0;
@@ -92,6 +102,17 @@ main {
     margin: 40px auto 20px;
 }
 
+/* table header section  */
+thead {
+    background-color: rgb(241, 241, 241);
+}
+
+/* table body section */
+tbody {
+    background-color: transparent;
+}
+
+/* table header and data */
 th,
 td {
     padding: 10px;
@@ -103,23 +124,18 @@ th:first-child {
     width: 20px;
 }
 
-thead {
-    background-color: rgb(241, 241, 241);
-}
-
-tbody {
-    background-color: transparent;
-}
-
+/* styling for subject icons */
 .table-icon {
     width: 50px;
     margin: 0 auto;
 }
 
-.cell-with-list p {
+/* styling for td elements with child elements */
+.cell-with-list div {
     padding-bottom: 10px;
 }
 
+/* button style  */
 button {
     padding: 10px 20px;
     background-color: #8e1717;
@@ -128,10 +144,12 @@ button {
     transition: transform .5s ease-in-out;
 }
 
+/* styling for when button is hovered on  */
 button:hover {
     transform: translateY(-5px);
 }
 
+/* styling for button links  */
 button a {
     color: #ffffff;
     font-weight: 600;
