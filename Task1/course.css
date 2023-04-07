@@ -78,6 +78,13 @@ main {
     border-top: 5px solid black;
 }
 
+#message {
+    color: #8e1717;
+    font-size: 16px;
+    margin: 40px 0;
+    font-style: italic;
+}
+
 #courses {
     border-collapse: collapse;
     border-spacing: 0;
@@ -113,6 +120,23 @@ tbody {
     padding-bottom: 10px;
 }
 
+button {
+    padding: 10px 20px;
+    background-color: #8e1717;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    transition: transform .5s ease-in-out;
+}
+
+button:hover {
+    transform: translateY(-5px);
+}
+
+button a {
+    color: #ffffff;
+    font-weight: 600;
+}
+
 footer {
     width: 100%;
     display: flex;
@@ -142,6 +166,6 @@ footer {
 }
 
 .credit a:hover {
-    border-bottom: 2px dotted #ffe5f8;
-    color: #ffe5f8;
+    border-bottom: 2px dotted #8e1717;
+    color: #8e1717;
 }

@@ -21,6 +21,7 @@
                 "icon": "criminology.svg",
                 "courseName": "Criminology BA (Hons)",
                 "subject": "Criminology, Law and Policing",
+                "url": "https://www.northampton.ac.uk/courses/criminology-ba-hons/",
                 "summary": "This BA Criminology course has been designed to contribute towards achieving the following United Nations Sustainable Development Goal: SDG10 of Reduced Inequalities. Studying Criminology with us gives you a distinctive approach to learning, drawing on the disciplines of sociology, psychology, history and law. This provides you with a comprehensive introduction to key theoretical and methodological issues at the heart of the discipline.",
                 "highlights": [
                     "Research placement available",
@@ -164,6 +165,7 @@
                 "icon": "accounting.svg",
                 "courseName": "Financial and Investment Analysis MSc",
                 "subject": "Accounting and Finance",
+                "url": "https://www.northampton.ac.uk/courses/financial-and-investment-analysis-msc/",
                 "summary": "MSc Financial and Investment Analysis will develop you into a specialist investment professional that can take up challenging roles in investment banking, risk management and fund management. This programme will prepare you to write the CFA® professional exams. This course has an Industry Placement Option.",
                 "highlights": [
                     "Industry Placement Option available",
@@ -273,6 +275,7 @@
                 "icon": "music.svg",
                 "courseName": "Popular Music BA (Hons)",
                 "subject": "Music and Arts",
+                "url": "https://www.northampton.ac.uk/courses/popular-music-ba-hons/",
                 "summary": "The Popular Music BA (Hons) course at the University of Northampton is designed and run to invest you with a variety of skills, knowledge and experience. When you graduate, you’ll have the know-how to navigate an ever evolving 21st Century music industry. You’ll have the skills for wider employment, including in the teaching profession and further study should this be something you wish to pursue. This course is Industry Accredited by JAMES representing APRS, MPG and associate industry bodies. Accreditation of a course by relevant industry bodies provides assurance to students and employers of its potential and value.",
                 "highlights": [
                     "Performing live on stage",
@@ -430,6 +433,7 @@
                 "icon": "media.svg",
                 "courseName": "Photography BA (Hons)",
                 "subject": "Media and Journalism",
+                "url": "https://www.northampton.ac.uk/courses/photography-ba-hons/",
                 "summary": "Our Photography BA degree takes a practical approach to exploring the photograph within a range of contemporary practices and contexts. This will extend to a critical understanding of photography subjects and allows the scope for you to develop your creativity and professionalism. During our undergraduate photography course, we will challenge you to consider traditional silver processes and digital technologies, evaluating photographic production and studying the still image in relation to both the moving image and newer interactive technologies. Students studying BA Photography at the University of Northampton will also benefit from our industry standard photography studio facilities, which you can explore via the virtual tours below. Our BA Photography degree has been approved by the Association of Photographers (AOP) as one of the ‘most respected photographic courses in the UK’.",
                 "highlights": [
                     "Our BA Photography degree has been accredited by the Association of Photographers (AOP) as one of the ‘most respected photography courses in the UK’",
@@ -576,6 +580,7 @@
                 "icon": "humanities.svg",
                 "courseName": "English – Contemporary Literature MA",
                 "subject": "Humanities",
+                "url": "https://www.northampton.ac.uk/courses/english-contemporary-literature-ma/",
                 "summary": "This exciting English – Contemporary Literature MA course examines the role of contemporary literature in a number of different contexts. You will have the chance to explore a diverse range of texts, across varied modules, with the chance to explore a topic of your choice in specialist detail through your dissertation. You could study post-1945 classics, including late modernists like Samuel Beckett, as well as surveying the latest novels. You may explore specialist fields such as trauma fiction or gender and sexuality, master the latest literary theories, or investigate new genres and popular narrative media, including contemporary gothic literature, film, video games and comic books.",
                 "highlights": [
                     "Research-informed modules on current topics",
@@ -677,6 +682,7 @@
                 "icon": "compscience.svg",
                 "courseName": "Computing (Software Engineering) MSc",
                 "subject": "Computer Science",
+                "url": "https://www.northampton.ac.uk/courses/computing-software-engineering-msc/",
                 "summary": "Study the design of software systems at a greater depth with our Computing (Software Engineering) MSc course. Alongside exploring areas of computer software engineering, you will also have the opportunity to develop your analytics and research skills during this Computing postgraduate degree. Students will complete an individual thesis which will investigate an area they find of particular interest.",
                 "highlights": [
                     "Object-oriented design and development",
@@ -788,7 +794,8 @@
             "courseDetails": {
                 "icon": "sports.svg",
                 "courseName": "Physical Education and Sport BA (Hons)",
-                "subject": "Media and Journalism",
+                "subject": "SportSciences",
+                "url": "https://www.northampton.ac.uk/courses/physical-education-and-sport-ba-hons/",
                 "summary": "Our degree in Physical Education and Sport BA (Hons) degree explores the ways that sport, physical education and physical activity are organised across schools and local communities. During this physical education course, you are encouraged to think critically about current and historical practice in sport and physical education and reflect on your own experiences. This Physical Education and Sport course allows you to study key disciplines within sport and physical education. It also includes an opportunity to undertake a work placement at a local sport or physical education provider. A strong emphasis is placed on the application of theory to understanding real-world issues such as barriers to participation, performance pathways, coaching and teaching practice and government influence on sport.",
                 "highlights": [
                     "Strong emphasis on employability with work placement opportunities for students at levels two and three",
@@ -913,6 +920,7 @@
                 "icon": "hr.svg",
                 "courseName": "Human Resource Management MA",
                 "subject": "Human Resource Management",
+                "url": "https://www.northampton.ac.uk/courses/human-resource-management-ma/",
                 "summary": "The aim of this masters in Human Resource Management is to develop you as an HR professional. You will be introduced to specialised knowledge and research evidence giving you an in depth understanding of successful people management in organisations. Perhaps more importantly, you will practice the tools and techniques of strategic and operational HRM giving you practical, insight-driven experience which will help further your career. Human Resources can be an exciting, rewarding and challenging career that can take you anywhere in the world.",
                 "highlights": [
                     "CIPD accreditation and membership on completion of the MA Human Resource Management course"
@@ -1020,6 +1028,7 @@
                 "icon": "advertising.svg",
                 "courseName": "International Marketing Strategy MSc",
                 "subject": "Advertising and Marketing",
+                "url": "https://www.northampton.ac.uk/courses/international-marketing-strategy-msc/",
                 "summary": "Our MSc International Marketing Strategy is specifically designed to provide you with a strong foundation for a successful career in the exciting and fast-paced world of international marketing. The marketing strategy course also enhances your ability to think strategically about marketing management in an international context.",
                 "highlights": [
                     "This international marketing management course has a 12-month Industry Placement Option",
@@ -1125,6 +1134,7 @@
                 "icon": "bioscience.svg",
                 "courseName": "Pharmacology BSc (Hons)",
                 "subject": "Biological Sciences",
+                "url": "https://www.northampton.ac.uk/courses/pharmacology-bsc-hons/",
                 "summary": "Pharmacology is the study of drugs and how they interact and work on the body. On our BSc Pharmacology degree you will learn how drugs are made into medicines and how drugs and other chemicals interact at the molecular, cellular and systems levels in the body. This BSc Pharmacology course is suited to those wanting to pursue a career in the pharmaceutical industry or in biomedical research as well as graduate entry to medicine",
                 "highlights": [
                     "Flexible programme of study that will allow you to meet your career aspirations",
