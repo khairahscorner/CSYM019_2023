@@ -35,7 +35,7 @@ function populateTable() {
 
 /**
  * this function is used to process the data. It is defined as an arrow function because arrow functions are also functions.
- * @param results response object
+ * @param {object} results response object
  */
 const processData = (results) => {
   const tableElement = document.getElementById("courses"); // get table element
@@ -98,7 +98,7 @@ const processData = (results) => {
 
 /**
  * this function formats the startDates array such that each available start date for the course is shown as different lines within the same td element
- * @param startDates start dates array
+ * @param {Array} startDates start dates array
  * @returns string that can be appended to the innerHTML of the current row
  */
 function formatStringForCourseStartDates(startDates) {
@@ -114,7 +114,7 @@ function formatStringForCourseStartDates(startDates) {
 
 /**
  * this function formats the duration object such that the fullTime/partTime/Foundation course duration are shown as different lines within the same td element
- * @param duration course duration object 
+ * @param {object} duration course duration object 
  * @returns string that can be appended to the innerHTML of the current row 
  */
 function formatStringForCourseDuration(duration) {
