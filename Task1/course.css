@@ -46,13 +46,14 @@ header {
     max-width: 100%;
 }
 
-/* custom menu icon*/
+/* custom menu icon container*/
 #menu-icon {
     display: block;
     cursor: pointer;
     z-index: 100;
 }
 
+/* lines for the custom icon */
 #menu-icon div {
     width: 23px;
     height: 3px;
@@ -155,6 +156,7 @@ button a {
     font-weight: 600;
 }
 
+/* styling for the footer element */
 footer {
     width: 100%;
     display: flex;
@@ -166,6 +168,7 @@ footer {
     background-color: #282828;
 }
 
+/* class for the element in the footer */
 .credit {
     color: #ffffff;
     padding: 0;
@@ -175,6 +178,7 @@ footer {
     font-family: "Gropled", sans-serif;
 }
 
+/* for styling the footer link */
 .credit a {
     font-weight: 700;
     color: #ffffff;
@@ -183,6 +187,7 @@ footer {
     font-family: "Gropled", sans-serif;
 }
 
+/* styling the footer link on hover */
 .credit a:hover {
     border-bottom: 2px dotted #8e1717;
     color: #8e1717;
