@@ -252,8 +252,17 @@ th:first-child {
     align-items: center;
     justify-content: space-between;
 }
-
-
+#course-content .sub-head {
+    margin-top: 10px;
+    font-weight: bold;
+}
+#course-content .question {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+#course-content .answer {
+    margin-bottom: 10px;
+}
 
 /* button style  */
 button {

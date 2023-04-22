@@ -216,16 +216,78 @@ $(document).ready(function () {
 
     // appends another section
     details.append(`<h2 class="section-head">Modules</h2>`)
+    if (selectedCourseDetails.courseDetails.modules.length) { //PG
+      details.append("<strong>Stage 1:</strong>")
+      let modules = $('<ul>');
+      $.each(selectedCourseDetails.courseDetails.modules, function (index, module) {
+        modules.append($('<li>').html(`${module.title} (${module.moduleCode}) - ${module.credits} credits: <strong>${module.status}</strong>`));
+      });
+      details.append(modules);
+    }
+    else {
+      details.append("<strong>Stage 1:</strong>")
+      let modules = $('<ul>');
+      $.each(selectedCourseDetails.courseDetails.modules.stage1, function (index, module) {
+        modules.append($('<li>').html(`${module.title} (${module.moduleCode}) - ${module.credits} credits: <strong>${module.status}</strong>`));
+      });
+      details.append(modules);
+
+      details.append("<strong>Stage 2:</strong>")
+      modules = $('<ul>');
+      $.each(selectedCourseDetails.courseDetails.modules.stage2, function (index, module) {
+        modules.append($('<li>').html(`${module.title} (${module.moduleCode}) - ${module.credits} credits: <strong>${module.status}</strong>`));
+      });
+      details.append(modules);
+
+      details.append("<strong>Stage 3:</strong>")
+      modules = $('<ul>');
+      $.each(selectedCourseDetails.courseDetails.modules.stage3, function (index, module) {
+        modules.append($('<li>').html(`${module.title} (${module.moduleCode}) - ${module.credits} credits: <strong>${module.status}</strong>`));
+      });
+      details.append(modules);
+    }
 
     // appends another section
     details.append(`<h2 class="section-head">Entry Requirements</h2>`)
+    if (selectedCourseDetails.keyFacts.level == "Postgraduate") {
+      details.append(`<div>${selectedCourseDetails.entryRequirements.summary}</div>`)
+      details.append("<div class='sub-head'>English Language Requirements:</div>")
+      details.append(`<div>${selectedCourseDetails.entryRequirements.englishReq}</div>`)
+    }
+    else {
+      details.append("<div class='sub-head'>Standard:</div>")
+      let reqs = $('<ul>');
+      $.each(selectedCourseDetails.entryRequirements.summary, function (index, req) {
+        reqs.append($('<li>').html(req));
+      });
+      details.append(reqs);
+
+      details.append("<div class='sub-head'>Foundation Year:</div>")
+      reqs = $('<ul>');
+      $.each(selectedCourseDetails.entryRequirements.withFoundation, function (index, req) {
+        reqs.append($('<li>').html(req));
+      });
+      details.append(reqs);
+      details.append("<div class='sub-head'>English Language Requirements:</div>")
+      details.append(`<div>${selectedCourseDetails.entryRequirements.englishReq}</div>`)
+    }
 
     // appends another section
     details.append(`<h2 class="section-head">FAQs</h2>`)
+    faqs = $('<div>');
+    $.each(selectedCourseDetails.faqs, function (index, qna) {
+      faqs.append(`<div class="question">${index + 1}) ${qna.question} </div>`);
+      faqs.append(`<div class="answer">${qna.answer}`);
+    });
+    details.append(faqs);
 
     // appends another section
     details.append(`<h2 class="section-head">Related Courses</h2>`)
-
+    relatedCourses = $('<ul>');
+      $.each(selectedCourseDetails.relatedCourses, function (index, course) {
+        relatedCourses.append($('<li>').html(course));
+      });
+      details.append(relatedCourses);
 
     $('.overlay').fadeIn();
   });
