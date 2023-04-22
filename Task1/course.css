@@ -12,11 +12,15 @@
     margin: 0;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 14px;
+    line-height: 1.5;
 }
 
 /* reset default link decoration styling */
 a {
     text-decoration: none;
+}
+ul {
+    margin-left: 30px;
 }
 
 /* styling for the header element */
@@ -24,7 +28,7 @@ header {
     position: sticky;
     width: 100%;
     top: -1px;
-    z-index: 100;
+    z-index: 5;
     width: 100%;
     padding: 20px;
     display: flex;
@@ -49,8 +53,7 @@ header {
 /* custom menu icon container*/
 #menu-icon {
     display: block;
-    cursor: pointer;
-    z-index: 100;
+    z-index: 5;
 }
 
 /* lines for the custom icon */
@@ -95,17 +98,47 @@ main {
     font-style: italic;
 }
 
+#table-section {
+    text-align: center;
+}
+
+.note{
+    color: rgb(23, 133, 23);
+    font-style: italic;
+    text-align: center;
+    margin-top: 20px;
+}
+
+#currency-wrapper select {
+    background-color: #ffffff;
+    border: 1px solid rgb(121, 121, 121);
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+#currency-wrapper select:hover {
+    background-color: #f6f6f6;
+}
+#currency-wrapper select:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+
+
 /* the table element  */
-#courses {
+table {
     border-collapse: collapse;
     border-spacing: 0;
     width: 100%;
-    margin: 40px auto 20px;
+    margin: 20px auto;
 }
-
+#courses {
+    margin-top: 40px;
+}
 /* table header section  */
 thead {
-    background-color: rgb(241, 241, 241);
+    background-color: rgb(226, 226, 226);
 }
 
 /* table body section */
@@ -135,6 +168,92 @@ th:first-child {
 .cell-with-list div {
     padding-bottom: 10px;
 }
+/* styling for td elements with only one child element */
+.cell-with-list div:only-child {
+    padding-bottom: 0;
+}
+
+/* styling for each row */
+.view {
+    cursor: pointer;
+}
+
+/* change color on hover  */
+.view:hover {
+    background-color: rgb(242, 242, 242);
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-y: scroll;
+    z-index: 10;
+}
+
+.overlay-content {
+    background-color: white;
+    margin: 4% auto;
+    border-radius: 10px;
+    padding: 30px;
+    width: 70%;
+    position: relative;
+}
+
+#close-btn {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    cursor: pointer;
+}
+
+#close-btn #line1,
+#close-btn #line2 {
+    width: 15px;
+    height: 2px;
+    margin-bottom: 7.5px;
+    background-color: black;
+}
+
+#close-btn #line1 {
+    transform-origin: top left;
+    transform: rotate(45deg);
+}
+
+#close-btn #line2 {
+    transform-origin: bottom left;
+    transform: rotate(-45deg);
+}
+.details-heading {
+    margin-bottom: 20px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+}
+.details-heading span {
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 400;
+    color: rgb(144, 144, 144);
+    margin-left: 10px;
+}
+#course-content .divider {
+    width: 50px;
+    border-top: 3px solid rgb(182, 182, 182);
+}
+#course-content .section-head {
+    font-size: 16px;
+    margin:25px 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
 
 /* button style  */
 button {
@@ -143,6 +262,7 @@ button {
     border: 1px solid transparent;
     border-radius: 10px;
     transition: transform .5s ease-in-out;
+    color: #ffffff;
 }
 
 /* styling for when button is hovered on  */
