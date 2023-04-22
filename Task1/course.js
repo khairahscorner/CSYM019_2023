@@ -17,13 +17,13 @@ function populateTable() {
 
       messageArea.html(""); //reset the inner contents of the message element
       messageArea.css("display", "none"); //changes the display of the message element to hide the element since there are no errors
-      $("#table-section").css("display", "block"); //changes the display of the table section to ensure the table and currency picker shows
+      $("#table-section").css("display", "block"); //changes the display of the table section to ensure the table and note shows
 
       // the .each function is used to process each course and create row of data for them
       $.each(response.courses, function (index, course) {
         let currentRow = $("<tr>"); //create a row
         currentRow.addClass("view");
-        currentRow.attr("data-details", JSON.stringify(course)); // save the course details for future use
+        currentRow.attr("data-details", JSON.stringify(course)); // save the course details in an attribute for future use
 
         currentRow.append(`<td>${index + 1}</td>`); //first column is for numbering the rows according to index
 
@@ -45,7 +45,6 @@ function populateTable() {
       })
 
       tableElement.append(courseList);   //append the tbody to the table
-      return response.courses;
     })
     .fail(function () { //replacement method for error() in jquery >3.0
       $("#message").css("display", "inline-block"); //changes the display to show the error messages
@@ -105,8 +104,7 @@ function formatStringForCourseDuration(duration) {
 }
 
 function formatStringForUKFees(fees, rate) {
-  let stringToAppendForFees = ""; //string to be returned containing the formatted duration
-
+  let stringToAppendForFees = ""; //string to be returned
   stringToAppendForFees += `<div>Full Time: ${fees.fullTime * rate}</div>`;
   //condition to check if the course has a foundation year option
   if (fees.withFoundation) {
@@ -124,8 +122,7 @@ function formatStringForUKFees(fees, rate) {
 }
 
 function formatStringForInternationalFees(fees, rate) {
-  let stringToAppendForFees = ""; //string to be returned containing the formatted duration
-
+  let stringToAppendForFees = ""; //string to be returned
   stringToAppendForFees += `<div>Full Time: ${fees.international.fullTime * rate}</div>`;
 
   //condition to check if part time exists
@@ -136,15 +133,14 @@ function formatStringForInternationalFees(fees, rate) {
   if (fees.international.withFoundation) {
     stringToAppendForFees += `<div>Foundation Year: ${fees.international.withFoundation * rate}</div>`;
   }
-
   //condition to check if the course has a placement year option
   if (fees.withPlacement) {
     stringToAppendForFees += `<div>Placement: ${fees.withPlacement * rate}</div>`;
   }
-
   return stringToAppendForFees; //return string
 }
 
+//main jquery function
 $(document).ready(function () {
   populateTable(); // used to load the table immediately the page is loaded, without any DELAY
 
@@ -153,7 +149,6 @@ $(document).ready(function () {
     //settimeout method that executes every 5 minutes
     setTimeout(function () {
       console.log("Now updating"); //sample message to show when table is updated
-
       populateTable(); // the function that populates the table
 
       updateTableAtIntervals(); // the function calls itself here, creating a recursive cycle
@@ -167,14 +162,16 @@ $(document).ready(function () {
 
   });
 
-  $('#table-contents').on('click', '.view', function () {
+  $('#table-contents').on('click', '.view', function () { //targets all rows in the table and executes the function on click of each
     let selectedCourseDetails = JSON.parse($(this).closest('tr').attr('data-details')); // retrieve the data-course attribute value and parse back to json
 
-    const details = $("#course-content");
-    details.html("");
+    const details = $("#course-content"); // targets the element for displaying more course details
+    details.html(""); //resets the element for a new view
 
+    // appends course name and subject area
     details.append(`<h1 class="details-heading">${selectedCourseDetails.courseDetails.courseName} - <span class="subject">${selectedCourseDetails.courseDetails.subject}</span></h1>`)
     details.append(`<div class="divider"></div>`)
+    // appends first section containing "key facts"
     details.append(`<h2 class="section-head">
       Key Facts 
       <div id="currency-wrapper">
@@ -205,9 +202,11 @@ $(document).ready(function () {
         </tr>
       </tbody>
     </table>`)
+    // appends second section
     details.append(`<h2 class="section-head">Overview</h2>`)
     details.append(`<div class="summary">${selectedCourseDetails.courseDetails.summary}</div>`)
 
+    // appends another section
     details.append(`<h2 class="section-head">Highlights</h2>`)
     let highlights = $('<ul>');
     $.each(selectedCourseDetails.courseDetails.highlights, function (index, value) {
@@ -215,22 +214,23 @@ $(document).ready(function () {
     });
     details.append(highlights);
 
+    // appends another section
     details.append(`<h2 class="section-head">Modules</h2>`)
 
+    // appends another section
     details.append(`<h2 class="section-head">Entry Requirements</h2>`)
 
+    // appends another section
     details.append(`<h2 class="section-head">FAQs</h2>`)
 
+    // appends another section
     details.append(`<h2 class="section-head">Related Courses</h2>`)
 
 
-    // $('.overlay-content').html(details);
-
-    // $('#overlay').show();
     $('.overlay').fadeIn();
   });
 
-  $('#close-btn').click(function () {
+  $('#close-btn').click(function () { //on click of close button, closes the further details section
     $('.overlay').fadeOut();
   });
 })

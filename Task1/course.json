@@ -103,7 +103,15 @@
             },
             "entryRequirements": {
                 "summary": [
-                    ""
+                    "BCC at A-Level",
+                    "DMM at BTEC",
+                    "Pass (C and above) at T Level",
+                    "GCSE Maths and English at Grade C/4 or above"
+                ],
+                "withFoundation": [
+                    "DEE at A-Level",
+                    "MPP at BTEC",
+                    "Pass (D or E) at T Level"
                 ],
                 "englishReq": "IELTS 6.0 (or equivalent) with a minimum of 5.5 in all bands"
             },
@@ -359,7 +367,16 @@
                 }
             },
             "entryRequirements": {
-                "summary": "",
+                "summary": [
+                    "BCC at A-Level",
+                    "DMM at BTEC",
+                    "Pass (C and above) at T Level"
+                ],
+                "withFoundation": [
+                    "DEE at A-Level",
+                    "MPP at BTEC",
+                    "Pass (D or E) at T Level"
+                ],
                 "englishReq": "IELTS 6.0 (or equivalent) with a minimum of 5.5 in all bands"
             },
             "fees": {
