@@ -98,10 +98,12 @@ main {
     font-style: italic;
 }
 
+/* wrapper for note and table */
 #table-section {
     text-align: center;
 }
 
+/* note to inform user */
 .note{
     color: rgb(23, 133, 23);
     font-style: italic;
@@ -109,33 +111,19 @@ main {
     margin-top: 20px;
 }
 
-#currency-wrapper select {
-    background-color: #ffffff;
-    border: 1px solid rgb(121, 121, 121);
-    border-radius: 5px;
-    padding: 5px 10px;
-    cursor: pointer;
-}
-#currency-wrapper select:hover {
-    background-color: #f6f6f6;
-}
-#currency-wrapper select:focus {
-    outline: none;
-    box-shadow: none;
-}
-
-
-
-/* the table element  */
+/* all table elements  */
 table {
     border-collapse: collapse;
     border-spacing: 0;
     width: 100%;
     margin: 20px auto;
 }
+
+/* courses table */
 #courses {
     margin-top: 40px;
 }
+
 /* table header section  */
 thead {
     background-color: rgb(226, 226, 226);
@@ -154,11 +142,12 @@ td {
     border: 1px solid black;
 }
 
+/* targets the S/N column */
 th:first-child {
     width: 20px;
 }
 
-/* styling for subject icons */
+/* styling for table icons */
 .table-icon {
     width: 50px;
     margin: 0 auto;
@@ -168,6 +157,7 @@ th:first-child {
 .cell-with-list div {
     padding-bottom: 10px;
 }
+
 /* styling for td elements with only one child element */
 .cell-with-list div:only-child {
     padding-bottom: 0;
@@ -183,6 +173,7 @@ th:first-child {
     background-color: rgb(242, 242, 242);
 }
 
+/* overlay page to show more course details  */
 .overlay {
     display: none;
     position: fixed;
@@ -195,6 +186,7 @@ th:first-child {
     z-index: 10;
 }
 
+/* main content on the page  */
 .overlay-content {
     background-color: white;
     margin: 4% auto;
@@ -204,13 +196,14 @@ th:first-child {
     position: relative;
 }
 
+/* close button on the overlay */
 #close-btn {
     position: absolute;
     right: 10px;
     top: 20px;
     cursor: pointer;
 }
-
+/* custom close btn icon */
 #close-btn #line1,
 #close-btn #line2 {
     width: 15px;
@@ -218,22 +211,24 @@ th:first-child {
     margin-bottom: 7.5px;
     background-color: black;
 }
-
 #close-btn #line1 {
     transform-origin: top left;
     transform: rotate(45deg);
 }
-
 #close-btn #line2 {
     transform-origin: bottom left;
     transform: rotate(-45deg);
 }
+
+/* first heading on the overlay page */
 .details-heading {
     margin-bottom: 20px;
     font-size: 20px;
     display: flex;
     align-items: center;
 }
+
+/* span for the heading - for subject area */
 .details-heading span {
     font-size: 14px;
     font-style: italic;
@@ -241,10 +236,12 @@ th:first-child {
     color: rgb(144, 144, 144);
     margin-left: 10px;
 }
+/* divider styling */
 #course-content .divider {
     width: 50px;
     border-top: 3px solid rgb(182, 182, 182);
 }
+/* all other section headings on the overlay */
 #course-content .section-head {
     font-size: 16px;
     margin:25px 0 10px;
@@ -252,10 +249,29 @@ th:first-child {
     align-items: center;
     justify-content: space-between;
 }
+
+/* sub headings on the overlay */
 #course-content .sub-head {
     margin-top: 10px;
     font-weight: bold;
 }
+/* styling for the currency select element */
+#currency-wrapper select {
+    background-color: #ffffff;
+    border: 1px solid rgb(121, 121, 121);
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+#currency-wrapper select:hover {
+    background-color: #f6f6f6;
+}
+#currency-wrapper select:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+/* for the FAQ section */
 #course-content .question {
     margin-bottom: 10px;
     font-weight: bold;
@@ -264,24 +280,25 @@ th:first-child {
     margin-bottom: 10px;
 }
 
-/* button style  */
+/* general button style  */
 button {
-    padding: 10px 20px;
+    padding: 5px 0;
     background-color: #8e1717;
     border: 1px solid transparent;
     border-radius: 10px;
     transition: transform .5s ease-in-out;
     color: #ffffff;
+    margin-top: 15px;
 }
-
 /* styling for when button is hovered on  */
 button:hover {
     transform: translateY(-5px);
 }
-
 /* styling for button links  */
 button a {
+    padding: 10px;
     color: #ffffff;
+    font-size: 10px;
     font-weight: 600;
 }
 
