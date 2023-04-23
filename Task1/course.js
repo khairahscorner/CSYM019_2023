@@ -316,14 +316,15 @@ $(document).ready(function () {
     });
     details.append(relatedCourses);
 
+    //appends button that links to school course page
+    details.append(`<button><a href="${selectedCourseDetails.courseDetails.url}" target="_blank">View More</a></button>`);
+
     //event listener for change in currency
     $('#course-content').on('change', '#currency', function () {
       rate = parseFloat($(this).val()); //get the value of the newly selected currency, parseFloat ensures it's a number
       updateUKFees(selectedCourseDetails.fees.uk, rate); //calls function to convert uk fees with the new selected rate
       updateInternationalFees(selectedCourseDetails.fees, rate) //calls function to convert international fees with the new selected rate
     });
-
-    details.append(`<button><a href="${selectedCourseDetails.courseDetails.url}" target="_blank">View More</a></button>`);
 
     $('.overlay').fadeIn(); // show the overlay page with transition 
   });
