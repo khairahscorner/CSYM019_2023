@@ -18,7 +18,7 @@
                 "location": "Waterside"
             },
             "courseDetails": {
-                "icon": "criminology.svg",
+                "icon": "criminology.png",
                 "courseName": "Criminology BA (Hons)",
                 "subject": "Criminology, Law and Policing",
                 "url": "https://www.northampton.ac.uk/courses/criminology-ba-hons/",
@@ -170,7 +170,7 @@
                 "location": "Waterside"
             },
             "courseDetails": {
-                "icon": "accounting.svg",
+                "icon": "accounting.png",
                 "courseName": "Financial and Investment Analysis MSc",
                 "subject": "Accounting and Finance",
                 "url": "https://www.northampton.ac.uk/courses/financial-and-investment-analysis-msc/",
@@ -280,7 +280,7 @@
                 "location": "Waterside"
             },
             "courseDetails": {
-                "icon": "music.svg",
+                "icon": "music.png",
                 "courseName": "Popular Music BA (Hons)",
                 "subject": "Music and Arts",
                 "url": "https://www.northampton.ac.uk/courses/popular-music-ba-hons/",
@@ -447,7 +447,7 @@
                 "location": "Waterside"
             },
             "courseDetails": {
-                "icon": "media.svg",
+                "icon": "media.png",
                 "courseName": "Photography BA (Hons)",
                 "subject": "Media and Journalism",
                 "url": "https://www.northampton.ac.uk/courses/photography-ba-hons/",
@@ -594,7 +594,7 @@
                 "location": "Waterside"
             },
             "courseDetails": {
-                "icon": "humanities.svg",
+                "icon": "humanities.png",
                 "courseName": "English – Contemporary Literature MA",
                 "subject": "Humanities",
                 "url": "https://www.northampton.ac.uk/courses/english-contemporary-literature-ma/",
@@ -696,7 +696,7 @@
                 "location": "Waterside"
             },
             "courseDetails": {
-                "icon": "compscience.svg",
+                "icon": "compscience.png",
                 "courseName": "Computing (Software Engineering) MSc",
                 "subject": "Computer Science",
                 "url": "https://www.northampton.ac.uk/courses/computing-software-engineering-msc/",
@@ -809,7 +809,7 @@
                 "location": "Waterside"
             },
             "courseDetails": {
-                "icon": "sports.svg",
+                "icon": "sports.png",
                 "courseName": "Physical Education and Sport BA (Hons)",
                 "subject": "SportSciences",
                 "url": "https://www.northampton.ac.uk/courses/physical-education-and-sport-ba-hons/",
@@ -879,8 +879,7 @@
                     "DEE at A-Level",
                     "MPP at BTEC",
                     "Pass (D or E) at T Level"
-                ],
-                "englishReq": ""
+                ]
             },
             "fees": {
                 "year": "23/24",
@@ -934,7 +933,7 @@
                 "location": "Waterside"
             },
             "courseDetails": {
-                "icon": "hr.svg",
+                "icon": "hr.png",
                 "courseName": "Human Resource Management MA",
                 "subject": "Human Resource Management",
                 "url": "https://www.northampton.ac.uk/courses/human-resource-management-ma/",
@@ -1042,7 +1041,7 @@
                 "location": "Waterside"
             },
             "courseDetails": {
-                "icon": "advertising.svg",
+                "icon": "advertising.png",
                 "courseName": "International Marketing Strategy MSc",
                 "subject": "Advertising and Marketing",
                 "url": "https://www.northampton.ac.uk/courses/international-marketing-strategy-msc/",
@@ -1148,7 +1147,7 @@
                 "location": "Waterside"
             },
             "courseDetails": {
-                "icon": "bioscience.svg",
+                "icon": "bioscience.png",
                 "courseName": "Pharmacology BSc (Hons)",
                 "subject": "Biological Sciences",
                 "url": "https://www.northampton.ac.uk/courses/pharmacology-bsc-hons/",
