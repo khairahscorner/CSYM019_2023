@@ -105,7 +105,7 @@
                         "properties": {
                             "icon": {
                                 "type": "string",
-                                "pattern": "^.*\\.svg$"
+                                "pattern": "^.*\\.png$"
                             },
                             "courseName": {
                                 "type": "string"
@@ -299,22 +299,6 @@
                             "year": {
                                 "type": "string",
                                 "pattern": "^\\d{2}/\\d{2}$"
-                            },
-                            "currency": {
-                                "type": "object",
-                                "properties": {
-                                    "type": {
-                                        "type": "string",
-                                        "enum": [
-                                            "£",
-                                            "$",
-                                            "€"
-                                        ]
-                                    },
-                                    "conversionRate": {
-                                        "type": "number"
-                                    }
-                                }
                             },
                             "uk": {
                                 "type": "object",
