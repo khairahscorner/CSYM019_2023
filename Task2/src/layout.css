@@ -57,6 +57,10 @@ footer {
     background-color: #555;
     color: white;
     grid-area: footer;
+    position: static;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 .note {
@@ -79,7 +83,7 @@ footer {
     height: auto;
 }
 
-.addmore > input {
+/* .addmore > input {
     display:block;
     float: left;
     margin: 0 2em 2em 2em;
@@ -89,7 +93,7 @@ footer {
     color:#555;
 }
 
-/* Change the link color on hover */
+// Change the link color on hover
 .addmore > input:hover {
     display:block;
     float: left;
@@ -98,4 +102,64 @@ footer {
     text-decoration: none;
     background-color: #555;
     color: whitesmoke;
+} */
+
+
+.login {
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 25%;
+    text-align: center;
+}
+
+.wrapper input[type="text"],
+.wrapper input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.input-group {
+    display: flex;
+    align-items: baseline;
+}
+.input-group label {
+    font-size: 12px;
+    margin-right: 10px;
+}
+
+.wrapper button, input[type="submit"] {
+    width: auto;
+    padding: 10px 30px;
+    margin-top: 20px;
+    background-color: #555;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+input[type="submit"]:hover {
+    background-color: rgb(71, 71, 71);
+    transform: translateY(-2px);
+    transition: 0.5s ease-in-out;
+}
+.error {
+    color: red;
+    font-style: italic;
+    margin-top: 10px;
 }
