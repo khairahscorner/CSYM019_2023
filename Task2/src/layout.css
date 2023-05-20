@@ -142,7 +142,7 @@ footer {
     margin-right: 10px;
 }
 
-.wrapper button, input[type="submit"] {
+button, input[type="submit"] {
     width: auto;
     padding: 10px 30px;
     margin-top: 20px;
@@ -151,7 +151,6 @@ footer {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-bottom: 30px;
 }
 input[type="submit"]:hover {
     background-color: rgb(71, 71, 71);
@@ -162,4 +161,84 @@ input[type="submit"]:hover {
     color: red;
     font-style: italic;
     margin-top: 10px;
+}
+
+/* wrapper for note and table */
+#table-section {
+    text-align: center;
+}
+
+/* note to inform user */
+.note{
+    color: rgb(23, 133, 23);
+    font-style: italic;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* all table elements  */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    margin: 20px auto;
+}
+
+/* courses table */
+#courses {
+    margin-top: 40px;
+}
+
+/* table header section  */
+thead {
+    background-color: rgb(226, 226, 226);
+}
+
+/* table body section */
+tbody {
+    background-color: transparent;
+}
+
+/* table header and data */
+th,
+td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid black;
+}
+
+/* targets the S/N column */
+th:first-child {
+    width: 20px;
+}
+
+/* styling for table icons */
+.table-icon {
+    width: 50px;
+    margin: 0 auto;
+}
+
+/* styling for td elements with child elements */
+.cell-with-list div {
+    padding-bottom: 10px;
+}
+
+/* styling for td elements with only one child element */
+.cell-with-list div:only-child {
+    padding-bottom: 0;
+}
+
+.btn-group {
+    display: flex;
+    align-items: center;
+}
+.btn-group button {
+    margin-right: 10px;
+}
+button[name='delete'] {
+    background-color: rgb(121, 37, 37);
+}
+.edit {
+    font-style: italic;
+    color: #555;
 }
