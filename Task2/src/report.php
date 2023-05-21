@@ -24,7 +24,7 @@ if ($_SESSION["authenticated"] !== true) {
 				echo "<p class='error'> $error</p>";
 			}
 			?>
-        <h3>Sample Course Reoprt</h3>
+        <h3 class="main-heading">Sample Course Reoprt</h3>
         <div class="sketch">
             <img src="./sampleReport.png" alt="Sample Course Report">
         </div>

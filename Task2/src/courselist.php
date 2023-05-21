@@ -3,6 +3,7 @@
 session_start();
 if ($_SESSION["authenticated"] !== true) {
     header("Location: index.php"); // PHP docs
+    exit();
 } else {
     require('config_db.php'); // include db setup (https://www.geeksforgeeks.org/how-to-include-content-of-a-php-file-into-another-php-file/)
 
@@ -67,7 +68,7 @@ if ($_SESSION["authenticated"] !== true) {
 <body>
     <?php include("header.html"); ?>
     <main>
-        <h3> All Courses</h3>
+        <h3 class="main-heading"> All Courses</h3>
         <section id="table-section">
             <?php if ($results): ?>
                 <form action="" method="POST">
@@ -94,7 +95,7 @@ if ($_SESSION["authenticated"] !== true) {
                                         <td>' . $row['level'] . '</td>
                                         <td class="cell-with-list">' . implode(', ', $start_dates) . '</td>
                                         <td>' . $row['location'] . '</td>
-                                        <td><a class="edit" href="newcourse.php?id=' . $row['id'] . '">Edit</a></td>
+                                        <td><a class="edit" href="newcourse.php?id=' . $row['id'] . '&type='. $row['level'] .'">Edit</a></td>
                                     </tr>
                                 ';
                             }

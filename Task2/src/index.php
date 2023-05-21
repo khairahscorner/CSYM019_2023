@@ -3,6 +3,7 @@ session_start(); //(PHP Documentation)
 
 if ($_SESSION["authenticated"] === true) {
 	header("Location: courselist.php"); // PHP docs
+	exit();
 } else {
 	require('config_db.php'); // include db setup (https://www.geeksforgeeks.org/how-to-include-content-of-a-php-file-into-another-php-file/)
 
@@ -21,6 +22,7 @@ if ($_SESSION["authenticated"] === true) {
 		if ($result) {
 			$_SESSION['authenticated'] = true;
 			header('Location: courselist.php'); //PHP documentation on header()
+			exit();
 		} else {
 			$error = "Invalid username or password";
 		}

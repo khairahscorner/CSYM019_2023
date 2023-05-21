@@ -43,7 +43,9 @@ nav > ul li a:hover {
     background-color: #555;
     color: whitesmoke;
 }
-
+.main-heading {
+    margin-bottom: 0;
+}
 main {
     background-color: whitesmoke;
     color: black;
@@ -241,4 +243,105 @@ button[name='delete'] {
 .edit {
     font-style: italic;
     color: #555;
+}
+
+/* styling for the currency select element */
+select {
+    background-color: #ffffff;
+    border: 1px solid rgb(121, 121, 121);
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 12px;
+}
+select:hover {
+    background-color: #f6f6f6;
+}
+select:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+#undergraduate-fields, #postgraduate-fields {
+    display: none;
+}
+
+.form-input-wrapper {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 15px;
+}
+.form-input-wrapper label {
+    font-size: 12px;
+    margin-right: 5px;
+    width: 10%;
+}
+textarea {
+    height: 100px;
+    resize: none;
+}
+.form-input-wrapper input,  .form-input-wrapper textarea{
+    background-color: #ffffff;
+    border: 1px solid rgb(121, 121, 121);
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+.form-input-wrapper select, .form-input-wrapper input {
+    width: 20%;
+}
+
+.form-textarea-wrapper {
+    width: 20%;
+    margin-left: -10px;
+}
+.form-textarea-wrapper textarea {
+    width: 100%;
+}
+.required {
+    color: red;
+}
+p.required {
+    font-size: 11px;
+    font-style: italic;
+}
+.form-input-group {
+    display: flex;
+    align-items: flex-start;
+}
+.form-input-group>div {
+    margin-right: 30px;
+    width: 40%;
+}
+.form-input-group .form-input-wrapper select,
+.form-input-group .form-input-wrapper input,
+.form-input-group .form-input-wrapper label,
+.form-input-group .form-textarea-wrapper {
+    width: 100%;
+}
+.form-input-group .second-col {
+    margin-left: 5%;
+}
+.form-input-group .second-col .form-input-wrapper label {
+    width: 35%;
+}
+.form-input-group .form-input-wrapper textarea {
+    width: -webkit-fill-available;
+}
+
+.form-check {
+    font-size: 12px;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+}
+.form-check input[type="checkbox"] {
+    width: 15px;
+}
+.fields-heading {
+    font-weight: 600;
+    margin: 20px 0;
+}
+
+#general-fields {
+    display: "none";
 }
