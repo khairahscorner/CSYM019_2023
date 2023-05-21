@@ -70,9 +70,49 @@ function bindFieldsAndExecute(PDOStatement $stmt)
     $stmt->bindParam(28, $nullVal); //faqs, to be edited
     $stmt->bindParam(29, $related);
 
+    executeStatement($stmt);
+}
+
+function checkIfAnyMissing($requiredFields)
+{
+    $missingFields = array_filter(array_map(function ($each) {
+        return empty($_POST[$each]) ? $each : '';
+    }, $requiredFields));
+
+    return $missingFields;
+}
+
+function bindModuleFieldsAndExecute(PDOStatement $stmt, $course_id)
+{
+    $nullVal = null;
+    $stmt->bindParam(1, $_POST['code']);
+    $stmt->bindValue(2, (($_POST['stage'] !== "") ? $_POST['stage'] : $nullVal));
+    $stmt->bindParam(3, $_POST['title']);
+    $stmt->bindParam(4, $_POST['credits']);
+    $stmt->bindParam(5, $_POST['status']);
+    $stmt->bindParam(6, $_POST['type']);
+    $stmt->bindValue(7, ((trim($_POST['prereq']) !== "") ? $_POST['prereq'] : $nullVal));
+    $stmt->bindParam(8, $course_id);
+
+    executeStatement($stmt);
+}
+
+function executeStatement(PDOStatement $stmt)
+{
     if ($stmt->execute()) {
-        header('Location: courselist.php'); //PHP documentation on header()
+        header("Refresh:0"); //PHP documentation on header()
         exit();
     }
+}
+
+function prepopulateModuleFields($result)
+{
+    $_POST['code'] = isset($_POST['code']) ? $_POST['code'] : $result['module_code'];
+    $_POST['title'] = isset($_POST['title']) ? $_POST['title'] : $result['title'];
+    $_POST['credits'] = isset($_POST['credits']) ? $_POST['credits'] : $result['credits'];
+    $_POST['prereq'] = isset($_POST['prereq']) ? $_POST['prereq'] : $result['prereq'];
+    $_POST['stage'] = isset($_POST['stage']) ? $_POST['stage'] : $result['stage'];
+    $_POST['status'] = isset($_POST['status']) ? $_POST['status'] : $result['status'];
+    $_POST['type'] = isset($_POST['type']) ? $_POST['type'] : $result['type'];
 }
 ?>

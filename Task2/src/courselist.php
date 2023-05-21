@@ -81,6 +81,7 @@ if ($_SESSION["authenticated"] !== true) {
                                 <th>Level</th>
                                 <th>Start Dates</th>
                                 <th>Location</th>
+                                <th>Modules List</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -95,7 +96,8 @@ if ($_SESSION["authenticated"] !== true) {
                                         <td>' . $row['level'] . '</td>
                                         <td class="cell-with-list">' . implode(', ', $start_dates) . '</td>
                                         <td>' . $row['location'] . '</td>
-                                        <td><a class="edit" href="newcourse.php?id=' . $row['id'] . '&type='. $row['level'] .'">Edit</a></td>
+                                        <td><a class="linkaction" href="modules.php?id=' . $row['id'] .'">View modules</a></td>
+                                        <td><a class="linkaction" href="newcourse.php?id=' . $row['id'] . '">Edit</a></td>
                                     </tr>
                                 ';
                             }

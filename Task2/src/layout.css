@@ -239,7 +239,7 @@ th:first-child {
 button[name='delete'] {
     background-color: rgb(121, 37, 37);
 }
-.edit {
+.linkaction {
     font-style: italic;
     color: #555;
 }
@@ -346,4 +346,44 @@ p.required {
 }
 .mb-15 {
     margin-bottom: 15px;
+}
+
+
+/* Modules */
+.section-group {
+    display: flex;
+    justify-content: space-between;
+    margin: 40px 20px;
+}
+.cols {
+    flex-basis: 50%;
+}
+.section-group .cols:first-child {
+    margin-right: 40px;
+}
+#moduleform {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+#moduleform .form-input-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+}
+
+#moduleform label {
+    flex-basis: 20%;
+}
+#moduleform input,  #moduleform select{
+    flex-basis: 40%;
+}
+.section-group input[type="submit"] {
+    cursor: pointer;
+    text-decoration: underline;
+    background-color: transparent;
+    color: #555;
+    padding: 0;
+    margin: 0;
+    font-family: serif;
 }

@@ -18,9 +18,8 @@ if ($_SESSION["authenticated"] !== true) {
     $initialSelectedLevel = "";
     $initialSelectedPlacement;
 
-    if (isset($_GET['id']) && isset($_GET['type'])) {
+    if (isset($_GET['id'])) {
         $id = $_GET['id'];
-        $initialSelectedLevel = $_GET['type'];
         $isEdit = true;
 
         $stmt = $pdo->prepare('SELECT * FROM courses WHERE id = :id');
@@ -30,9 +29,13 @@ if ($_SESSION["authenticated"] !== true) {
         $stmt->execute($values);
         $result = $stmt->fetch(PDO::FETCH_ASSOC); //(PHP doc) - does it find a row match, return as array with keys
         if ($result) {
+            $initialSelectedLevel = $result['level'];
             $selectedStartDates = json_decode($result['start_dates'], true);
             $initialSelectedPlacement = $result['duration_placement'];
             prepopulateFields($result);
+        } else {
+            header("Location: courselist.php"); // PHP docs
+            exit();
         }
     }
 
@@ -46,21 +49,21 @@ if ($_SESSION["authenticated"] !== true) {
         if (!empty($missingFields)) {
             $error = 'Fill ALL required fields - ' . implode(', ', $missingFields);
         } else {
-            if ($isEdit === true) {
-                $stmt = $pdo->prepare('UPDATE courses 
+            $stmt = $pdo->prepare('SELECT * FROM courses WHERE course_name = :cname');
+            $values = [
+                "cname" => $_POST['course-name']
+            ];
+            $stmt->execute($values);
+            $courseExists = $stmt->fetch(PDO::FETCH_ASSOC); //(PHP doc) - does it find a row match, return as array with keys
+            if ($courseExists) {
+                $error = "Course already exists in the db with the same name";
+            } else {
+                if ($isEdit === true) {
+                    $stmt = $pdo->prepare('UPDATE courses 
                 SET level = ?, ucas_regular = ?, ucas_foundation = ?, duration_fulltime = ?, duration_parttime = ?, duration_foundation = ?, duration_placement = ?, start_dates = ?, location = ?, icon_url = ?, course_name = ?, subject = ?, link_url = ?, summary = ?, highlights = ?, req_summary = ?, req_foundation = ?, english_req = ?, fees_year = ?, fees_uk_fulltime = ?, fees_uk_parttime = ?, fees_uk_foundation = ?, fees_intl_fulltime = ?, fees_intl_parttime = ?, fees_intl_foundation = ?, fees_withplacement = ?, fees_extras = ?, faqs = ?, related_courses = ?
                 WHERE id = ' . $id . '');
 
-                bindFieldsAndExecute($stmt);
-            } else {
-                $stmt = $pdo->prepare('SELECT * FROM courses WHERE course_name = :cname');
-                $values = [
-                    "cname" => $_POST['course-name']
-                ];
-                $stmt->execute($values);
-                $courseExists = $stmt->fetch(PDO::FETCH_ASSOC); //(PHP doc) - does it find a row match, return as array with keys
-                if ($courseExists) {
-                    $error = "Course already exists in the db with the same name";
+                    bindFieldsAndExecute($stmt);
                 } else {
                     $stmt = $pdo->prepare('INSERT INTO courses 
                     (level, ucas_regular, ucas_foundation, duration_fulltime, duration_parttime, duration_foundation, duration_placement, start_dates, location, icon_url, course_name, subject, link_url, summary, highlights, req_summary, req_foundation, english_req, fees_year, fees_uk_fulltime, fees_uk_parttime, fees_uk_foundation, fees_intl_fulltime, fees_intl_parttime, fees_intl_foundation, fees_withplacement, fees_extras, faqs, related_courses)
