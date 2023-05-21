@@ -5,7 +5,7 @@ if ($_SESSION["authenticated"] === true) {
 	header("Location: courselist.php"); // PHP docs
 	exit();
 } else {
-	require('config_db.php'); // include db setup (https://www.geeksforgeeks.org/how-to-include-content-of-a-php-file-into-another-php-file/)
+	require_once('config_db.php'); // include db setup (https://www.geeksforgeeks.org/how-to-include-content-of-a-php-file-into-another-php-file/)
 
 	if (isset($_POST['submit'])) { // Muawya code
 		$username = $_POST['username'];

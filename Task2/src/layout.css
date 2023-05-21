@@ -171,11 +171,10 @@ input[type="submit"]:hover {
 }
 
 /* note to inform user */
-.note{
+.info{
     color: rgb(23, 133, 23);
     font-style: italic;
-    text-align: center;
-    margin-top: 20px;
+    font-size: 12px;
 }
 
 /* all table elements  */
@@ -344,4 +343,7 @@ p.required {
 
 #general-fields {
     display: "none";
+}
+.mb-15 {
+    margin-bottom: 15px;
 }

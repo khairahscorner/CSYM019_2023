@@ -4,6 +4,12 @@ $(document).ready(function () {
             $(this).prop('checked', $('#checkAll').prop('checked')); // sets the value of the checked ppty of esch of the checkboxes to the val of the head checkbox
         });
     });
+
+    $('.checkbox').change(function () {
+        var isAnyUnchecked = $('.checkbox').filter(':not(:checked)').length > 0;
+        $('#checkAll').prop('checked', !isAnyUnchecked);
+    });
+
     if ($('#level-select').val() === "Undergraduate" || $('#level-select').val() === "Postgraduate") {
         $('#general-fields').show();
     }

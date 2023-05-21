@@ -5,7 +5,7 @@ if ($_SESSION["authenticated"] !== true) {
     header("Location: index.php"); // PHP docs
     exit();
 } else {
-    require('config_db.php'); // include db setup (https://www.geeksforgeeks.org/how-to-include-content-of-a-php-file-into-another-php-file/)
+    require_once('config_db.php'); // include db setup (https://www.geeksforgeeks.org/how-to-include-content-of-a-php-file-into-another-php-file/)
 
     $stmt = $pdo->prepare('SELECT * FROM courses ORDER BY course_name');
     $stmt->execute();
