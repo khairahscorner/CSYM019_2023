@@ -203,7 +203,7 @@
                         "type": "regular"
                     },
                     {
-                        "moduleCode": "HRMM074",
+                        "moduleCode": "FINM074",
                         "title": "Work-Based Project (60 Credit)",
                         "credits": 60,
                         "status": "Compulsory",
@@ -211,7 +211,7 @@
                         "type": "placement"
                     },
                     {
-                        "moduleCode": "HRMM072",
+                        "moduleCode": "FINM072",
                         "title": "Career Futures: Employability Skills",
                         "credits": 0,
                         "status": "Compulsory",

@@ -68,7 +68,7 @@ if ($_SESSION["authenticated"] !== true) {
 <body>
     <?php include("header.html"); ?>
     <main>
-        <h3 class="main-heading"> All Courses</h3>
+        <h3 class="main-heading">All Courses</h3>
         <section id="table-section">
             <?php if ($results): ?>
                 <form action="" method="POST">
@@ -88,10 +88,11 @@ if ($_SESSION["authenticated"] !== true) {
                         <tbody id='table-contents'>
                             <?php foreach ($results as $index => $row) {
                                 $start_dates = json_decode($row['start_dates'], true);
+                                $icon = is_null($row['icon_url']) ? "logo.svg" : $row['icon_url'];
                                 echo '
                                     <tr>
                                         <td><input class="checkbox" type="checkbox" name="selectedRows[]" value="' . $row['id'] . '"></td>
-                                        <td><img src="./icons/' . $row['icon_url'] . '" alt="course logo" title="' . $row['subject'] . '" class="table-icon"/></td>
+                                        <td><img src="'.$icon.'" alt="course logo" title="' . $row['subject'] . '" class="table-icon"/></td>
                                         <td>' . $row['course_name'] . '</td>
                                         <td>' . $row['level'] . '</td>
                                         <td class="cell-with-list">' . implode(', ', $start_dates) . '</td>

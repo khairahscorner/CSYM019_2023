@@ -52,13 +52,24 @@ if ($_SESSION["authenticated"] !== true) {
         } else {
             if ($isEdit === true) {
                 //function returns boolean, hence the assignment
-                $returned = updateCourseFunc($stmt, $pdo, $id);
+                $returned = updateCourseFunc($pdo, $id);
                 $returned === true ? $success = "Successfully updated" : $error = "Another course already exists in the db with the same name";
             } else {
                 //function returns an error string if another course exists with the same title, hence the assignment
-                $error = insertCourseFunc($stmt, $pdo);
+                $error = insertCourseFunc($pdo);
             }
         }
+    }
+
+    // code - https://www.tutorialspoint.com/php/php_file_uploading.htm#
+    if (isset($_FILES['icon-url'])) {
+        $fileError = "";
+        $file_name = $_FILES['icon-url']['name'];
+        $file_size = $_FILES['icon-url']['size'];
+        $file_tmp = $_FILES['icon-url']['tmp_name'];
+        $file_type = $_FILES['icon-url']['type'];
+
+        move_uploaded_file($file_tmp, $file_name);
     }
 }
 
@@ -87,7 +98,7 @@ if ($_SESSION["authenticated"] !== true) {
             <?php echo $isEdit === true ? 'Update Course Form' : 'New Course Form' ?>
         </h3>
         <p class="required">*required fields</p>
-        <form action="" method="POST" id="courseform">
+        <form action="" method="POST" id="courseform" enctype="multipart/form-data">
             <div class="form-input-wrapper">
                 <label for="course-name"><span class="required">*</span>Course Name</label>
                 <input type="text" name="course-name"
@@ -195,6 +206,15 @@ if ($_SESSION["authenticated"] !== true) {
                 <p class="fields-heading">Others</p>
                 <div class="form-input-group">
                     <div>
+                        <div class="form-input-wrapper">
+                            <label for="icon-url"><span class="required">*</span>Course Icon</label>
+                            <div class="form-textarea-wrapper">
+                                <p class="info img">
+                                    <?php echo isset($_FILES['icon-url']['name']) ? $_FILES['icon-url']['name'] : $_POST['icon-url'] ?>
+                                </p>
+                                <input type="file" name="icon-url" accept="image/png" />
+                            </div>
+                        </div>
                         <div class="form-input-wrapper">
                             <label for="duration-ft"><span class="required">*</span>Duration (FullTime)</label>
                             <input type="number" name="duration-ft" min="0"

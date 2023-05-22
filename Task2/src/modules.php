@@ -35,6 +35,7 @@ if ($_SESSION["authenticated"] !== true) {
             ];
             $stmt->execute($values);
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
             if (isset($_GET['edit'])) {
                 $isEdit = true;
                 $selectedModuleCode = $_GET['edit'];
@@ -68,11 +69,10 @@ if ($_SESSION["authenticated"] !== true) {
                 } else {
                     if ($isEdit === true) {
                         //function returns an error string if another module exists with the updated code, hence the assignment
-                        $error = updateModuleFunc($stmt, $pdo, $course_id, $selectedModuleCode);
+                        $error = updateModuleFunc($pdo, $course_id, $selectedModuleCode);
                     } else {
                         //function returns boolean, hence the assignment
-                        $returned = insertModuleFunc($stmt, $pdo, $course_id);
-                        $returned === true ? $success = "Successfully added" : $error = "Module already exists";
+                        $error = insertModuleFunc($pdo, $course_id);
                     }
                 }
             }

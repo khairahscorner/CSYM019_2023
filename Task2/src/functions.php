@@ -30,6 +30,7 @@ function prepopulateCourseFields($result)
     // $_POST['faqs'] = isset($_POST['faqs']) ? $_POST['faqs'] : implode(', ', json_decode($result['faqs'], true));
     $_POST['related'] = isset($_POST['related']) ? $_POST['related'] : (is_null($result['related_courses']) ? "" : implode(', ', array_map('trim', json_decode($result['related_courses'], true))));
 }
+
 function bindCourseFieldsAndExecute(PDOStatement $stmt)
 {
     $nullVal = null;
@@ -39,6 +40,7 @@ function bindCourseFieldsAndExecute(PDOStatement $stmt)
     $extras = (trim($_POST['fees-extras']) !== "") ? json_encode(array_map('trim', explode(",", $_POST['fees-extras']))) : $nullVal;
     $related = (trim($_POST['related']) !== "") ? json_encode(array_map('trim', explode(",", $_POST['related']))) : $nullVal;
     $startDates = json_encode($_POST['startDates']);
+    $selectedFileName = ($_FILES['icon-url']['name'] !== "") ? $_FILES['icon-url']['name'] : $nullVal;
 
     $stmt->bindParam(1, $_POST['levelSelect']);
     $stmt->bindValue(2, (($_POST['ucas-reg'] !== "") ? $_POST['ucas-reg'] : $nullVal));
@@ -49,7 +51,7 @@ function bindCourseFieldsAndExecute(PDOStatement $stmt)
     $stmt->bindParam(7, $_POST['duration-placement']);
     $stmt->bindParam(8, $startDates);
     $stmt->bindValue(9, (($_POST['location'] !== "") ? $_POST['location'] : $nullVal));
-    $stmt->bindParam(10, $nullVal);
+    $stmt->bindParam(10, $selectedFileName);
     $stmt->bindParam(11, $_POST['course-name']);
     $stmt->bindParam(12, $_POST['subject']);
     $stmt->bindValue(13, (($_POST['link-url'] !== "") ? $_POST['link-url'] : $nullVal));
@@ -71,7 +73,7 @@ function bindCourseFieldsAndExecute(PDOStatement $stmt)
     $stmt->bindParam(29, $related);
 }
 
-function updateCourseFunc(PDOStatement $stmt, PDO $pdo, $id)
+function updateCourseFunc(PDO $pdo, $id)
 {
     $stmt = $pdo->prepare('SELECT * FROM courses WHERE trim(course_name) = ? AND id != ?');
     $name = trim($_POST['course-name']);
@@ -87,13 +89,16 @@ function updateCourseFunc(PDOStatement $stmt, PDO $pdo, $id)
                     start_dates = ?, location = ?, icon_url = ?, course_name = ?, subject = ?, link_url = ?, summary = ?, highlights = ?, req_summary = ?, req_foundation = ?, 
                     english_req = ?, fees_year = ?, fees_uk_fulltime = ?, fees_uk_parttime = ?, fees_uk_foundation = ?, fees_intl_fulltime = ?, fees_intl_parttime = ?, 
                     fees_intl_foundation = ?, fees_withplacement = ?, fees_extras = ?, faqs = ?, related_courses = ?
-                WHERE id = ' . $id . '');
+                WHERE id = ?');
         bindCourseFieldsAndExecute($stmt);
-        return true;
+        $stmt->bindParam(30, $id);
+        if ($stmt->execute()) {
+            return true;
+        }
     }
 }
 
-function insertCourseFunc(PDOStatement $stmt, PDO $pdo)
+function insertCourseFunc(PDO $pdo)
 {
     $stmt = $pdo->prepare('SELECT * FROM courses WHERE course_name = :cname');
     $values = [
@@ -129,7 +134,6 @@ function bindModuleFieldsAndExecute(PDOStatement $stmt, $course_id)
     $stmt->bindParam(6, $_POST['type']);
     $stmt->bindValue(7, ((trim($_POST['prereq']) !== "") ? $_POST['prereq'] : $nullVal));
     $stmt->bindParam(8, $course_id);
-    executeStatement($stmt);
 }
 
 function prepopulateModuleFields($result)
@@ -144,9 +148,9 @@ function prepopulateModuleFields($result)
 }
 
 //(PHP doc) - does it find a row match, return as array with keys
-function updateModuleFunc(PDOStatement $stmt, PDO $pdo, $course_id, $selectedModuleCode)
+function updateModuleFunc(PDO $pdo, $course_id, $selectedModuleCode)
 {
-    $stmt = $pdo->prepare('SELECT * FROM modules WHERE module_code = ? and module_code != ?');
+    $stmt = $pdo->prepare('SELECT * FROM modules WHERE module_code = ? AND module_code != ?');
     $stmt->bindParam(1, $_POST['code']);
     $stmt->bindParam(2, $selectedModuleCode);
     $stmt->execute();
@@ -155,16 +159,10 @@ function updateModuleFunc(PDOStatement $stmt, PDO $pdo, $course_id, $selectedMod
         return "Module already exists";
     } else {
         $stmt = $pdo->prepare('UPDATE modules 
-                            SET stage = ?, title = ?, credits = ?, status = ?, type = ?, prereq = ?, course_id = ?
+                            SET module_code = ?, stage = ?, title = ?, credits = ?, status = ?, type = ?, prereq = ?, course_id = ?
                             WHERE module_code = ?');
-        $stmt->bindValue(1, (($_POST['stage'] !== "") ? $_POST['stage'] : null));
-        $stmt->bindParam(2, $_POST['title']);
-        $stmt->bindParam(3, $_POST['credits']);
-        $stmt->bindParam(4, $_POST['status']);
-        $stmt->bindParam(5, $_POST['type']);
-        $stmt->bindValue(6, ((trim($_POST['prereq']) !== "") ? $_POST['prereq'] : null));
-        $stmt->bindParam(7, $course_id);
-        $stmt->bindParam(8, $_POST['code']);
+        bindModuleFieldsAndExecute($stmt, $course_id);
+        $stmt->bindParam(9, $selectedModuleCode);
         if ($stmt->execute()) {
             header("Location: modules.php?id=" . $course_id); //PHP documentation on header()
             exit();
@@ -172,7 +170,7 @@ function updateModuleFunc(PDOStatement $stmt, PDO $pdo, $course_id, $selectedMod
     }
 }
 
-function insertModuleFunc(PDOStatement $stmt, PDO $pdo, $course_id)
+function insertModuleFunc(PDO $pdo, $course_id)
 {
     $stmt = $pdo->prepare('SELECT * FROM modules WHERE module_code = :code');
     $values = [
@@ -181,19 +179,14 @@ function insertModuleFunc(PDOStatement $stmt, PDO $pdo, $course_id)
     $stmt->execute($values);
     $moduleExists = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($moduleExists) {
-        return false;
+        return "Module already exists";
     } else {
         $stmt = $pdo->prepare('INSERT INTO modules VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
         bindModuleFieldsAndExecute($stmt, $course_id);
-        return true;
-    }
-}
-
-function executeStatement(PDOStatement $stmt)
-{
-    if ($stmt->execute()) {
-        header("Refresh:0"); //PHP documentation on header()
-        exit();
+        if ($stmt->execute()) {
+            header("Refresh:0"); //PHP documentation on header()    
+            exit();
+        }
     }
 }
 

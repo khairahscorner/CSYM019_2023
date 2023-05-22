@@ -395,3 +395,6 @@ p.required {
     color: #555;
     margin-left: 20px;
 }
+.info.img{
+    margin: 0 0 5px;
+}
