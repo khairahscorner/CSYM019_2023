@@ -387,3 +387,11 @@ p.required {
     margin: 0;
     font-family: serif;
 }
+.section-group .linkaction {
+    font-size: 12px;
+}
+#cancel {
+    background-color: #e4e4e4;
+    color: #555;
+    margin-left: 20px;
+}

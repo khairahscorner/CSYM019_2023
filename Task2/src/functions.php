@@ -1,5 +1,5 @@
 <?php
-function prepopulateFields($result)
+function prepopulateCourseFields($result)
 {
     $_POST['course-name'] = isset($_POST['course-name']) ? $_POST['course-name'] : $result['course_name'];
     $_POST['subject'] = isset($_POST['subject']) ? $_POST['subject'] : $result['subject'];
@@ -30,7 +30,7 @@ function prepopulateFields($result)
     // $_POST['faqs'] = isset($_POST['faqs']) ? $_POST['faqs'] : implode(', ', json_decode($result['faqs'], true));
     $_POST['related'] = isset($_POST['related']) ? $_POST['related'] : (is_null($result['related_courses']) ? "" : implode(', ', array_map('trim', json_decode($result['related_courses'], true))));
 }
-function bindFieldsAndExecute(PDOStatement $stmt)
+function bindCourseFieldsAndExecute(PDOStatement $stmt)
 {
     $nullVal = null;
     $highlights = (trim($_POST['highlights']) !== "") ? json_encode(array_map('trim', explode(",", $_POST['highlights']))) : $nullVal;
@@ -69,17 +69,53 @@ function bindFieldsAndExecute(PDOStatement $stmt)
     $stmt->bindParam(27, $extras);
     $stmt->bindParam(28, $nullVal); //faqs, to be edited
     $stmt->bindParam(29, $related);
-
-    executeStatement($stmt);
 }
 
-function checkIfAnyMissing($requiredFields)
+function updateCourseFunc(PDOStatement $stmt, PDO $pdo, $id)
 {
-    $missingFields = array_filter(array_map(function ($each) {
-        return empty($_POST[$each]) ? $each : '';
-    }, $requiredFields));
+    $stmt = $pdo->prepare('SELECT * FROM courses WHERE trim(course_name) = ? AND id != ?');
+    $name = trim($_POST['course-name']);
+    $stmt->bindParam(1, $name);
+    $stmt->bindParam(2, $id);
+    $stmt->execute();
+    $matchedAnotherCourse = $stmt->fetch(PDO::FETCH_ASSOC); //(PHP doc) - does it find a row match, return as array with keys
+    if ($matchedAnotherCourse) {
+        return false;
+    } else {
+        $stmt = $pdo->prepare('UPDATE courses 
+                SET level = ?, ucas_regular = ?, ucas_foundation = ?, duration_fulltime = ?, duration_parttime = ?, duration_foundation = ?, duration_placement = ?, 
+                    start_dates = ?, location = ?, icon_url = ?, course_name = ?, subject = ?, link_url = ?, summary = ?, highlights = ?, req_summary = ?, req_foundation = ?, 
+                    english_req = ?, fees_year = ?, fees_uk_fulltime = ?, fees_uk_parttime = ?, fees_uk_foundation = ?, fees_intl_fulltime = ?, fees_intl_parttime = ?, 
+                    fees_intl_foundation = ?, fees_withplacement = ?, fees_extras = ?, faqs = ?, related_courses = ?
+                WHERE id = ' . $id . '');
+        bindCourseFieldsAndExecute($stmt);
+        return true;
+    }
+}
 
-    return $missingFields;
+function insertCourseFunc(PDOStatement $stmt, PDO $pdo)
+{
+    $stmt = $pdo->prepare('SELECT * FROM courses WHERE course_name = :cname');
+    $values = [
+        "cname" => $_POST['course-name']
+    ];
+    $stmt->execute($values);
+    $courseExists = $stmt->fetch(PDO::FETCH_ASSOC); //(PHP doc) - does it find a row match, return as array with keys
+    if ($courseExists) {
+        return "Another course already exists in the db with the same name";
+    } else {
+        $stmt = $pdo->prepare('INSERT INTO courses 
+                    (level, ucas_regular, ucas_foundation, duration_fulltime, duration_parttime, duration_foundation, duration_placement,
+                        start_dates, location, icon_url, course_name, subject, link_url, summary, highlights, req_summary, req_foundation, 
+                        english_req, fees_year, fees_uk_fulltime, fees_uk_parttime, fees_uk_foundation, fees_intl_fulltime, fees_intl_parttime, 
+                        fees_intl_foundation, fees_withplacement, fees_extras, faqs, related_courses)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+        bindCourseFieldsAndExecute($stmt);
+        if ($stmt->execute()) {
+            header("Location: courselist.php"); //PHP documentation on header()
+            exit();
+        }
+    }
 }
 
 function bindModuleFieldsAndExecute(PDOStatement $stmt, $course_id)
@@ -93,16 +129,7 @@ function bindModuleFieldsAndExecute(PDOStatement $stmt, $course_id)
     $stmt->bindParam(6, $_POST['type']);
     $stmt->bindValue(7, ((trim($_POST['prereq']) !== "") ? $_POST['prereq'] : $nullVal));
     $stmt->bindParam(8, $course_id);
-
     executeStatement($stmt);
-}
-
-function executeStatement(PDOStatement $stmt)
-{
-    if ($stmt->execute()) {
-        header("Refresh:0"); //PHP documentation on header()
-        exit();
-    }
 }
 
 function prepopulateModuleFields($result)
@@ -115,4 +142,68 @@ function prepopulateModuleFields($result)
     $_POST['status'] = isset($_POST['status']) ? $_POST['status'] : $result['status'];
     $_POST['type'] = isset($_POST['type']) ? $_POST['type'] : $result['type'];
 }
+
+//(PHP doc) - does it find a row match, return as array with keys
+function updateModuleFunc(PDOStatement $stmt, PDO $pdo, $course_id, $selectedModuleCode)
+{
+    $stmt = $pdo->prepare('SELECT * FROM modules WHERE module_code = ? and module_code != ?');
+    $stmt->bindParam(1, $_POST['code']);
+    $stmt->bindParam(2, $selectedModuleCode);
+    $stmt->execute();
+    $matchedAnotherModule = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($matchedAnotherModule) {
+        return "Module already exists";
+    } else {
+        $stmt = $pdo->prepare('UPDATE modules 
+                            SET stage = ?, title = ?, credits = ?, status = ?, type = ?, prereq = ?, course_id = ?
+                            WHERE module_code = ?');
+        $stmt->bindValue(1, (($_POST['stage'] !== "") ? $_POST['stage'] : null));
+        $stmt->bindParam(2, $_POST['title']);
+        $stmt->bindParam(3, $_POST['credits']);
+        $stmt->bindParam(4, $_POST['status']);
+        $stmt->bindParam(5, $_POST['type']);
+        $stmt->bindValue(6, ((trim($_POST['prereq']) !== "") ? $_POST['prereq'] : null));
+        $stmt->bindParam(7, $course_id);
+        $stmt->bindParam(8, $_POST['code']);
+        if ($stmt->execute()) {
+            header("Location: modules.php?id=" . $course_id); //PHP documentation on header()
+            exit();
+        }
+    }
+}
+
+function insertModuleFunc(PDOStatement $stmt, PDO $pdo, $course_id)
+{
+    $stmt = $pdo->prepare('SELECT * FROM modules WHERE module_code = :code');
+    $values = [
+        "code" => $_POST['code']
+    ];
+    $stmt->execute($values);
+    $moduleExists = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($moduleExists) {
+        return false;
+    } else {
+        $stmt = $pdo->prepare('INSERT INTO modules VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
+        bindModuleFieldsAndExecute($stmt, $course_id);
+        return true;
+    }
+}
+
+function executeStatement(PDOStatement $stmt)
+{
+    if ($stmt->execute()) {
+        header("Refresh:0"); //PHP documentation on header()
+        exit();
+    }
+}
+
+function checkIfAnyMissing($requiredFields)
+{
+    $missingFields = array_filter(array_map(function ($each) {
+        return empty($_POST[$each]) ? $each : '';
+    }, $requiredFields));
+
+    return $missingFields;
+}
+
 ?>

@@ -8,8 +8,6 @@ if ($_SESSION["authenticated"] !== true) {
     require_once('config_db.php'); // include db setup (https://www.geeksforgeeks.org/how-to-include-content-of-a-php-file-into-another-php-file/)
     require_once('functions.php');
 
-    $isEdit = false;
-
     if (!isset($_GET['id'])) {
         header("Location: courselist.php"); // PHP docs
         exit();
@@ -24,22 +22,39 @@ if ($_SESSION["authenticated"] !== true) {
         $selectedStatus = '';
         $selectedType = '';
         $error = '';
-        $asd = 0;
+        $success = '';
+        $isEdit = false;
+        $statusOptions = ['Compulsory', 'Designated'];
+        $typeOptions = ['regular', 'dissertation', 'placement'];
+        $requiredFields = ['code', 'title', 'credits', 'status'];
 
         if ($currentCourse) {
-            $statusOptions = ['Compulsory', 'Designated'];
-            $typeOptions = ['regular', 'dissertation', 'placement'];
-            $requiredFields = ['code', 'title', 'credits', 'status'];
-
-            $selectedType = $typeOptions[0];
-            $selectedStage = 'stage1';
-
             $stmt = $pdo->prepare('SELECT * FROM modules WHERE course_id = :id');
             $values = [
                 'id' => $course_id
             ];
             $stmt->execute($values);
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if (isset($_GET['edit'])) {
+                $isEdit = true;
+                $selectedModuleCode = $_GET['edit'];
+                $stmt = $pdo->prepare('SELECT * FROM modules WHERE module_code = :code');
+                $stmt->bindParam(':code', $selectedModuleCode);
+                $stmt->execute();
+                $currentModule = $stmt->fetch(PDO::FETCH_ASSOC);
+                if ($currentModule) {
+                    $selectedType = $currentModule['type'];
+                    $selectedStage = $currentModule['stage'];
+                    $selectedStatus = $currentModule['status'];
+                    prepopulateModuleFields($currentModule);
+                } else {
+                    header("Location: modules.php?id=" . $course_id); // PHP docs
+                    exit();
+                }
+            } else {
+                $selectedType = $typeOptions[0];
+                $selectedStage = 'stage1';
+            }
 
             if (isset($_POST['submit'])) {
                 $missingFields = array_filter(array_map(function ($each) {
@@ -51,48 +66,15 @@ if ($_SESSION["authenticated"] !== true) {
                 if (!empty($isAnyMissing)) {
                     $error = 'Fill ALL required fields - ' . implode(', ', $missingFields);
                 } else {
-                    $stmt = $pdo->prepare('SELECT * FROM modules WHERE module_code = :code');
-                    $values = [
-                        "code" => $_POST['code']
-                    ];
-                    $stmt->execute($values);
-                    $moduleExists = $stmt->fetch(PDO::FETCH_ASSOC); //(PHP doc) - does it find a row match, return as array with keys
                     if ($isEdit === true) {
-                        $stmt = $pdo->prepare('UPDATE modules 
-                                SET stage = ?, title = ?, credits = ?, status = ?, type = ?, prereq = ?, course_id = ?
-                                WHERE module_code = ?');
-                        $stmt->bindValue(1, (($_POST['stage'] !== "") ? $_POST['stage'] : null));
-                        $stmt->bindParam(2, $_POST['title']);
-                        $stmt->bindParam(3, $_POST['credits']);
-                        $stmt->bindParam(4, $_POST['status']);
-                        $stmt->bindParam(5, $_POST['type']);
-                        $stmt->bindValue(6, ((trim($_POST['prereq']) !== "") ? $_POST['prereq'] : null));
-                        $stmt->bindParam(7, $course_id);
-                        $stmt->bindParam(8, $_POST['code']);
-                        executeStatement($stmt);
+                        //function returns an error string if another module exists with the updated code, hence the assignment
+                        $error = updateModuleFunc($stmt, $pdo, $course_id, $selectedModuleCode);
                     } else {
-                        if ($moduleExists) {
-                            $error = "Module already exists";
-                        } else {
-                            $stmt = $pdo->prepare('INSERT INTO modules VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
-                            bindModuleFieldsAndExecute($stmt, $course_id);
-                        }
+                        //function returns boolean, hence the assignment
+                        $returned = insertModuleFunc($stmt, $pdo, $course_id);
+                        $returned === true ? $success = "Successfully added" : $error = "Module already exists";
                     }
                 }
-            }
-            if (isset($_POST['edit'])) {
-                $isEdit = true;
-                $selectedModuleCode = $_POST['moduleToEdit'];
-                $stmt = $pdo->prepare('SELECT * FROM modules WHERE module_code = :code');
-                $stmt->bindParam(':code', $selectedModuleCode);
-                $stmt->execute();
-                $currentModule = $stmt->fetch(PDO::FETCH_ASSOC);
-
-                $selectedType = $currentModule['type'];
-                $selectedStage = $currentModule['stage'];
-                $selectedStatus = $currentModule['status'];
-
-                prepopulateModuleFields($currentModule);
             }
             if (isset($_POST['delete'])) {
                 $selectedModuleCode = $_POST['moduleToDelete'];
@@ -101,8 +83,11 @@ if ($_SESSION["authenticated"] !== true) {
                     'code' => $selectedModuleCode
                 ];
                 $stmt->execute($values);
-
                 header("Refresh:0");
+            }
+            if (isset($_POST['cancel'])) {
+                header("Location: modules.php?id=" . $course_id); // PHP docs
+                exit();
             }
         } else {
             header("Location: courselist.php"); // PHP docs
@@ -110,6 +95,7 @@ if ($_SESSION["authenticated"] !== true) {
         }
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -125,6 +111,10 @@ if ($_SESSION["authenticated"] !== true) {
     <main>
         <div class="section-group">
             <div class="cols">
+                <h3>
+                    Modules for
+                    <?php echo $currentCourse['course_name'] ?>
+                </h3>
                 <?php if ($results): ?>
                     <table id="courses">
                         <thead>
@@ -145,8 +135,7 @@ if ($_SESSION["authenticated"] !== true) {
                                         <td>' . $row['title'] . '</td>
                                         <form action="" method="POST">
                                         <td>
-                                        <input class="linkaction" type="hidden" name="moduleToEdit" value="' . $row['module_code'] . '">
-                                        <input class="linkaction" type="submit" name="edit" value="Edit" />
+                                        <a class="linkaction" href="modules.php?id=' . $course_id . '&edit=' . $row['module_code'] . '">Edit</a>
                                         </td>
                                         <td>
                                         <input class="linkaction" type="hidden" name="moduleToDelete" value="' . $row['module_code'] . '">
@@ -169,6 +158,9 @@ if ($_SESSION["authenticated"] !== true) {
                 </h3>
                 <?php
                 echo "<p class='error'>" . $error . "</p>";
+                ?>
+                <?php
+                echo "<p class='info'>" . $success . "</p>";
                 ?>
                 <form id="moduleform" action="" method="POST">
                     <div class="form-input-wrapper">
@@ -229,9 +221,16 @@ if ($_SESSION["authenticated"] !== true) {
                             </select>
                         </div>
                     <?php endif; ?>
-                    <button type="submit" name="submit">
-                        <?php echo $isEdit === true ? 'Update' : 'Add New'; ?>
-                    </button>
+                    <div class="form-input-wrapper">
+                        <button type="submit" name="submit">
+                            <?php echo $isEdit === true ? 'Update' : 'Add New'; ?>
+                        </button>
+                        <?php if ($isEdit === true): ?>
+                            <button id="cancel" type="submit" name="cancel">
+                                Cancel
+                            </button>
+                        <?php endif; ?>
+                    </div>
                 </form>
             </div>
         </div>

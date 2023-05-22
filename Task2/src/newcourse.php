@@ -13,6 +13,7 @@ if ($_SESSION["authenticated"] !== true) {
     $isEdit = false;
     $requiredFields = ['course-name', 'subject', 'location', 'startDates', 'levelSelect', 'duration-ft', 'fees-year', 'fees-uk-ft', 'fees-intl-ft', 'summary', 'highlights'];
     $error = "";
+    $success = "";
 
     $selectedStartDates = [];
     $initialSelectedLevel = "";
@@ -32,7 +33,7 @@ if ($_SESSION["authenticated"] !== true) {
             $initialSelectedLevel = $result['level'];
             $selectedStartDates = json_decode($result['start_dates'], true);
             $initialSelectedPlacement = $result['duration_placement'];
-            prepopulateFields($result);
+            prepopulateCourseFields($result);
         } else {
             header("Location: courselist.php"); // PHP docs
             exit();
@@ -49,32 +50,16 @@ if ($_SESSION["authenticated"] !== true) {
         if (!empty($missingFields)) {
             $error = 'Fill ALL required fields - ' . implode(', ', $missingFields);
         } else {
-            $stmt = $pdo->prepare('SELECT * FROM courses WHERE course_name = :cname');
-            $values = [
-                "cname" => $_POST['course-name']
-            ];
-            $stmt->execute($values);
-            $courseExists = $stmt->fetch(PDO::FETCH_ASSOC); //(PHP doc) - does it find a row match, return as array with keys
-            if ($courseExists) {
-                $error = "Course already exists in the db with the same name";
+            if ($isEdit === true) {
+                //function returns boolean, hence the assignment
+                $returned = updateCourseFunc($stmt, $pdo, $id);
+                $returned === true ? $success = "Successfully updated" : $error = "Another course already exists in the db with the same name";
             } else {
-                if ($isEdit === true) {
-                    $stmt = $pdo->prepare('UPDATE courses 
-                SET level = ?, ucas_regular = ?, ucas_foundation = ?, duration_fulltime = ?, duration_parttime = ?, duration_foundation = ?, duration_placement = ?, start_dates = ?, location = ?, icon_url = ?, course_name = ?, subject = ?, link_url = ?, summary = ?, highlights = ?, req_summary = ?, req_foundation = ?, english_req = ?, fees_year = ?, fees_uk_fulltime = ?, fees_uk_parttime = ?, fees_uk_foundation = ?, fees_intl_fulltime = ?, fees_intl_parttime = ?, fees_intl_foundation = ?, fees_withplacement = ?, fees_extras = ?, faqs = ?, related_courses = ?
-                WHERE id = ' . $id . '');
-
-                    bindFieldsAndExecute($stmt);
-                } else {
-                    $stmt = $pdo->prepare('INSERT INTO courses 
-                    (level, ucas_regular, ucas_foundation, duration_fulltime, duration_parttime, duration_foundation, duration_placement, start_dates, location, icon_url, course_name, subject, link_url, summary, highlights, req_summary, req_foundation, english_req, fees_year, fees_uk_fulltime, fees_uk_parttime, fees_uk_foundation, fees_intl_fulltime, fees_intl_parttime, fees_intl_foundation, fees_withplacement, fees_extras, faqs, related_courses)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
-
-                    bindFieldsAndExecute($stmt);
-                }
+                //function returns an error string if another course exists with the same title, hence the assignment
+                $error = insertCourseFunc($stmt, $pdo);
             }
         }
     }
-
 }
 
 ?>
@@ -94,6 +79,9 @@ if ($_SESSION["authenticated"] !== true) {
     <main>
         <?php
         echo "<p class='error'>" . $error . "</p>";
+        ?>
+        <?php
+        echo "<p class='info'>" . $success . "</p>";
         ?>
         <h3>
             <?php echo $isEdit === true ? 'Update Course Form' : 'New Course Form' ?>
