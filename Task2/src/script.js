@@ -31,6 +31,35 @@ $(document).ready(function () {
     $('#close-btn').click(function () { //on click of close button, closes the overlay section
         $('.overlay').fadeOut();
     });
+
+    let allCoursesToPlot = [];
+    let allModulesToPlotData = [];
+    let allModulesToPlotLabels = [];
+
+    $('.report').each(function () {
+        let courseId = $(this).data('id');
+        let courseName = $(this).data('coursename');
+        let modulesData = $(this).find('.view-more').data('modules');
+        if (modulesData.length > 0) {
+            let data = [];
+            let labels = [];
+            let chartId = `chart${courseId}`;
+
+            $.each(modulesData, function (_, module) {
+                data.push(module.credits);
+                labels.push(module.module_code);
+            });
+            allCoursesToPlot.push(courseName);
+            allModulesToPlotData.push(data);
+            allModulesToPlotLabels.push(labels);
+
+            plotChart(chartId, data, labels);
+        }
+    });
+
+    if ($('.report').length > 1) {
+        plotComparisonChart(allCoursesToPlot, allModulesToPlotData, allModulesToPlotLabels);
+    }
 })
 
 function showRightFields(type) {
@@ -88,6 +117,79 @@ function updateFees(fees, rate) {
 function filterModules(modules, str) {
     modules.filter((module) => module.stage === str);
     return modules;
+}
+
+// https://www.chartjs.org/docs/latest/charts/doughnut.html
+function plotChart(chartId, data, labels) {
+    const ctx = document.getElementById(chartId);
+
+    bar_data = {
+        label: "Modules",
+        data,
+        borderWidth: 1,
+        borderColor: "#EEEEEE",
+        backgroundColor: "#333333",
+    };
+
+    new Chart(ctx, {
+        type: "pie",
+        data: {
+            labels,
+            datasets: [
+                {
+                    label: "Credits",
+                    data: bar_data.data,
+                    hoverOffset: 4,
+                },
+            ],
+        },
+        options: {
+            radius: 100,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                },
+            },
+        },
+    });
+}
+
+//chart.js reference
+function plotComparisonChart(courses, modulesData, modulesLabels) {
+    const ctx = document.getElementById('comparison-chart');
+    console.log(courses[0]);
+    console.log(modulesData[0].length);
+    console.log(modulesLabels[0][1]);
+
+    let bgColors = ['#5f0808', '#8a4308', '#766c15', '#024619', '#0054a7', '#57228d', '#640b63'];
+
+    let datasets = [];
+    for (let i = 0; i < courses.length; i++) {
+        let moduleColors = bgColors[i % bgColors.length];
+        let dataset = {
+            label: courses[i],
+            data: modulesData[i],
+            backgroundColor: moduleColors,
+            borderColor: "#EEEEEE",
+            borderWidth: 1
+        };
+        datasets.push(dataset);
+    }
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['chart1', 'chart2', 'chart3'],
+            datasets: datasets
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
 }
 
 function populateOverlay(selectedCourseDetails, selectedCourseModules) {

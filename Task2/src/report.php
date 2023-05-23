@@ -43,18 +43,13 @@ function getCourseModules(PDO $pdo, $course_id)
 <head>
     <title>Course Report</title>
     <link rel="stylesheet" href="./layout.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <?php include("imports.html"); ?>
 </head>
 
 <body>
     <?php include("header.html"); ?>
     <main id="main-report">
-        <?php
-        if (isset($error)) {
-            echo "<p class='error'> $error</p>";
-        }
-        ?>
-
         <?php foreach ($coursesToReport as $courseId): ?>
             <?php
             $course = getCourse($pdo, $courseId);
@@ -63,7 +58,8 @@ function getCourseModules(PDO $pdo, $course_id)
             $created_at = $date = new DateTime($course['created_at']);
             $updated_at = $date = new DateTime($course['updated_at']);
             ?>
-            <div class="section-group report">
+            <div class="section-group report" data-id="<?php echo $courseId ?>"
+                data-coursename="<?php echo $course['course_name'] ?>">
                 <div class="first-col">
                     <h3>
                         <?php echo $course['course_name'] ?>
@@ -116,15 +112,20 @@ function getCourseModules(PDO $pdo, $course_id)
                 </div>
                 <div class="second-col">
                     <h3> Modules Chart</h3>
+                    <div>
+                        <?php if (count($courseModules) > 0): ?>
+                            <canvas id="chart<?php echo $courseId ?>"></canvas>
+                        <?php else: ?>
+                            <p>No modules</p>
+                        <?php endif; ?>
+                    </div>
                 </div>
             </div>
         <?php endforeach; ?>
 
         <?php if (count($coursesToReport) > 1): ?>
             <div class="section-group">
-                <div>
-                    Here for more than 1 course
-                </div>
+                <canvas id="comparison-chart" style="width: 80%; margin: 0 auto;"></canvas>
             </div>
         <?php endif; ?>
 
