@@ -40,7 +40,7 @@ function bindCourseFieldsAndExecute(PDOStatement $stmt)
     $extras = (trim($_POST['fees-extras']) !== "") ? json_encode(array_map('trim', explode(",", $_POST['fees-extras']))) : $nullVal;
     $related = (trim($_POST['related']) !== "") ? json_encode(array_map('trim', explode(",", $_POST['related']))) : $nullVal;
     $startDates = json_encode($_POST['startDates']);
-    $selectedFileName = ($_FILES['icon-url']['name'] !== "") ? $_FILES['icon-url']['name'] : $nullVal;
+    $selectedFileName = ($_FILES['icon-url']['name'] !== "") ? $_FILES['icon-url']['name'] : $_POST['icon-url'];
 
     $stmt->bindParam(1, $_POST['levelSelect']);
     $stmt->bindValue(2, (($_POST['ucas-reg'] !== "") ? $_POST['ucas-reg'] : $nullVal));

@@ -60,9 +60,7 @@ if ($_SESSION["authenticated"] !== true) {
 
 <head>
     <title>All Courses</title>
-    <link rel="stylesheet" href="./layout.css">
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="script.js" type="text/javascript"></script>
+    <?php include("imports.html"); ?>
 </head>
 
 <body>

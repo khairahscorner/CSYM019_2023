@@ -11,7 +11,7 @@ if ($_SESSION["authenticated"] !== true) {
     $levelOptions = ["Undergraduate", "Postgraduate"];
     $startDateOptions = ["February", "June", "September"];
     $isEdit = false;
-    $requiredFields = ['course-name', 'subject', 'location', 'startDates', 'levelSelect', 'duration-ft', 'fees-year', 'fees-uk-ft', 'fees-intl-ft', 'summary', 'highlights'];
+    $requiredFields = ['course-name', 'subject', 'location', 'icon-url', 'startDates', 'levelSelect', 'duration-ft', 'fees-year', 'fees-uk-ft', 'fees-intl-ft'];
     $error = "";
     $success = "";
 
@@ -43,6 +43,15 @@ if ($_SESSION["authenticated"] !== true) {
     if (isset($_POST['submit'])) {
         $selectedStartDates = isset($_POST['startDates']) ? $_POST['startDates'] : [];
         $initialSelectedLevel = $_POST['levelSelect'];
+
+        //check if a file was selected or the course has an existing value in the icon field
+        $selectedFileName = ($_FILES['icon-url']['name'] !== "") ? $_FILES['icon-url']['name'] : $_POST['icon-url'];
+
+        //if either a new file/previous icon value exists, remove icon-url from list of required parameters
+        if (!is_null($selectedFileName)) { 
+            $requiredFields = array_values(array_diff($requiredFields, ['icon-url'])); //https://stackoverflow.com/questions/2448964/php-how-to-remove-specific-element-from-an-array
+        }
+
         $missingFields = array_filter(array_map(function ($each) {
             return empty($_POST[$each]) ? $each : '';
         }, $requiredFields));
@@ -80,9 +89,7 @@ if ($_SESSION["authenticated"] !== true) {
 
 <head>
     <title>Course Form</title>
-    <link rel="stylesheet" href="./layout.css">
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="script.js" type="text/javascript"></script>
+    <?php include("imports.html"); ?>
 </head>
 
 <body>
