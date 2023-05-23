@@ -178,7 +178,7 @@ if ($_SESSION["authenticated"] !== true) {
                         <div class="form-input-wrapper">
                             <label for="req-foundation">Entry Req. Foundation</label>
                             <div class="form-textarea-wrapper">
-                                <p class="info">*Enter each requirement seperated by comma</p>
+                                <p class="info">*Enter each requirement on a new line (i.e press the "Enter" key) </p>
                                 <textarea name="req-foundation">
                                 <?php echo isset($_POST['req-foundation']) ? $_POST['req-foundation'] : ''; ?></textarea>
                             </div>
@@ -266,7 +266,7 @@ if ($_SESSION["authenticated"] !== true) {
                         <div class="form-input-wrapper">
                             <label for="fees-extras">Fees Extras</label>
                             <div class="form-textarea-wrapper">
-                                <p class="info">*Enter each, seperated by comma</p>
+                                <p class="info">*Enter each on a new line (i.e press the "Enter" key) </p>
                                 <textarea name="fees-extras" height="20">
                                 <?php echo isset($_POST['fees-extras']) ? $_POST['fees-extras'] : ''; ?></textarea>
                             </div>
@@ -286,7 +286,7 @@ if ($_SESSION["authenticated"] !== true) {
                         <div class="form-input-wrapper">
                             <label for="highlights">Highlights</label>
                             <div class="form-textarea-wrapper">
-                                <p class="info">*Enter each highlight seperated by comma</p>
+                                <p class="info">*Enter each highlight on a new line (i.e press the "Enter" key) </p>
                                 <textarea name="highlights">
                                 <?php echo isset($_POST['highlights']) ? $_POST['highlights'] : ''; ?></textarea>
                             </div>
@@ -294,7 +294,7 @@ if ($_SESSION["authenticated"] !== true) {
                         <div class="form-input-wrapper">
                             <label for="req-summary">Entry Req. Summary</label>
                             <div class="form-textarea-wrapper">
-                                <p class="info">*Enter each requirement seperated by comma</p>
+                                <p class="info">*Enter each requirement on a new line (i.e press the "Enter" key) </p>
                                 <textarea name="req-summary">
                                 <?php echo isset($_POST['req-summary']) ? $_POST['req-summary'] : ''; ?></textarea>
                             </div>
@@ -302,7 +302,7 @@ if ($_SESSION["authenticated"] !== true) {
                         <div class="form-input-wrapper">
                             <label for="related">Related Courses</label>
                             <div class="form-textarea-wrapper">
-                                <p class="info">*Enter each course name seperated by comma</p>
+                                <p class="info">*Enter each course name on a new line (i.e press the "Enter" key) </p>
                                 <textarea name="related">
                                 <?php echo isset($_POST['related']) ? $_POST['related'] : ''; ?></textarea>
                             </div>

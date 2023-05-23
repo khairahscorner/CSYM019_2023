@@ -34,11 +34,11 @@ function prepopulateCourseFields($result)
 function bindCourseFieldsAndExecute(PDOStatement $stmt)
 {
     $nullVal = null;
-    $highlights = (trim($_POST['highlights']) !== "") ? json_encode(array_map('trim', explode(",", $_POST['highlights']))) : $nullVal;
-    $reqsummary = (trim($_POST['req-summary']) !== "") ? json_encode(array_map('trim', explode(",", $_POST['req-summary']))) : $nullVal;
-    $reqf = (trim($_POST['req-foundation']) !== "") ? json_encode(array_map('trim', explode(",", $_POST['req-foundation']))) : $nullVal;
-    $extras = (trim($_POST['fees-extras']) !== "") ? json_encode(array_map('trim', explode(",", $_POST['fees-extras']))) : $nullVal;
-    $related = (trim($_POST['related']) !== "") ? json_encode(array_map('trim', explode(",", $_POST['related']))) : $nullVal;
+    $highlights = (trim($_POST['highlights']) !== "") ? json_encode(array_map('trim', explode("\n", $_POST['highlights']))) : $nullVal;
+    $reqsummary = (trim($_POST['req-summary']) !== "") ? json_encode(array_map('trim', explode("\n", $_POST['req-summary']))) : $nullVal;
+    $reqf = (trim($_POST['req-foundation']) !== "") ? json_encode(array_map('trim', explode("\n", $_POST['req-foundation']))) : $nullVal;
+    $extras = (trim($_POST['fees-extras']) !== "") ? json_encode(array_map('trim', explode("\n", $_POST['fees-extras']))) : $nullVal;
+    $related = (trim($_POST['related']) !== "") ? json_encode(array_map('trim', explode("\n", $_POST['related']))) : $nullVal;
     $startDates = json_encode($_POST['startDates']);
     $selectedFileName = ($_FILES['icon-url']['name'] !== "") ? $_FILES['icon-url']['name'] : $_POST['icon-url'];
 

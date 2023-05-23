@@ -12,17 +12,20 @@ if ($_SESSION["authenticated"] !== true) {
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     if (isset($_POST['submit'])) {
-        if (isset($_POST['isAllChecked'])) {
-            foreach ($results as $row) {
-                echo "All ID: " . $row['id'];
-            }
-        } else if (!empty($_POST['selectedRows'])) { //https://www.formget.com/php-checkbox/
-            $selectedCourses = $_POST['selectedRows'];
-            foreach ($selectedCourses as $id) {
-                echo "ID: " . $id;
-            }
-        } else {
+        if (!isset($_POST['isAllChecked']) && empty($_POST['selectedRows'])) {
             $error = "Select at least one course to generate a report for";
+        } else {
+            $selectedCourses = [];
+            if (isset($_POST['isAllChecked'])) {
+                foreach ($results as $row) {
+                    array_push($selectedCourses, $row['id']); //https://www.php.net/manual/en/function.array-push.php
+                }
+            } else if (!empty($_POST['selectedRows'])) { //https://www.formget.com/php-checkbox/
+                $selectedCourses = $_POST['selectedRows'];
+
+            }
+            $_SESSION['coursesToReport'] = $selectedCourses;
+            header("Location: report.php");
         }
     }
 
@@ -90,12 +93,12 @@ if ($_SESSION["authenticated"] !== true) {
                                 echo '
                                     <tr>
                                         <td><input class="checkbox" type="checkbox" name="selectedRows[]" value="' . $row['id'] . '"></td>
-                                        <td><img src="'.$icon.'" alt="course logo" title="' . $row['subject'] . '" class="table-icon"/></td>
+                                        <td><img src="' . $icon . '" alt="course logo" title="' . $row['subject'] . '" class="table-icon"/></td>
                                         <td>' . $row['course_name'] . '</td>
                                         <td>' . $row['level'] . '</td>
                                         <td class="cell-with-list">' . implode(', ', $start_dates) . '</td>
                                         <td>' . $row['location'] . '</td>
-                                        <td><a class="linkaction" href="modules.php?id=' . $row['id'] .'">View modules</a></td>
+                                        <td><a class="linkaction" href="modules.php?id=' . $row['id'] . '">View modules</a></td>
                                         <td><a class="linkaction" href="newcourse.php?id=' . $row['id'] . '">Edit</a></td>
                                     </tr>
                                 ';
