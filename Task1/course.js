@@ -170,31 +170,16 @@ function updateInternationalFees(fees, rate) {
   }
 }
 
-//main jquery function
-$(document).ready(function () {
-  populateTable(); // used to load the table immediately the page is loaded, without any DELAY
+function populateOverlay(selectedCourseDetails) {
+  const details = $("#course-content"); // targets the element for displaying more course details
+  details.html(""); //resets the element for a new view
 
-  // function for updating the table at specific intervals
-  (function updateTableAtIntervals() {
-    setTimeout(function () {  //settimeout method that executes every 5 minutes
-      console.log("Now updating"); //sample message to show when table is updated
-      populateTable(); // the function that populates the table
-      updateTableAtIntervals(); // the function calls itself here, creating a recursive cycle
-    }, 300000);
-  })(); //the function is also self-executing since it is invoked via the () and keeps executing from the recursion
+  // appends course name and subject area
+  details.append(`<h1 class="details-heading">${selectedCourseDetails.courseDetails.courseName} - <span class="subject">${selectedCourseDetails.courseDetails.subject}</span></h1>`)
+  details.append(`<div class="divider"></div>`)
 
-  $('#table-contents').on('click', '.view', function () { //targets all rows in the table and executes the function on click of each
-    let selectedCourseDetails = JSON.parse($(this).closest('tr').attr('data-details')); // retrieve the data-course attribute value and parse back to json
-
-    const details = $("#course-content"); // targets the element for displaying more course details
-    details.html(""); //resets the element for a new view
-
-    // appends course name and subject area
-    details.append(`<h1 class="details-heading">${selectedCourseDetails.courseDetails.courseName} - <span class="subject">${selectedCourseDetails.courseDetails.subject}</span></h1>`)
-    details.append(`<div class="divider"></div>`)
-
-    // appends "key facts" heading and select element for currency selection
-    details.append(`<h2 class="section-head">
+  // appends "key facts" heading and select element for currency selection
+  details.append(`<h2 class="section-head">
       Key Facts 
       <div id="currency-wrapper">
         <label for="currency">Currency:</label>
@@ -205,10 +190,10 @@ $(document).ready(function () {
         </select>
       </div></h2>`)
 
-    let rate = parseFloat($("#currency").val()); //get default selected rate (£)
+  let rate = parseFloat($("#currency").val()); //get default selected rate (£)
 
-    // appends first section containing "key facts" as a table
-    details.append(`<table>
+  // appends first section containing "key facts" as a table
+  details.append(`<table>
       <thead>
         <tr>
           <th>Level</th>
@@ -229,104 +214,124 @@ $(document).ready(function () {
       </tbody>
     </table>`)
 
-    // appends Overview section - summary of course
-    details.append(`<h2 class="section-head">Overview</h2>`)
-    details.append(`<div class="summary">${selectedCourseDetails.courseDetails.summary}</div>`)
+  // appends Overview section - summary of course
+  details.append(`<h2 class="section-head">Overview</h2>`)
+  details.append(`<div class="summary">${selectedCourseDetails.courseDetails.summary}</div>`)
 
-    // appends Highlights section - highlights is an array so .each is used to append each of them
-    details.append(`<h2 class="section-head">Highlights</h2>`)
-    let highlights = $('<ul>');
-    $.each(selectedCourseDetails.courseDetails.highlights, function (index, value) {
-      highlights.append($('<li>').text(value));
+  // appends Highlights section - highlights is an array so .each is used to append each of them
+  details.append(`<h2 class="section-head">Highlights</h2>`)
+  let highlights = $('<ul>');
+  $.each(selectedCourseDetails.courseDetails.highlights, function (index, value) {
+    highlights.append($('<li>').text(value));
+  });
+  details.append(highlights);
+
+  // appends Modules section - formatted to show different fields in the modules
+  details.append(`<h2 class="section-head">Modules</h2>`)
+  if (selectedCourseDetails.courseDetails.modules.length) { //if course is postgraduate
+    details.append("<strong>Stage 1:</strong>")
+    let modules = $('<ul>');
+    $.each(selectedCourseDetails.courseDetails.modules, function (index, module) {
+      modules.append($('<li>').html(`${module.title} (${module.moduleCode}) - ${module.credits} credits: <strong>${module.status}</strong>`));
     });
-    details.append(highlights);
-
-    // appends Modules section - formatted to show different fields in the modules
-    details.append(`<h2 class="section-head">Modules</h2>`)
-    if (selectedCourseDetails.courseDetails.modules.length) { //if course is postgraduate
-      details.append("<strong>Stage 1:</strong>")
-      let modules = $('<ul>');
-      $.each(selectedCourseDetails.courseDetails.modules, function (index, module) {
-        modules.append($('<li>').html(`${module.title} (${module.moduleCode}) - ${module.credits} credits: <strong>${module.status}</strong>`));
-      });
-      details.append(modules);
-    }
-    else { //if undergraduate
-      details.append("<strong>Stage 1:</strong>")
-      let modules = $('<ul>');
-      $.each(selectedCourseDetails.courseDetails.modules.stage1, function (index, module) {
-        modules.append($('<li>').html(`${module.title} (${module.moduleCode}) - ${module.credits} credits: <strong>${module.status}</strong>`));
-      });
-      details.append(modules);
-
-      details.append("<strong>Stage 2:</strong>")
-      modules = $('<ul>');
-      $.each(selectedCourseDetails.courseDetails.modules.stage2, function (index, module) {
-        modules.append($('<li>').html(`${module.title} (${module.moduleCode}) - ${module.credits} credits: <strong>${module.status}</strong>`));
-      });
-      details.append(modules);
-
-      details.append("<strong>Stage 3:</strong>")
-      modules = $('<ul>');
-      $.each(selectedCourseDetails.courseDetails.modules.stage3, function (index, module) {
-        modules.append($('<li>').html(`${module.title} (${module.moduleCode}) - ${module.credits} credits: <strong>${module.status}</strong>`));
-      });
-      details.append(modules);
-    }
-
-    // appends Entry Requirements section - formatted to show different fields in the Entry Requirements object
-    details.append(`<h2 class="section-head">Entry Requirements</h2>`)
-    if (selectedCourseDetails.keyFacts.level == "Postgraduate") { //checks if course is postgraduate
-      details.append(`<div>${selectedCourseDetails.entryRequirements.summary}</div>`)
-      details.append("<div class='sub-head'>English Language Requirements:</div>")
-      details.append(`<div>${selectedCourseDetails.entryRequirements.englishReq}</div>`)
-    }
-    else { //for undergraduate
-      details.append("<div class='sub-head'>Standard:</div>")
-      let reqs = $('<ul>');
-      $.each(selectedCourseDetails.entryRequirements.summary, function (index, req) {
-        reqs.append($('<li>').html(req));
-      });
-      details.append(reqs);
-
-      details.append("<div class='sub-head'>Foundation Year:</div>")
-      reqs = $('<ul>');
-      $.each(selectedCourseDetails.entryRequirements.withFoundation, function (index, req) {
-        reqs.append($('<li>').html(req));
-      });
-      details.append(reqs);
-      details.append("<div class='sub-head'>English Language Requirements:</div>")
-      details.append(`<div>${selectedCourseDetails.entryRequirements.englishReq}</div>`)
-    }
-
-    // appends FAQs section - FAQs is an array of question/answer objects so .each is used to append each of them
-    details.append(`<h2 class="section-head">FAQs</h2>`)
-    faqs = $('<div>');
-    $.each(selectedCourseDetails.faqs, function (index, qna) {
-      faqs.append(`<div class="question">${index + 1}) ${qna.question} </div>`); //shows question
-      faqs.append(`<div class="answer">${qna.answer}`); //shows answer
+    details.append(modules);
+  }
+  else { //if undergraduate
+    details.append("<strong>Stage 1:</strong>")
+    let modules = $('<ul>');
+    $.each(selectedCourseDetails.courseDetails.modules.stage1, function (index, module) {
+      modules.append($('<li>').html(`${module.title} (${module.moduleCode}) - ${module.credits} credits: <strong>${module.status}</strong>`));
     });
-    details.append(faqs);
+    details.append(modules);
 
-    // appends relatedCourses section - related courses is an array so .each is used to append each of them
-    details.append(`<h2 class="section-head">Related Courses</h2>`)
-    relatedCourses = $('<ul>');
-    $.each(selectedCourseDetails.relatedCourses, function (index, course) {
-      relatedCourses.append($('<li>').html(course));
+    details.append("<strong>Stage 2:</strong>")
+    modules = $('<ul>');
+    $.each(selectedCourseDetails.courseDetails.modules.stage2, function (index, module) {
+      modules.append($('<li>').html(`${module.title} (${module.moduleCode}) - ${module.credits} credits: <strong>${module.status}</strong>`));
     });
-    details.append(relatedCourses);
+    details.append(modules);
 
-    //appends button that links to school course page
-    details.append(`<button><a href="${selectedCourseDetails.courseDetails.url}" target="_blank">View More</a></button>`);
-
-    //event listener for change in currency
-    $('#course-content').on('change', '#currency', function () {
-      rate = parseFloat($(this).val()); //get the value of the newly selected currency, parseFloat ensures it's a number
-      updateUKFees(selectedCourseDetails.fees.uk, rate); //calls function to convert uk fees with the new selected rate
-      updateInternationalFees(selectedCourseDetails.fees, rate) //calls function to convert international fees with the new selected rate
+    details.append("<strong>Stage 3:</strong>")
+    modules = $('<ul>');
+    $.each(selectedCourseDetails.courseDetails.modules.stage3, function (index, module) {
+      modules.append($('<li>').html(`${module.title} (${module.moduleCode}) - ${module.credits} credits: <strong>${module.status}</strong>`));
     });
+    details.append(modules);
+  }
 
-    $('.overlay').fadeIn(); // show the overlay page with transition 
+  // appends Entry Requirements section - formatted to show different fields in the Entry Requirements object
+  details.append(`<h2 class="section-head">Entry Requirements</h2>`)
+  if (selectedCourseDetails.keyFacts.level == "Postgraduate") { //checks if course is postgraduate
+    details.append(`<div>${selectedCourseDetails.entryRequirements.summary}</div>`)
+    details.append("<div class='sub-head'>English Language Requirements:</div>")
+    details.append(`<div>${selectedCourseDetails.entryRequirements.englishReq}</div>`)
+  }
+  else { //for undergraduate
+    details.append("<div class='sub-head'>Standard:</div>")
+    let reqs = $('<ul>');
+    $.each(selectedCourseDetails.entryRequirements.summary, function (index, req) {
+      reqs.append($('<li>').html(req));
+    });
+    details.append(reqs);
+
+    details.append("<div class='sub-head'>Foundation Year:</div>")
+    reqs = $('<ul>');
+    $.each(selectedCourseDetails.entryRequirements.withFoundation, function (index, req) {
+      reqs.append($('<li>').html(req));
+    });
+    details.append(reqs);
+    details.append("<div class='sub-head'>English Language Requirements:</div>")
+    details.append(`<div>${selectedCourseDetails.entryRequirements.englishReq}</div>`)
+  }
+
+  // appends FAQs section - FAQs is an array of question/answer objects so .each is used to append each of them
+  details.append(`<h2 class="section-head">FAQs</h2>`)
+  faqs = $('<div>');
+  $.each(selectedCourseDetails.faqs, function (index, qna) {
+    faqs.append(`<div class="question">${index + 1}) ${qna.question} </div>`); //shows question
+    faqs.append(`<div class="answer">${qna.answer}`); //shows answer
+  });
+  details.append(faqs);
+
+  // appends relatedCourses section - related courses is an array so .each is used to append each of them
+  details.append(`<h2 class="section-head">Related Courses</h2>`)
+  relatedCourses = $('<ul>');
+  $.each(selectedCourseDetails.relatedCourses, function (index, course) {
+    relatedCourses.append($('<li>').html(course));
+  });
+  details.append(relatedCourses);
+
+  //appends button that links to school course page
+  details.append(`<button><a href="${selectedCourseDetails.courseDetails.url}" target="_blank">View More</a></button>`);
+
+  //event listener for change in currency
+  $('#course-content').on('change', '#currency', function () {
+    rate = parseFloat($(this).val()); //get the value of the newly selected currency, parseFloat ensures it's a number
+    updateUKFees(selectedCourseDetails.fees.uk, rate); //calls function to convert uk fees with the new selected rate
+    updateInternationalFees(selectedCourseDetails.fees, rate) //calls function to convert international fees with the new selected rate
+  });
+
+  $('.overlay').fadeIn(); // show the overlay page with transition 
+}
+
+//main jquery function
+$(document).ready(function () {
+  populateTable(); // used to load the table immediately the page is loaded, without any DELAY
+
+  // function for updating the table at specific intervals
+  (function updateTableAtIntervals() {
+    setTimeout(function () {  //settimeout method that executes every 5 minutes
+      console.log("Now updating"); //sample message to show when table is updated
+      populateTable(); // the function that populates the table
+      updateTableAtIntervals(); // the function calls itself here, creating a recursive cycle
+    }, 300000);
+  })(); //the function is also self-executing since it is invoked via the () and keeps executing from the recursion
+
+  $('#table-contents').on('click', '.view', function () {
+    //targets all rows in the table and executes the function on click of each
+    let selectedCourseDetails = JSON.parse($(this).closest('tr').attr('data-details')); // retrieve the data-course attribute value and parse back to json
+
+    populateOverlay(selectedCourseDetails);
   });
 
   $('#close-btn').click(function () { //on click of close button, closes the overlay section
