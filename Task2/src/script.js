@@ -32,35 +32,9 @@ $(document).ready(function () {
         $('.overlay').fadeOut();
     });
 
-    let allCoursesToPlot = [];
-    let allModulesToPlotData = [];
-    let allModulesToPlotLabels = [];
-
-    $('.report').each(function () {
-        let courseId = $(this).data('id');
-        let courseName = $(this).data('coursename');
-        let modulesData = $(this).find('.view-more').data('modules');
-        if (modulesData.length > 0) {
-            let data = [];
-            let labels = [];
-            let chartId = `chart${courseId}`;
-
-            $.each(modulesData, function (_, module) {
-                data.push(module.credits);
-                labels.push(module.module_code);
-            });
-            allCoursesToPlot.push(courseName);
-            allModulesToPlotData.push(data);
-            allModulesToPlotLabels.push(labels);
-
-            plotChart(chartId, data, labels);
-        }
-    });
-
-    if ($('.report').length > 1) {
-        plotComparisonChart(allCoursesToPlot, allModulesToPlotData, allModulesToPlotLabels);
-    }
+    setUpPlots();
 })
+
 
 function showRightFields(type) {
     $('#general-fields').show();
@@ -119,6 +93,48 @@ function filterModules(modules, str) {
     return modules;
 }
 
+function setUpPlots() {
+    let allModulesToPlotPerCourse = [];
+
+    let allCourses = $('.report');
+    let bgColors = ['#5f0808', '#8a4308', '#766c15', '#024619', '#0054a7', '#57228d', '#640b63'];
+    allCourses.each(function (index) {
+        let courseId = $(this).data('id');
+        let courseName = $(this).data('coursename');
+        let modulesData = $(this).find('.view-more').data('modules');
+
+        if (modulesData.length > 0) {
+            let data = [];
+            let labels = [];
+            let chartId = `chart${courseId}`;
+
+            allModulesPerCourse = [];
+            $.each(modulesData, function (_, module) {
+                data.push(module.credits);
+                labels.push(module.module_code);
+                if (allCourses.length > 1) {
+                    allModulesPerCourse.push({ moduleId: module.module_code, value: module.credits }); //format for the combined chart
+                }
+            });
+            if (allCourses.length > 1) {
+                allModulesToPlotPerCourse.push({
+                    label: courseName,
+                    data: allModulesPerCourse,
+                    backgroundColor: bgColors[index % bgColors.length],
+                    borderColor: "#AAAAAA",
+                    borderWidth: 1,
+                    barThickness: 'flex'
+                });
+            }
+            plotChart(chartId, data, labels);
+        }
+    });
+
+    if ($('.report').length > 1) {
+        plotComparisonChart(allModulesToPlotPerCourse);
+    }
+}
+
 // https://www.chartjs.org/docs/latest/charts/doughnut.html
 function plotChart(chartId, data, labels) {
     const ctx = document.getElementById(chartId);
@@ -155,35 +171,23 @@ function plotChart(chartId, data, labels) {
 }
 
 //chart.js reference
-function plotComparisonChart(courses, modulesData, modulesLabels) {
+function plotComparisonChart(data) {
     const ctx = document.getElementById('comparison-chart');
-    console.log(courses[0]);
-    console.log(modulesData[0].length);
-    console.log(modulesLabels[0][1]);
-
-    let bgColors = ['#5f0808', '#8a4308', '#766c15', '#024619', '#0054a7', '#57228d', '#640b63'];
-
-    let datasets = [];
-    for (let i = 0; i < courses.length; i++) {
-        let moduleColors = bgColors[i % bgColors.length];
-        let dataset = {
-            label: courses[i],
-            data: modulesData[i],
-            backgroundColor: moduleColors,
-            borderColor: "#EEEEEE",
-            borderWidth: 1
-        };
-        datasets.push(dataset);
-    }
 
     new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['chart1', 'chart2', 'chart3'],
-            datasets: datasets
+            datasets: data
         },
         options: {
-            scales: {
+            parsing: {
+                xAxisKey: 'moduleId',
+                yAxisKey: 'value'
+            }
+            , scales: {
+                x: {
+                    barThickness: 50
+                },
                 y: {
                     beginAtZero: true
                 }

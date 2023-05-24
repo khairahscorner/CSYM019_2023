@@ -61,10 +61,6 @@ footer {
     background-color: #555;
     color: white;
     grid-area: footer;
-    position: static;
-    bottom: 0;
-    left: 0;
-    right: 0;
 }
 
 .note {
@@ -460,8 +456,12 @@ p.required {
     background-color: #8e1717;
 }
 
+#combined-header {
+    margin: 0 auto;
+    text-align: center;
+}
 
-/* overlay page to show more course details  */
+/* OVERLAY (SHOW MORE COURSE DETAILS) STYLES  */
 .overlay {
     display: none;
     position: fixed;

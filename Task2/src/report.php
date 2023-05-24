@@ -124,8 +124,9 @@ function getCourseModules(PDO $pdo, $course_id)
         <?php endforeach; ?>
 
         <?php if (count($coursesToReport) > 1): ?>
+            <h3 id="combined-header"> Modules Comparison Chart</h3>
             <div class="section-group">
-                <canvas id="comparison-chart" style="width: 80%; margin: 0 auto;"></canvas>
+                <canvas id="comparison-chart" style="width: 90%; margin: 0 auto;"></canvas>
             </div>
         <?php endif; ?>
 
