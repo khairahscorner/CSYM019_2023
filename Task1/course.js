@@ -8,7 +8,7 @@ function populateTable() {
     type: "GET",
     dataType: "json",
   })
-    .done(function (response) { //replacement method for success() in jquery >3.0
+    .done(function (response) { //replacement method for success() in jquery >3.0 (jQuery.ajax())
       const tableElement = $("#courses"); // get table element
       const messageArea = $("#message"); //get HTML element with id "message"
       const courseList = $("#table-contents"); //get tbody for the data listing
@@ -46,7 +46,7 @@ function populateTable() {
 
       tableElement.append(courseList);   //append the tbody to the table
     })
-    .fail(function () { //replacement method for error() in jquery >3.0
+    .fail(function () { //replacement method for error() in jquery >3.0 (jQuery.ajax())
       $("#message").css("display", "inline-block"); //changes the display to show the error messages
       $("#message").html("Could not load table. Please try again later"); //change the inner contents of the element
       $("#table-section").css("display", "none"); // hides the table section
@@ -104,7 +104,7 @@ function formatStringForUKFees(fees) {
   if (fees.withFoundation) {
     stringToAppendForFees += `<div>Foundation Year: <span class="uk-foundation">${fees.withFoundation}</span></div>`;
   }
-  //condition to check if part time exists
+  //condition to check if part time exists and if so, format string for the html code
   if (fees.partTime) {
     stringToAppendForFees += fees.partTime.length ? (
       `<div>Part Time: <span class="uk-parttime1">${fees.partTime[0]}</span> (Year 1), <span class="uk-parttime2">${fees.partTime[1]}</span> (Year 2)</div>`
@@ -142,7 +142,7 @@ function updateUKFees(fees, rate) {
   if (fees.withFoundation) {
     $(".uk-foundation").text(Math.ceil(fees.withFoundation * rate));
   }
-  if (fees.partTime) {
+  if (fees.partTime) { //if part time fee exists, convert it too
     if (fees.partTime.length) {
       $(".uk-parttime1").text(Math.ceil(fees.partTime[0] * rate));
       $(".uk-parttime2").text(Math.ceil(fees.partTime[1] * rate));
@@ -170,6 +170,7 @@ function updateInternationalFees(fees, rate) {
   }
 }
 
+// function that creates html elements for the selected course info and inserts them into the existing overlay element
 function populateOverlay(selectedCourseDetails) {
   const details = $("#course-content"); // targets the element for displaying more course details
   details.html(""); //resets the element for a new view
@@ -192,7 +193,7 @@ function populateOverlay(selectedCourseDetails) {
 
   let rate = parseFloat($("#currency").val()); //get default selected rate (£)
 
-  // appends first section containing "key facts" as a table
+  // creates html code for first section containing "key facts" as a table & appends to the overlay view
   details.append(`<table>
       <thead>
         <tr>
@@ -214,7 +215,7 @@ function populateOverlay(selectedCourseDetails) {
       </tbody>
     </table>`)
 
-  // appends Overview section - summary of course
+  // creates html code for Overview section - course summary & appends to the overlay view
   details.append(`<h2 class="section-head">Overview</h2>`)
   details.append(`<div class="summary">${selectedCourseDetails.courseDetails.summary}</div>`)
 
@@ -228,7 +229,7 @@ function populateOverlay(selectedCourseDetails) {
 
   // appends Modules section - formatted to show different fields in the modules
   details.append(`<h2 class="section-head">Modules</h2>`)
-  if (selectedCourseDetails.courseDetails.modules.length) { //if course is postgraduate
+  if (selectedCourseDetails.courseDetails.modules.length) { //if course is postgraduate, append all modules together
     details.append("<strong>Stage 1:</strong>")
     let modules = $('<ul>');
     $.each(selectedCourseDetails.courseDetails.modules, function (index, module) {
@@ -236,14 +237,15 @@ function populateOverlay(selectedCourseDetails) {
     });
     details.append(modules);
   }
-  else { //if undergraduate
+  else { //if undergraduate, append modules per stages 1 - 3
     details.append("<strong>Stage 1:</strong>")
-    let modules = $('<ul>');
+    let modules = $('<ul>'); //creates a list element for the modules
     $.each(selectedCourseDetails.courseDetails.modules.stage1, function (index, module) {
       modules.append($('<li>').html(`${module.title} (${module.moduleCode}) - ${module.credits} credits: <strong>${module.status}</strong>`));
     });
     details.append(modules);
 
+    //same thing applies to stage 2 and 3
     details.append("<strong>Stage 2:</strong>")
     modules = $('<ul>');
     $.each(selectedCourseDetails.courseDetails.modules.stage2, function (index, module) {
@@ -266,7 +268,7 @@ function populateOverlay(selectedCourseDetails) {
     details.append("<div class='sub-head'>English Language Requirements:</div>")
     details.append(`<div>${selectedCourseDetails.entryRequirements.englishReq}</div>`)
   }
-  else { //for undergraduate
+  else { //for undergraduate, append entry req. summary as array, the foundation reqs. too
     details.append("<div class='sub-head'>Standard:</div>")
     let reqs = $('<ul>');
     $.each(selectedCourseDetails.entryRequirements.summary, function (index, req) {
@@ -327,14 +329,15 @@ $(document).ready(function () {
     }, 300000);
   })(); //the function is also self-executing since it is invoked via the () and keeps executing from the recursion
 
+  //event listener to target clicks on any row in the table
   $('#table-contents').on('click', '.view', function () {
-    //targets all rows in the table and executes the function on click of each
     let selectedCourseDetails = JSON.parse($(this).closest('tr').attr('data-details')); // retrieve the data-course attribute value and parse back to json
 
-    populateOverlay(selectedCourseDetails);
+    populateOverlay(selectedCourseDetails); // execute the function to open the overlay and add the data for the selected course
   });
 
-  $('#close-btn').click(function () { //on click of close button, closes the overlay section
+  //on click of close button, closes the overlay section
+  $('#close-btn').click(function () {
     $('.overlay').fadeOut();
   });
 })

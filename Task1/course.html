@@ -2,17 +2,17 @@
 <!-- doctype standard for html 5 -->
 <html lang="en">
   <head>
-    <title>University of Northampton Courses Listing</title>
     <!-- title of web page -->
-    <link rel="stylesheet" type="text/css" href="course.css" />
+    <title>University of Northampton Courses Listing</title>
     <!-- imports the styles defined for the HTML elements -->
+    <link rel="stylesheet" type="text/css" href="course.css" />
+    <!-- imports jquery, import has to be before main script (Pandya, 2020) -->
     <script
       type="text/javascript"
       src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"
     ></script>
-    <!-- imports jquery, import has to be before main script (Pandya, 2020) -->
-    <script src="course.js" type="text/javascript"></script>
     <!-- imports the script used to add functionality to the page -->
+    <script src="course.js" type="text/javascript"></script>
   </head>
   <body>
     <header>
@@ -63,14 +63,16 @@
         </table>
       </section>
 
-      <div class="overlay"> <!-- element to show further course details on click of row -->
+      <div class="overlay">
+        <!-- element to show further course details on click of row -->
         <div class="overlay-content">
           <div id="close-btn">
             <!-- div elements were used to define the close icon  -->
             <div id="line1"></div>
             <div id="line2"></div>
           </div>
-          <div id="course-content"></div> <!-- element containing the course details -->
+          <div id="course-content"></div>
+          <!-- element containing the course details -->
         </div>
       </div>
     </main>
