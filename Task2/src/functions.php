@@ -14,9 +14,9 @@ function prepopulateCourseFields($result)
     $_POST['icon-url'] = isset($_POST['icon-url']) ? $_POST['icon-url'] : $result['icon_url'];
     $_POST['link-url'] = isset($_POST['link-url']) ? $_POST['link-url'] : $result['link_url'];
     $_POST['summary'] = isset($_POST['summary']) ? $_POST['summary'] : $result['summary'];
-    $_POST['highlights'] = isset($_POST['highlights']) ? $_POST['highlights'] : (is_null($result['highlights']) ? "" : implode(', ', array_map('trim', json_decode($result['highlights'], true))));
-    $_POST['req-summary'] = isset($_POST['req-summary']) ? $_POST['req-summary'] : (is_null($result['req_summary']) ? "" : implode(', ', array_map('trim', json_decode($result['req_summary'], true))));
-    $_POST['req-foundation'] = isset($_POST['req-foundation']) ? $_POST['req-foundation'] : (is_null($result['req_foundation']) ? "" : implode(', ', array_map('trim', json_decode($result['req_foundation'], true))));
+    $_POST['highlights'] = isset($_POST['highlights']) ? $_POST['highlights'] : (is_null($result['highlights']) ? "" : implode("\n", array_map('trim', json_decode($result['highlights'], true))));
+    $_POST['req-summary'] = isset($_POST['req-summary']) ? $_POST['req-summary'] : (is_null($result['req_summary']) ? "" : implode("\n", array_map('trim', json_decode($result['req_summary'], true))));
+    $_POST['req-foundation'] = isset($_POST['req-foundation']) ? $_POST['req-foundation'] : (is_null($result['req_foundation']) ? "" : implode("\n", array_map('trim', json_decode($result['req_foundation'], true))));
     $_POST['eng-req'] = isset($_POST['eng-req']) ? $_POST['eng-req'] : $result['english_req'];
     $_POST['fees-year'] = isset($_POST['fees-year']) ? $_POST['fees-year'] : $result['fees_year'];
     $_POST['fees-uk-ft'] = isset($_POST['fees-uk-ft']) ? $_POST['fees-uk-ft'] : $result['fees_uk_fulltime'];
@@ -26,9 +26,8 @@ function prepopulateCourseFields($result)
     $_POST['fees-intl-pt'] = isset($_POST['fees-intl-pt']) ? $_POST['fees-intl-pt'] : $result['fees_intl_parttime'];
     $_POST['fees-intl-foundation'] = isset($_POST['fees-intl-foundation']) ? $_POST['fees-intl-foundation'] : $result['fees_intl_foundation'];
     $_POST['fees-placement'] = isset($_POST['fees-placement']) ? $_POST['fees-placement'] : $result['fees_withplacement'];
-    $_POST['fees-extras'] = isset($_POST['fees-extras']) ? $_POST['fees-extras'] : (is_null($result['fees_extras']) ? "" : implode(', ', array_map('trim', json_decode($result['fees_extras'], true))));
-    // $_POST['faqs'] = isset($_POST['faqs']) ? $_POST['faqs'] : implode(', ', json_decode($result['faqs'], true));
-    $_POST['related'] = isset($_POST['related']) ? $_POST['related'] : (is_null($result['related_courses']) ? "" : implode(', ', array_map('trim', json_decode($result['related_courses'], true))));
+    $_POST['fees-extras'] = isset($_POST['fees-extras']) ? $_POST['fees-extras'] : (is_null($result['fees_extras']) ? "" : implode("\n", array_map('trim', json_decode($result['fees_extras'], true))));
+    $_POST['related'] = isset($_POST['related']) ? $_POST['related'] : (is_null($result['related_courses']) ? "" : implode("\n", array_map('trim', json_decode($result['related_courses'], true))));
 }
 
 function bindCourseFieldsAndExecute(PDOStatement $stmt)

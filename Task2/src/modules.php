@@ -58,6 +58,10 @@ if ($_SESSION["authenticated"] !== true) {
             }
 
             if (isset($_POST['submit'])) {
+                //remove credits from required fields if at least 0
+                if ($_POST['credits'] >= 0) {
+                    $requiredFields = array_values(array_diff($requiredFields, ['credits'])); //https://stackoverflow.com/questions/2448964/php-how-to-remove-specific-element-from-an-array
+                }
                 $missingFields = array_filter(array_map(function ($each) {
                     return empty($_POST[$each]) ? $each : '';
                 }, $requiredFields));

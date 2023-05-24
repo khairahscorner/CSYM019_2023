@@ -77,6 +77,7 @@ if ($_SESSION["authenticated"] !== true) {
                         <thead>
                             <tr>
                                 <th><input type="checkbox" id="checkAll" name="isAllChecked"></th>
+                                <th>S/N</th>
                                 <th>Icon</th>
                                 <th>Course Name</th>
                                 <th>Level</th>
@@ -93,6 +94,7 @@ if ($_SESSION["authenticated"] !== true) {
                                 echo '
                                     <tr>
                                         <td><input class="checkbox" type="checkbox" name="selectedRows[]" value="' . $row['id'] . '"></td>
+                                        <td>' . ($index + 1) . '</td>
                                         <td><img src="' . $icon . '" alt="course logo" title="' . $row['subject'] . '" class="table-icon"/></td>
                                         <td>' . $row['course_name'] . '</td>
                                         <td>' . $row['level'] . '</td>

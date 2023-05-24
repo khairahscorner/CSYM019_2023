@@ -207,11 +207,11 @@
                         "title": "Work-Based Project (60 Credit)",
                         "credits": 60,
                         "status": "Compulsory",
-                        "prereq": "HRMM072",
+                        "prereq": null,
                         "type": "placement"
                     },
                     {
-                        "moduleCode": "FINM072",
+                        "moduleCode": "FINM073",
                         "title": "Career Futures: Employability Skills",
                         "credits": 0,
                         "status": "Compulsory",
@@ -339,7 +339,7 @@
                             "moduleCode": "MUS4121",
                             "title": "Professional Project",
                             "credits": 40,
-                            "status": "Designated",
+                            "status": "Compulsory",
                             "prereq": null
                         },
                         {
@@ -414,9 +414,9 @@
                 }
             ],
             "relatedCourses": [
-                "Criminal and Corporate Investigation BA (Hons)",
-                "Law LLB (Hons)",
-                "Law with Criminology BA (Hons)"
+                "Popular Music (Top-Up) BA (Hons)",
+                "Music Production BA (Hons)",
+                "Music Production (Top-Up) BA (Hons)"
             ]
         },
         {
@@ -940,14 +940,6 @@
                         "moduleCode": "HRMM075",
                         "title": "Resourcing and Developing Talent",
                         "credits": 30,
-                        "status": "Compulsory",
-                        "prereq": null,
-                        "type": "regular"
-                    },
-                    {
-                        "moduleCode": "CSYM025",
-                        "title": "Visual Object Software",
-                        "credits": 20,
                         "status": "Compulsory",
                         "prereq": null,
                         "type": "regular"
