@@ -10,12 +10,14 @@ if ($_SESSION["authenticated"] !== true) {
 
     $levelOptions = ["Undergraduate", "Postgraduate"];
     $startDateOptions = ["February", "June", "September"];
+    $yearOptions = ["2023/2024"];
     $isEdit = false;
     $requiredFields = ['course-name', 'subject', 'location', 'icon-url', 'startDates', 'levelSelect', 'duration-ft', 'fees-year', 'fees-uk-ft', 'fees-intl-ft'];
     $error = "";
     $success = "";
 
     $selectedStartDates = [];
+    $selectedYear = "";
     $initialSelectedLevel = "";
     $initialSelectedPlacement;
 
@@ -31,6 +33,7 @@ if ($_SESSION["authenticated"] !== true) {
         $result = $stmt->fetch(PDO::FETCH_ASSOC); //(PHP doc) - does it find a row match, return as array with keys
         if ($result) {
             $initialSelectedLevel = $result['level'];
+            $selectedYear = $result['fees_year'];
             $selectedStartDates = json_decode($result['start_dates'], true);
             $initialSelectedPlacement = $result['duration_placement'];
             prepopulateCourseFields($result);
@@ -43,12 +46,13 @@ if ($_SESSION["authenticated"] !== true) {
     if (isset($_POST['submit'])) {
         $selectedStartDates = isset($_POST['startDates']) ? $_POST['startDates'] : [];
         $initialSelectedLevel = $_POST['levelSelect'];
+        $selectedYear = $_POST['fees-year'];
 
         //check if a file was selected or the course has an existing value in the icon field
         $selectedFileName = ($_FILES['icon-url']['name'] !== "") ? $_FILES['icon-url']['name'] : $_POST['icon-url'];
 
         //if either a new file/previous icon value exists, remove icon-url from list of required parameters
-        if (!is_null($selectedFileName)) { 
+        if (!is_null($selectedFileName)) {
             $requiredFields = array_values(array_diff($requiredFields, ['icon-url'])); //https://stackoverflow.com/questions/2448964/php-how-to-remove-specific-element-from-an-array
         }
 
@@ -239,8 +243,15 @@ if ($_SESSION["authenticated"] !== true) {
                         </div>
                         <div class="form-input-wrapper">
                             <label for="fees-year"><span class="required">*</span>Fees Year</label>
-                            <input type="text" name="fees-year"
-                                value="<?php echo isset($_POST['fees-year']) ? $_POST['fees-year'] : ''; ?>" />
+                            <select name="fees-year">
+                                <option></option>
+                                <?php
+                                foreach ($yearOptions as $year) {
+                                    $isSelected = ($year === $selectedYear) ? "selected" : "";
+                                    echo "<option value='$year' $isSelected>$year</option>";
+                                }
+                                ?>
+                            </select>
                         </div>
                         <div class="form-input-wrapper">
                             <label for="fees-uk-ft"><span class="required">*</span>UK Fees (FullTime)</label>
