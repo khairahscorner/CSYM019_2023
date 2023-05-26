@@ -1,10 +1,11 @@
-<?php // all php code needed to execute before output is shown in browser needs to be at the top
+<?php
 session_start(); // function to start a session/resume an existing one, to retrieve stored session variables (PHP Documentation)
 
-if ($_SESSION["authenticated"] === true) { //checks if there is a set "authentication" session variable which means a user is already logged in
-	header("Location: courselist.php"); // so, redirect to default page - page showing the courses list
-	exit(); //end script
-} else { // if not, user needs to log in, so stay on the page
+//checks if there is a set "authentication" session variable which means a user is already logged in
+if ($_SESSION["authenticated"] === true) {
+	header("Location: courselist.php");
+	exit();
+} else {
 	require_once('config_db.php'); // include db setup from another PHP file (rohanmittal1366, 2022)
 
 	if (isset($_POST['submit'])) { // if submit button with name "submit" is clicked (Eldaw M, 2023)

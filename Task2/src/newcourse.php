@@ -1,8 +1,10 @@
 <?php
 session_start(); // function to start a session/resume an existing one, to retrieve stored session variables (PHP Documentation)
-if ($_SESSION["authenticated"] !== true) { //checks if there is no set "authentication" session variable which means there is no logged in user
-    header("Location: index.php"); // if so, redirect to login page
-    exit(); //end script
+
+//checks if there is no set "authentication" session variable which means there is no logged in user
+if ($_SESSION["authenticated"] !== true) {
+    header("Location: index.php");
+    exit();
 } else {
     require_once('config_db.php'); // include db setup from another PHP file (rohanmittal1366, 2022)
     require_once('functions.php'); // include php script containing functions

@@ -1,15 +1,18 @@
 <?php
 session_start(); // function to start a session/resume an existing one, to retrieve stored session variables (PHP Documentation)
-if ($_SESSION["authenticated"] !== true) { //checks if there is no set "authentication" session variable which means there is no logged in user
-    header("Location: index.php"); // if so, redirect to login page
-    exit(); //end script
+
+//checks if there is no set "authentication" session variable which means there is no logged in user
+if ($_SESSION["authenticated"] !== true) {
+    header("Location: index.php");
+    exit();
 } else {
     require_once('config_db.php'); // include db setup from another PHP file (rohanmittal1366, 2022)
     require_once('functions.php'); // include php script containing functions
 
-    if (!isset($_GET['id'])) { //if the page does not have a query params - id (rep. courseId)
-        header("Location: courselist.php"); // redirect back to courselist page
-        exit(); // end script
+    //if the page does not have a query params - id (rep. courseId)
+    if (!isset($_GET['id'])) {
+        header("Location: courselist.php");
+        exit();
     } else {
         $course_id = $_GET['id']; // variable to save the course id
         $stmt = $pdo->prepare('SELECT * FROM courses WHERE id = :id'); //prepared SQL command to check if a course with the id exists
@@ -83,7 +86,8 @@ if ($_SESSION["authenticated"] !== true) { //checks if there is no set "authenti
                 if (!empty($isAnyMissing)) { //if the returned array is not empty
                     $error = 'Fill ALL required fields - ' . implode(', ', $missingFields); // show error
                 } else {
-                    if ($isEdit === true) { //check if the module is being edited
+                    //check if the module is being edited
+                    if ($isEdit === true) {
                         //function returns an error string if another module exists with the updated code, hence the assignment
                         $error = updateModuleFunc($pdo, $course_id, $selectedModuleCode);
                     } else {
@@ -130,15 +134,18 @@ if ($_SESSION["authenticated"] !== true) { //checks if there is no set "authenti
 </head>
 
 <body>
-    <?php include("header.html"); ?> <!-- import header elements -->
+    <?php include("header.html"); ?>
+    <!-- import header elements -->
     <main>
         <div class="section-group">
             <div class="cols">
                 <h3>
                     Modules for
-                    <?php echo $currentCourse['course_name'] ?> <!-- show the name of the course that its modules are being listed -->
+                    <?php echo $currentCourse['course_name'] ?>
+                    <!-- show the name of the course that its modules are being listed -->
                 </h3>
-                <?php if ($results): ?> <!-- if the course has modules -->
+                <?php if ($results): ?>
+                    <!-- if the course has modules -->
                     <table id="courses">
                         <thead>
                             <tr>
@@ -173,22 +180,25 @@ if ($_SESSION["authenticated"] !== true) { //checks if there is no set "authenti
                         </tbody>
                     </table>
                 <?php else: ?>
-                     <!-- else, show message to user  -->
+                    <!-- else, show message to user  -->
                     <p class='error'> No rows available</p>
                 <?php endif; ?>
             </div>
             <div class="cols">
                 <h3>
-                    <?php echo $isEdit === true ? 'Update Module' : 'Add New Module'; ?>  <!-- update heading accordingly  -->
+                    <?php echo $isEdit === true ? 'Update Module' : 'Add New Module'; ?>
+                    <!-- update heading accordingly  -->
                 </h3>
                 <?php
                 echo "<p class='error'>" . $error . "</p>"; // show error if variable exists
                 ?>
-                <form id="moduleform" action="" method="POST">  <!-- form to target the submit buttons, action is empty to submit to the current page  -->
+                <form id="moduleform" action="" method="POST">
+                    <!-- form to target the submit buttons, action is empty to submit to the current page  -->
                     <div class="form-input-wrapper">
                         <label for="code"><span class="required">*</span>Module Code</label>
                         <input type="text" name="code"
-                            value="<?php echo isset($_POST['code']) ? $_POST['code'] : ''; ?>" />  <!-- set value if prepopulate value exists -->
+                            value="<?php echo isset($_POST['code']) ? $_POST['code'] : ''; ?>" />
+                        <!-- set value if prepopulate value exists -->
                     </div>
                     <div class="form-input-wrapper">
                         <label for="title"><span class="required">*</span>Title</label>
