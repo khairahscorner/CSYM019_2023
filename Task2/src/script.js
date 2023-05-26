@@ -1,43 +1,54 @@
+// jQuery function to ensure page is loaded 
 $(document).ready(function () {
+    //  used in courselist.php - adds click event listener to the table header checkbox
     $("#checkAll").on("click", function () {
+        // for every checkbox row in the table, set the checked property to true
         $(".checkbox").each(function () {
             $(this).prop('checked', $('#checkAll').prop('checked')); // sets the value of the checked ppty of esch of the checkboxes to the val of the head checkbox
         });
     });
 
+    // used in courselist.php - adds change event listener to all elements with class checkbox
     $('.checkbox').change(function () {
-        var isAnyUnchecked = $('.checkbox').filter(':not(:checked)').length > 0;
-        $('#checkAll').prop('checked', !isAnyUnchecked);
+        var isAnyUnchecked = $('.checkbox').filter(':not(:checked)').length > 0; // check if any of them is unchecked
+        $('#checkAll').prop('checked', !isAnyUnchecked); //if any is unchecked, uncheck the table header checkbox as well
     });
 
+    /* used in newcourse.php - this section dynamically shows suitable sections based on the course level
+        if the value of the select element has been set */
     if ($('#level-select').val() === "Undergraduate" || $('#level-select').val() === "Postgraduate") {
-        $('#general-fields').show();
+        $('#general-fields').show(); // show the hidden general fields
     }
     else {
-        $('#general-fields').hide();
+        $('#general-fields').hide(); // else, hide the section
     }
 
+    /* used in newcourse.php - adds change event listener to monitor the select element */
     $('#level-select').change(function () {
-        showRightFields($(this).val());
+        showRightFields($(this).val()); // calls function defined in this file
     });
 
+    // used in report.php - adds click event listener to the report body to target any button click for displayed courses
     $('#main-report').on('click', '.view-more', function () {
         //targets all rows in the table and executes the function on click of each
         let selectedCourseDetails = JSON.parse($(this).closest('button').attr('data-details')); // retrieve the data-course attribute value and parse back to json
         let selectedCourseModules = JSON.parse($(this).closest('button').attr('data-modules')); // retrieve the data-modules attribute value and parse back to json
+
+        // function to show the overlay that contains the additional info about a course
         populateOverlay(selectedCourseDetails, selectedCourseModules);
     });
 
-    $('#close-btn').click(function () { //on click of close button, closes the overlay section
-        $('.overlay').fadeOut();
+    // used in report.php - adds click event listener to close overlay on click of close button
+    $('#close-btn').click(function () {
+        $('.overlay').fadeOut(); // closes the overlay section with transition
     });
 
-    setUpPlots();
+    setUpPlots(); // used in report.php - plot charts for selected courses
 })
 
-
+// function to either show the specific field sections for either undergraduate or postgraduate
 function showRightFields(type) {
-    $('#general-fields').show();
+    $('#general-fields').show(); // ensure the general fields are shown
     if (type === "Undergraduate") {
         $('#undergraduate-fields').show();
         $('#postgraduate-fields').hide();
@@ -88,35 +99,49 @@ function updateFees(fees, rate) {
     }
 }
 
+// this function filters for modules based on their stage field value
 function filterModules(modules, str) {
-    modules.filter((module) => module.stage === str);
+    modules = modules.filter((module) => module.stage === str);
     return modules;
 }
 
+// function to set up charts for the report.php page
 function setUpPlots() {
     let allModulesToPlotPerCourse = [];
 
-    let allCourses = $('.report');
-    let bgColors = ['#5f0808', '#8a4308', '#766c15', '#024619', '#0054a7', '#57228d', '#640b63'];
+    let allCourses = $('.report'); // get all elements with the report class
+
+    let bgColors = ['#5f0808', '#8a4308', '#766c15', '#024619', '#0054a7', '#57228d', '#640b63']; // color array
+
+    // for each element with the report class
     allCourses.each(function (index) {
-        let courseId = $(this).data('id');
-        let courseName = $(this).data('coursename');
-        let modulesData = $(this).find('.view-more').data('modules');
+        let courseId = $(this).data('id'); // get and store the id data attribute
+        let courseName = $(this).data('coursename'); // get and store the coursename data attribute
+        let modulesData = $(this).find('.view-more').data('modules'); // find the nearest child element with a view-more class and get its modules data attribute
 
+        // if the course has at least one module
         if (modulesData.length > 0) {
-            let data = [];
-            let labels = [];
-            let chartId = `chart${courseId}`;
+            let data = []; // variable to store the values to plot
+            let labels = []; // variable to save the labels
+            let chartId = `chart${courseId}`; //the id of the canvas element for the course
 
-            allModulesPerCourse = [];
+            allModulesPerCourse = []; // array to store object formats of the module details
+
+            // for each of the modules for a course
             $.each(modulesData, function (_, module) {
-                data.push(module.credits);
-                labels.push(module.module_code);
+                data.push(module.credits); // push the module credits to the data array
+                labels.push(module.module_code); // push the module code as label
+
+                // if number of selected courses is more than 1
                 if (allCourses.length > 1) {
                     allModulesPerCourse.push({ moduleId: module.module_code, value: module.credits }); //format for the combined chart
                 }
             });
+            plotChart(chartId, data, labels); // plot the pie chart for each course
+
+            // if number of selected courses is more than 1
             if (allCourses.length > 1) {
+                // store the formatted modules data into an array of objects with the course name as the label
                 allModulesToPlotPerCourse.push({
                     label: courseName,
                     data: allModulesPerCourse,
@@ -126,27 +151,20 @@ function setUpPlots() {
                     barThickness: 'flex'
                 });
             }
-            plotChart(chartId, data, labels);
         }
     });
 
-    if ($('.report').length > 1) {
-        plotComparisonChart(allModulesToPlotPerCourse);
+    // if number of selected courses is more than 1
+    if (allCourses.length > 1) {
+        plotComparisonChart(allModulesToPlotPerCourse); // plot the comparison chart as well
     }
 }
 
-// https://www.chartjs.org/docs/latest/charts/doughnut.html
+// function to plot pie charts for a course - takes the canvas element id, the data and the labels as params (Chart.js, )
 function plotChart(chartId, data, labels) {
-    const ctx = document.getElementById(chartId);
+    const ctx = document.getElementById(chartId); // target the canvas element with the given id
 
-    bar_data = {
-        label: "Modules",
-        data,
-        borderWidth: 1,
-        borderColor: "#EEEEEE",
-        backgroundColor: "#333333",
-    };
-
+    // draw chart
     new Chart(ctx, {
         type: "pie",
         data: {
@@ -154,7 +172,7 @@ function plotChart(chartId, data, labels) {
             datasets: [
                 {
                     label: "Credits",
-                    data: bar_data.data,
+                    data,
                     hoverOffset: 4,
                 },
             ],
@@ -170,24 +188,22 @@ function plotChart(chartId, data, labels) {
     });
 }
 
-//chart.js reference
+// function to plot the comparison bar chart - takes the data already formatted above (Chart.js, )
 function plotComparisonChart(data) {
-    const ctx = document.getElementById('comparison-chart');
+    const ctx = document.getElementById('comparison-chart'); //targets the canvas element for the bar chart
 
+    // draw the chart
     new Chart(ctx, {
         type: 'bar',
         data: {
-            datasets: data
+            datasets: data // the datasets, formatted as multiple datasets
         },
         options: {
-            parsing: {
+            parsing: { // parsing is required for object-type datasets to correctly point to the fields to be used for x and y axes
                 xAxisKey: 'moduleId',
                 yAxisKey: 'value'
             }
             , scales: {
-                x: {
-                    barThickness: 50
-                },
                 y: {
                     beginAtZero: true
                 }
@@ -196,6 +212,7 @@ function plotComparisonChart(data) {
     });
 }
 
+// function to create html elements in the overlay element to show course information for the selected course
 function populateOverlay(selectedCourseDetails, selectedCourseModules) {
     const details = $("#course-content"); // targets the element for displaying more course details
     details.html(""); //resets the element for a new view

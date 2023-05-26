@@ -1,71 +1,73 @@
 <?php
-// Check if the user is authenticated
-session_start();
-if ($_SESSION["authenticated"] !== true) {
-    header("Location: index.php"); // PHP docs
-    exit();
+session_start(); // function to start a session/resume an existing one, to retrieve stored session variables (PHP Documentation)
+if ($_SESSION["authenticated"] !== true) { //checks if there is no set "authentication" session variable which means there is no logged in user
+    header("Location: index.php"); // if so, redirect to login page
+    exit(); //end script
 } else {
-    require_once('config_db.php'); // include db setup (https://www.geeksforgeeks.org/how-to-include-content-of-a-php-file-into-another-php-file/)
-    require_once('functions.php');
+    require_once('config_db.php'); // include db setup from another PHP file (rohanmittal1366, 2022)
+    require_once('functions.php'); // include php script containing functions
 
-    $levelOptions = ["Undergraduate", "Postgraduate"];
-    $startDateOptions = ["February", "June", "September"];
-    $yearOptions = ["2023/2024"];
-    $isEdit = false;
-    $requiredFields = ['course-name', 'subject', 'location', 'icon-url', 'startDates', 'levelSelect', 'duration-ft', 'fees-year', 'fees-uk-ft', 'fees-intl-ft'];
-    $error = "";
+    $levelOptions = ["Undergraduate", "Postgraduate"]; // arrays of options for course level
+    $startDateOptions = ["February", "June", "September"]; // arrays of options for start dates
+    $yearOptions = ["2023/2024"]; // arrays of options for fee year
+    
+    // array defining required fields
+    $requiredFields = ['course-name', 'subject', 'location', 'startDates', 'levelSelect', 'duration-ft', 'fees-year', 'fees-uk-ft', 'fees-intl-ft'];
+    $isEdit = false; // variable to check if module is in edit mode
+    $error = ""; // variable to show errors
     $success = "";
 
+    // declare variables to be used to save select elements like status selected, year, etc
     $selectedStartDates = [];
     $selectedYear = "";
     $initialSelectedLevel = "";
-    $initialSelectedPlacement;
+    $initialSelectedPlacement = 0; // variable to represent boolean (0 or 1) for placement
 
+    //if the page has a query params - id (rep. courseId), it is for editing the course
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
-        $isEdit = true;
+        $isEdit = true; // set the edit variable to true
 
+        //prepare SQL command to check if a course with the id actually exists
         $stmt = $pdo->prepare('SELECT * FROM courses WHERE id = :id');
         $values = [
             'id' => $id
         ];
         $stmt->execute($values);
-        $result = $stmt->fetch(PDO::FETCH_ASSOC); //(PHP doc) - does it find a row match, return as array with keys
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        //if a course exists
         if ($result) {
+            // save the module data for the select elements
             $initialSelectedLevel = $result['level'];
             $selectedYear = $result['fees_year'];
             $selectedStartDates = json_decode($result['start_dates'], true);
             $initialSelectedPlacement = $result['duration_placement'];
-            prepopulateCourseFields($result);
-        } else {
-            header("Location: courselist.php"); // PHP docs
-            exit();
+            prepopulateCourseFields($result); // prepopulate the rest of the form fields with the function (from functions.php)
+        }
+        // if course does not exist
+        else {
+            header("Location: courselist.php"); // redirect back to course listing page
+            exit(); // end script
         }
     }
 
+    // if submit button with name "submit" is clicked (to add/update course) (Eldaw M, 2023)
     if (isset($_POST['submit'])) {
+        // save select and checkbox values into variables
         $selectedStartDates = isset($_POST['startDates']) ? $_POST['startDates'] : [];
         $initialSelectedLevel = $_POST['levelSelect'];
         $selectedYear = $_POST['fees-year'];
 
-        //check if a file was selected or the course has an existing value in the icon field
-        $selectedFileName = ($_FILES['icon-url']['name'] !== "") ? $_FILES['icon-url']['name'] : $_POST['icon-url'];
+        $missingFields = checkIfAnyMissing($requiredFields); // use the function defined in functions.php to get missing fields
 
-        //if either a new file/previous icon value exists, remove icon-url from list of required parameters
-        if (!is_null($selectedFileName)) {
-            $requiredFields = array_values(array_diff($requiredFields, ['icon-url'])); //https://stackoverflow.com/questions/2448964/php-how-to-remove-specific-element-from-an-array
-        }
-
-        $missingFields = array_filter(array_map(function ($each) {
-            return empty($_POST[$each]) ? $each : '';
-        }, $requiredFields));
-
-        if (!empty($missingFields)) {
-            $error = 'Fill ALL required fields - ' . implode(', ', $missingFields);
+        if (!empty($missingFields)) { //if the returned array is not empty
+            $error = 'Fill ALL required fields - ' . implode(', ', $missingFields); //show error
         } else {
-            if ($isEdit === true) {
+            if ($isEdit === true) { //check if the course is being edited
                 //function returns boolean, hence the assignment
                 $returned = updateCourseFunc($pdo, $id);
+                // check if value is true (show success message), else show error
                 $returned === true ? $success = "Successfully updated" : $error = "Another course already exists in the db with the same name";
             } else {
                 //function returns an error string if another course exists with the same title, hence the assignment
@@ -74,18 +76,18 @@ if ($_SESSION["authenticated"] !== true) {
         }
     }
 
-    // code - https://www.tutorialspoint.com/php/php_file_uploading.htm#
+    // if file is selected for the file input field (TutorialsPoint, )
     if (isset($_FILES['icon-url'])) {
+        // get the file parameters
         $fileError = "";
         $file_name = $_FILES['icon-url']['name'];
         $file_size = $_FILES['icon-url']['size'];
         $file_tmp = $_FILES['icon-url']['tmp_name'];
         $file_type = $_FILES['icon-url']['type'];
 
-        move_uploaded_file($file_tmp, $file_name);
+        move_uploaded_file($file_tmp, $file_name); //function to move the file to the server (i.e. upload to the current file's directory)
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -93,27 +95,28 @@ if ($_SESSION["authenticated"] !== true) {
 
 <head>
     <title>Course Form</title>
-    <?php include("imports.html"); ?>
+    <?php include("imports.html"); ?>  <!-- add imports -->
 </head>
 
 <body>
-    <?php include("header.html"); ?>
+    <?php include("header.html"); ?>  <!-- import header elements -->
     <main>
         <?php
-        echo "<p class='error'>" . $error . "</p>";
+        echo "<p class='error'>" . $error . "</p>"; //if error variable exists, show error here
         ?>
         <?php
-        echo "<p class='info'>" . $success . "</p>";
+        echo "<p class='info'>" . $success . "</p>"; //if success varaible exists, show here
         ?>
         <h3>
-            <?php echo $isEdit === true ? 'Update Course Form' : 'New Course Form' ?>
+            <?php echo $isEdit === true ? 'Update Course Form' : 'New Course Form' ?>  <!-- update header accordingly -->
         </h3>
         <p class="required">*required fields</p>
+         <!-- form to target the submit buttons, action is empty to submit to the current page, type allows picking file inputs  -->
         <form action="" method="POST" id="courseform" enctype="multipart/form-data">
             <div class="form-input-wrapper">
                 <label for="course-name"><span class="required">*</span>Course Name</label>
                 <input type="text" name="course-name"
-                    value="<?php echo isset($_POST['course-name']) ? $_POST['course-name'] : ''; ?>" />
+                    value="<?php echo isset($_POST['course-name']) ? $_POST['course-name'] : ''; ?>" />  <!-- set value if prepopulate value exists -->
             </div>
             <div class="form-input-wrapper">
                 <label for="subject"><span class="required">*</span>Subject</label>
@@ -129,6 +132,7 @@ if ($_SESSION["authenticated"] !== true) {
                 <label for="startDates"><span class="required">*</span>Start Dates:</label>
                 <?php
                 foreach ($startDateOptions as $start) {
+                    // if prepopulated value exists, select the matching option
                     $isselected = in_array($start, $selectedStartDates);
                     echo '<span class="form-check"><input type="checkbox" name="startDates[]"  value="' . $start . '"' . ($isselected ? 'checked' : '') . '>' . $start . '</span>';
                 }
@@ -147,6 +151,7 @@ if ($_SESSION["authenticated"] !== true) {
                 </select>
             </div>
 
+            <!-- this section is only shown if the course level is undergraduate -->
             <div id="undergraduate-fields"
                 style="display: <?php echo $initialSelectedLevel === "Undergraduate" ? "block;" : "none;" ?>">
                 <p class="fields-heading">Undergraduate Specific Fields</p>
@@ -191,6 +196,7 @@ if ($_SESSION["authenticated"] !== true) {
                 </div>
             </div>
 
+            <!-- this section is only shown if the course level is postgraduate -->
             <div id="postgraduate-fields"
                 style="display: <?php echo $initialSelectedLevel === "Postgraduate" ? "block;" : "none;" ?>">
                 <p class="fields-heading">Postgraduate Specific Fields</p>
@@ -213,12 +219,13 @@ if ($_SESSION["authenticated"] !== true) {
 
             </div>
 
+            <!-- show other sections -->
             <div id="general-fields">
                 <p class="fields-heading">Others</p>
                 <div class="form-input-group">
                     <div>
                         <div class="form-input-wrapper">
-                            <label for="icon-url"><span class="required">*</span>Course Icon</label>
+                            <label for="icon-url">Course Icon</label>
                             <div class="form-textarea-wrapper">
                                 <p class="info img">
                                     <?php echo isset($_FILES['icon-url']['name']) ? $_FILES['icon-url']['name'] : $_POST['icon-url'] ?>
