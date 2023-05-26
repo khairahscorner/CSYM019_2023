@@ -76,14 +76,14 @@ if ($_SESSION["authenticated"] !== true) {
 
             // if submit button with name "submit" is clicked (to add/update module) (Eldaw M, 2023)
             if (isset($_POST['submit'])) {
-                //if value entered for credits field is at least 0
-                if ($_POST['credits'] >= 0) {
+                //if value entered for credits field is at least 0 and not empty
+                if ($_POST['credits'] !== "" && $_POST['credits'] >= 0) {
                     $requiredFields = array_values(array_diff($requiredFields, ['credits'])); // remove credits from the required array ( PHP: How to remove specific element from an array?)
                 }
 
                 $missingFields = checkIfAnyMissing($requiredFields); // use the function defined in functions.php to get missing fields
 
-                if (!empty($isAnyMissing)) { //if the returned array is not empty
+                if (!empty($missingFields)) { //if the returned array is not empty
                     $error = 'Fill ALL required fields - ' . implode(', ', $missingFields); // show error
                 } else {
                     //check if the module is being edited

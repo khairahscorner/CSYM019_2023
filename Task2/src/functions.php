@@ -1,6 +1,4 @@
-<!-- contains user-defined functions used in the other php files -->
 <?php
-
 // function to prepopulate the course form fileds withexisting course data when editing a course, takes the course details as param
 function prepopulateCourseFields($result)
 {
