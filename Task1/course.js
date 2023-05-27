@@ -48,7 +48,7 @@ function populateTable() {
     })
     .fail(function () { //replacement method for error() in jquery >3.0 (jQuery.ajax())
       $("#message").css("display", "inline-block"); //changes the display to show the error messages
-      $("#message").html("Could not load table. Please try again later"); //change the inner contents of the element
+      $("#message").html("Could not load table. Please try again later");
       $("#table-section").css("display", "none"); // hides the table section
     });
 }
@@ -320,14 +320,13 @@ function populateOverlay(selectedCourseDetails) {
 $(document).ready(function () {
   populateTable(); // used to load the table immediately the page is loaded, without any DELAY
 
-  // function for updating the table at specific intervals
+  // function for updating the table at specific intervals (5 minutes), also self-executing
   (function updateTableAtIntervals() {
-    setTimeout(function () {  //settimeout method that executes every 5 minutes
-      console.log("Now updating"); //sample message to show when table is updated
+    setTimeout(function () { 
       populateTable(); // the function that populates the table
       updateTableAtIntervals(); // the function calls itself here, creating a recursive cycle
     }, 300000);
-  })(); //the function is also self-executing since it is invoked via the () and keeps executing from the recursion
+  })();
 
   //event listener to target clicks on any row in the table
   $('#table-contents').on('click', '.view', function () {
