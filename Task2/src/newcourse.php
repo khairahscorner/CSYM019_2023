@@ -81,12 +81,8 @@ if ($_SESSION["authenticated"] !== true) {
     // if file is selected for the file input field (TutorialsPoint, )
     if (isset($_FILES['icon-url'])) {
         // get the file parameters
-        $fileError = "";
-        $file_name = $_FILES['icon-url']['name'];
-        $file_size = $_FILES['icon-url']['size'];
-        $file_tmp = $_FILES['icon-url']['tmp_name'];
-        $file_type = $_FILES['icon-url']['type'];
-
+        $file_name = $_FILES['icon-url']['name']; //file name
+        $file_tmp = $_FILES['icon-url']['tmp_name']; // temp file location
         move_uploaded_file($file_tmp, $file_name); //function to move the file to the server (i.e. upload to the current file's directory)
     }
 }
